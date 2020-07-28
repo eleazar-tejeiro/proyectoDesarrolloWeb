@@ -1,10 +1,10 @@
 <?php
-	include ("include/header.php");
-	include ("include/leftNav.php");
+    include("include/header.php");
+    include("include/leftNav.php");
 ?>
 <div class="row">
 	<div class="column middle">
-	<?php include ("adminCheck.php");	?>
+	<?php include("adminCheck.php");	?>
 	<ul>
 		<li><a href='createCourseTable.php'>Create Course Table</a></li>
 		<li><a href='createUserTable.php'>Create User Table</a></li>
@@ -14,5 +14,5 @@
 	</div>
 </div>
 <?php
-	include ("include/footer.php");
+    include("include/footer.php");
 ?>

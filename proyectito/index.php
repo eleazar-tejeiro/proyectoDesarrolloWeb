@@ -1,7 +1,7 @@
 <!-- The homepage of the website -->
 <?php
-include ("include/header.php");
-include ("include/leftNav.php");
+include("include/header.php");
+include("include/leftNav.php");
 ?>
 <div class="row">
 	<div class="column middle">
@@ -14,5 +14,5 @@ include ("include/leftNav.php");
 	</div>
 </div>
 <?php
-include ("include/footer.php");
+include("include/footer.php");
 ?>
