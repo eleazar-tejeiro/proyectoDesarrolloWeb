@@ -1,0 +1,135 @@
+/*This is the CSS style sheet for my website project for Website Development PHP project
+Author: Hawkin Saeger
+Date: March 11, 2019*/
+
+/*General Styles*/
+body {
+    background-color: #ddd;
+    color:#443F3F;
+    font:110% 'Economica',Tahoma,sans-serif;
+    line-height:1.3em;
+}
+a {
+    color:#045262;
+    text-decoration:none;
+    font-weight:400;
+}
+a:hover {
+    text-decoration:underline;
+}
+p,ul,ol,dl {
+    margin:0 0 15px 0;
+    line-height:1.5em;
+}
+h1 {
+    color:#888;
+    font-size:3.6em;
+    margin-bottom:0;
+}
+h2 {
+    font-size:2.2em;
+    color:#333;
+    margin:0 0 5px;
+}
+h3 {
+    font-size:1.6em;
+    margin:0 0 5px 0;
+}
+h1,h2,h3 {
+    color:#045262;
+    font-weight:400;
+    line-height:1.2em;
+}
+
+/*Main Layout: Columns*/
+.column {
+  float: left;
+  padding: 10px;
+  margin:0 10px;
+}
+.column.side{
+    width: 15%;
+}
+.column.middle{
+    width: 70%;
+}
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* Menu list styles */
+ul.menu {list-style:none; margin:0; padding:10px 0; border-top:1px solid #333;}
+ul.menu li {list-style:none; text-align:center; font-size:1.2em; margin:0 0 10px; padding:0 0 8px 0; color:#888; border-bottom:1px solid #333;}
+ul.menu li a {font-size:1.2em; font-weight:400;}
+ul.menu li a:hover {color:#eee; text-decoration:none;}
+
+/* Footer */
+#footer {
+    background-color: #6C6A6A;
+    margin-left: -20px;
+    margin-right: -20px;
+    margin-bottom: -20px;
+}
+#footer h3{
+    color: white;
+    text-align: center;
+    padding-top: 10px;
+}
+#footer p{
+    color: white;
+    text-align: center;
+    padding-top: 0;
+}
+
+
+/*Heading Style*/
+#heading {
+    display: block;
+    background-color: #69DEF5;
+    text-align: center;
+    padding: 5px;
+    border: 2px solid black;
+    border-bottom: 0px;
+    border-radius: 5px;
+}
+#heading h1{
+    color: #3A3535;
+    font-size: 50px;
+    font-weight: 600;
+}
+/*Header's Navigation Menu style*/
+.nav_menu ul {
+    list-style-type: none;
+     padding: 0;
+     margin: 0;
+     overflow: hidden;
+     background-color: #6C6A6A;
+     border: 2px solid black;
+     border-top: 0.5px solid black;
+     border-radius: 5px;
+}
+.nav_menu li{
+    float: left;
+}
+.nav_menu li a {
+    display: block;
+    font-size: 20px;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-weight:450;
+    font-family: Helvetica, sans-serif;
+}
+
+.nav_menu li a:hover{
+    background-color: #28C1BC;
+}
+/*Table Styles*/
+table{
+    border-collapse: collapse;
+    border: 1;
+}
