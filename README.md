@@ -1,7 +1,7 @@
 # proyectoDesarrolloWeb
 Proyecto Universidad
 
-- [ ] Implementar Bootstrap
+- [ ] Implementar Materialize
 
 - [ ] Modificar el login y pagina principal
 
@@ -9,6 +9,6 @@ Proyecto Universidad
 
 - [ ] Adaptar la base de datos
 
-- [ - ] Implementar MVC
+- [-] Implementar MVC
 
 Grupo: Mauricio, Alvaro, Anahi y Uriel
