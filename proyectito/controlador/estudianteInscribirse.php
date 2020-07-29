@@ -1,13 +1,13 @@
 <?php
-include("include/header.php");
-include("include/leftNav.php");
+include("vista/include/encabezado.php");
+include("vista/include/navegadorIzqui.php");
 ?>
 
 <!--Either shows the registration form, or adds the user to the database -->
 <div class="row">
 	<div class="column middle">
 	<?php
-    include("studentCheck.php");
+    include("modelo/revisaEstudiante.php");
     if (isset($_POST['course'])) {
         addEnrollmentToDatabase();
     } else {
@@ -30,7 +30,7 @@ function showForm()
             echo "There are no courses for you to enroll on";
         } else {
             //displays all the potential courses to take
-            echo "<form name='enroll' method='post' action='studentEnroll.php'>";
+            echo "<form name='enroll' method='post' action='estudianteInscribirse.php'>";
             while ($currentCourse = mysqli_fetch_array($resource)) {
                 echo "<input type='checkbox' name='course[]' value='$currentCourse[courseID]' />
 			  $currentCourse[courseName] <br>";
@@ -64,10 +64,10 @@ function addEnrollmentToDatabase()
             die();
         }
     }
-    echo "<a href='studentEnroll.php'>Click here to enroll on another course</a>
-		   <br><a href='studentHome.php'>Click here to return to the student home page</a>";
+    echo "<a href='estudianteInscribirse.php'>Click here to enroll on another course</a>
+		   <br><a href='estudianteInicio.php'>Click here to return to the student home page</a>";
     mysqli_close($conn);
 }
 
-include("include/footer.php");
+include("vista/include/piePagina.php");
 ?>

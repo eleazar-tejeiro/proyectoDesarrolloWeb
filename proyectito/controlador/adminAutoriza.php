@@ -1,10 +1,10 @@
 <?php
-include("vista/include/header.php");
-include("vista/include/leftNav.php");
+include("vista/include/encabezado.php");
+include("vista/include/navegadorIzqui.php");
 ?>
 <div class="row">
 	<div class="column middle">
-	<?php include("modelo/adminCheck.php");
+	<?php include("modelo/revisaAdmin.php");
 
     if (!isset($_POST['userID'])) {
         showTable();
@@ -33,7 +33,7 @@ function showTable()
                 $userType = $row['userType'];
 
                 echo "<tr><td>$userID</td><td>$userForename</td><td>$userSurname</td><td>$userType</td>";
-                echo "<td><form name='authorize' method='post' action='adminAuthorize.php'>";
+                echo "<td><form name='authorize' method='post' action='adminAutoriza.php'>";
                 echo "<input type='hidden' name='userID' value='$userID'/>";
                 echo "<input type='submit' value='AUTHORIZE'/>";
                 echo "</form></td></tr>";
@@ -50,12 +50,13 @@ function authorizeUser()
     $sql = "UPDATE users SET userActive = 1 WHERE userID=$userID";
     if ($resource = mysqli_query($conn, $sql)) {
         echo "<p style='color:green'>Successfully authorized user</p>";
-        header("Refresh:2;url='adminAuthorize.php' ");
+        header("Refresh:2;url='adminAutoriza.php' ");
     } else {
         echo "<p style='color:red'>Failed to authorized user. Contact Network Admin</p>";
     }
     mysqli_close($conn);
 }
 ?>
-include ("include/footer.php");
+<?php
+include ("vista/include/piePagina.php");
 ?>

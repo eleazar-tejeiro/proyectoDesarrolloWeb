@@ -1,6 +1,6 @@
 <?php
-include("include/header.php");
-include("include/leftNav.php");
+include("vista/include/encabezado.php");
+include("vista/include/navegadorIzqui.php");
 ?>
 
 <!--Either shows the registration form, or adds the user to the database -->
@@ -23,7 +23,7 @@ include("include/leftNav.php");
 //shows the form to register to the user
 function showForm()
 {
-    echo " <form name='register' method='post' action='register.php'>
+    echo " <form name='register' method='post' action='registrarse.php'>
 		Forename		  <input type='text' name='forename'/> <br />
 		Surname  		  <input type='text' name='surname'/> <br />
 		Username 		  <input type='text' name='username'/> <br />
@@ -54,11 +54,11 @@ function addUserToDatabase()
     if ($password!=$cpassword) {
         echo "<br>Passwords do not match, please enter info again";
         echo "<br>Refreshing in 3 seconds...";
-        header("Refresh:3; url=register.php");
+        header("Refresh:3; url=registrarse.php");
     } elseif (mysqli_num_rows($resource)>0) {
         echo "<br>Username already has been used, please select another.";
         echo "<br>Refreshing in 3 seconds...";
-        header("Refresh:3; url=register.php");
+        header("Refresh:3; url=registrarse.php");
     } else {
         $sql = "INSERT INTO users (userForename, userSurname, username, userPassword, userType, userActive)
 				VALUES ('$forename', '$surname', '$username', '$password', '$type', 0)";
@@ -93,5 +93,5 @@ function addAdminToDatabase()
     mysqli_close($conn);
 }
 
-include("include/footer.php");
+include("vista/include/piePagina.php");
 ?>

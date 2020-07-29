@@ -1,14 +1,14 @@
 <?php
 session_start();
-include("include/header.php");
-include("include/leftNav.php");
+include("vista/include/encabezado.php");
+include("vista/include/navegadorIzqui.php");
 ?>
 
 <!--Either shows the registration form, or adds the user to the database -->
 <div class="row">
 	<div class="column middle">
 	<?php
-    include("tutorCheck.php");
+    include("modelo/revisaProfesor.php");
 
     if (isset($_POST['courseName'])) {
         addCourseToDatabase();
@@ -23,7 +23,7 @@ include("include/leftNav.php");
 function showForm()
     {
         //shows the form to create a new course
-        echo "<form name='Add Course' method='post' action='tutorNewCourse.php'>
+        echo "<form name='Add Course' method='post' action='profNuevoCurso.php'>
 		Course Name		  <input type='text' name='courseName'/> <br />
 		<input type='submit' onclick='submit' />
 		</form>";
@@ -42,8 +42,8 @@ function addCourseToDatabase()
     //check if course created successfully
     if (mysqli_query($conn, $sql)) {
         echo "<p style='color:green'>Successfully Created Course</p>";
-        echo "<a href='tutorHome.php'>Click here to return to Tutor Home</a>";
-        echo "<br><br><a href='tutorNewCourse.php'>Click here to create another course</a>";
+        echo "<a href='profInicio.php'>Click here to return to Tutor Home</a>";
+        echo "<br><br><a href='profNuevoCurso.php'>Click here to create another course</a>";
     } else {
         echo"<p style='color:red'>Failed to Create Course: <br/> ";
         echo(mysqli_error($conn));
@@ -52,5 +52,5 @@ function addCourseToDatabase()
     mysqli_close($conn);
 }
 
-include("include/footer.php");
+include("vista/include/piePagina.php");
 ?>

@@ -1,7 +1,7 @@
 <?php
 session_start();
-include("include/header.php");
-include("include/leftNav.php");
+include("vista/include/encabezado.php");
+include("vista/include/navegadorIzqui.php");
 ?>
 
 <!--If username is set then login user, if not show login-->
@@ -66,14 +66,14 @@ function showLinkToUserPage()
 {
     //depending on user, show different link to their homepage
     if ($_SESSION['userType'] == "tutor") {
-        echo("<a href='tutorHome.php'>Click here for the tutor home page</a>");
+        echo("<a href='profInicio.php'>Click here for the tutor home page</a>");
     } elseif ($_SESSION['userType'] == "student") {
-        echo("<a href='studentHome.php'>Click here for student home page</a>");
+        echo("<a href='estudianteInicio.php'>Click here for student home page</a>");
     } elseif ($_SESSION['userType'] == "administrator") {
-        echo("<a href='adminHome.php'>Click here for administrator home page</a>");
+        echo("<a href='adminInicio.php'>Click here for administrator home page</a>");
     } else {
         echo("<a href='login.php'>Something went wrong... retry login or contact network admin</a>");
     }
 }
-include("include/footer.php");
+include("vista/include/piePagina.php");
 ?>

@@ -1,14 +1,14 @@
 <?php
 session_start();
-include("include/header.php");
-include("include/leftNav.php");
+include("vista/include/encabezado.php.php");
+include("vista/include/navegadorIzqui.phpqui.php");
 ?>
 
 <!--Either shows the registration form, or adds the user to the database -->
 <div class="row">
 	<div class="column middle">
 	<?php
-    include("tutorCheck.php");
+    include("modelo/revisaProfesor.php.php");
 
     if (isset($_FILES["resourceFile"])) {
         addResourceToDatabase();
@@ -29,7 +29,7 @@ function showForm()
     $resource = mysqli_query($conn, $sql);
 
     //displays all the potential courses
-    echo " <form method='post' action='tutorUpload.php' enctype='multipart/form-data'>
+    echo " <form method='post' action='profCarga.php' enctype='multipart/form-data'>
 		Resource Name: <input type='text' id='resourceName' name='resourceName'/><br>
 		Upload file: <input type='file' id='resourceFile' name='resourceFile'/><br><br> Choose Course For File:<br>";
     while ($currentCourse = mysqli_fetch_array($resource)) {
@@ -62,8 +62,8 @@ function addResourceToDatabase()
                 //check if course created successfully
                 if (mysqli_query($conn, $sql)) {
                     echo "<p style='color:green'>Successfully Uploaded Resource</p>";
-                    echo "<a href='tutorHome.php'>Click here to return to Tutor Home</a>";
-                    echo "<br><br><a href='tutorUpload.php'>Click here to upload another resource</a>";
+                    echo "<a href='profInicio.php'>Click here to return to Tutor Home</a>";
+                    echo "<br><br><a href='profCarga.php'>Click here to upload another resource</a>";
                 } else {
                     echo"<p style='color:red'>Failed to Upload Resource: <br/> ";
                     echo(mysqli_error($conn));
@@ -79,5 +79,5 @@ function addResourceToDatabase()
     }
 }
 
-include("include/footer.php");
+include("vista/include/piePagina.phpphp");
 ?>

@@ -2,14 +2,23 @@
 include("vista/include/encabezado.php");
 include("vista/include/navegadorIzqui.php");
 ?>
-<!--Create the Database for Tables to Be Stored -->
+
 <div class="row">
 	<div class="column middle">
 	<?php
-    $conn = mysqli_connect("localhost", "root", "");
-    $sql = "CREATE DATABASE IF NOT EXISTS BDClaseVirtual";
+    $conn = mysqli_connect("localhost", "root", "", "BDClaseVirtual");
+    $sql = "CREATE TABLE IF NOT EXISTS users (
+			userID INT NOT NULL AUTO_INCREMENT,
+			userForename VARCHAR(30) NOT NULL,
+			userSurname  VARCHAR(30) NOT NULL,
+			username     VARCHAR(50) NOT NULL,
+			userPassword VARCHAR(50) NOT NULL,
+			userType 	 VARCHAR(13) NOT NULL,
+			userActive   BOOLEAN NOT NULL,
+			PRIMARY KEY (userID)
+			)";
 
-    //check if database was created
+    //check if table was created
     if (mysqli_query($conn, $sql)) {
         echo("<p style='color:green'>SUCCESS</p>");
     } else {
@@ -20,7 +29,6 @@ include("vista/include/navegadorIzqui.php");
     ?>
 	</div>
 </div>
-
 <?php
 include("vista/include/piePagina.php");
 ?>

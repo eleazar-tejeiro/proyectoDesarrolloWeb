@@ -1,10 +1,10 @@
 <?php
-include("include/header.php");
-include("include/leftNav.php");
+include("vista/include/encabezado.php");
+include("vista/include/navegadorIzqui.php");
 ?>
 <div class="row">
 	<div class="column middle">
-		<?php include("tutorCheck.php");
+		<?php include("modelo/revisaProfesor.php");
         echo "<h2>Authorize Students</h2>
 		<p>This page allows you to authorize student(s) onto courses. See the table
 		   for the list of students waiting to be authorized or add them yourself. <br></p>";
@@ -22,7 +22,7 @@ include("include/leftNav.php");
 	</div>
 </div>
 <?php
-include("include/footer.php");
+include("vista/include/piePagina.php");
 
 function getCourses()
 {
@@ -61,7 +61,7 @@ function showStudents($resource)
 {
     //shows a form of students to the tutor
     $courseID = $_POST['courseID'];
-    echo "<form name='showStudents' method='post' action='tutorAuthoStud.php'>";
+    echo "<form name='showStudents' method='post' action='profAutorizaEstudiante.php'>";
     echo "<input type='hidden' name='courseID' value='$courseID' /> ";
     echo "<table border='2'>
 			<tr><th>Check</th><th>User ID</th><th>Name</th>";
@@ -100,7 +100,7 @@ function doSQL($sql)
 function showCourses($resource)
 {
     //shows form of courses
-    echo "<form name='showCourses' method='post' action='tutorAuthoStud.php'>
+    echo "<form name='showCourses' method='post' action='profAutorizaEstudiante.php'>
 		  <select name='courseID' required autofocus > ";
     while ($currentLine = mysqli_fetch_array($resource)) {
         echo "<option value='$currentLine[courseID]'>$currentLine[courseName]</option>";

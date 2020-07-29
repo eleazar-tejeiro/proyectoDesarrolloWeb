@@ -5,7 +5,7 @@
 	<meta name="description" content="Website for Website Development Class-2019" />
 	<meta name="author" content="Hawkin Saeger" />
 	<link href='http://fonts.googleapis.com/css?family=Dosis' rel='stylesheet' type='text/css' />
-	<link rel="stylesheet" type="text/css" href="vista/css/myStyle.css"/>
+	<link rel="stylesheet" type="text/css" href="vista/css/estilos.css"/>
 	<title>Classroom Website</title>
 </head>
 
@@ -19,8 +19,8 @@
 	<div class="nav_menu">
 		<ul>
 			<li><a href="index.php">Home</a></li>
-			<li><a href="studentHome.php">Student</a></li>
-			<li><a href="tutorHome.php">Tutor</a></li>
-			<li><a href="adminHome.php">Admin</a></li>
+			<li><a href="estudianteInicio.php">Student</a></li>
+			<li><a href="profInicio.php">Tutor</a></li>
+			<li><a href="adminInicio.php">Admin</a></li>
 		</ul>
 	</div>

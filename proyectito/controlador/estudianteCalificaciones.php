@@ -1,12 +1,12 @@
 <?php
-include("include/header.php");
-include("include/leftNav.php");
+include("vista/include/encabezado.php");
+include("vista/include/navegadorIzqui.php");
 ?>
 
 <div class="row">
 	<div class="column middle">
 		<?php
-        include("studentCheck.php");
+        include("modelo/revisaEstudiante.php");
         if (!isset($_POST['course'])) {
             showForm();
         } else {
@@ -27,11 +27,11 @@ function showForm()
             $resource = mysqli_query($conn, $sql);
             //check to make sure they are enrolled in classes
             if (mysqli_num_rows($resource)<1) {
-                echo "<p>You are not enrolled in any classes yet.<p><a href='studentHome.php'>Please return to the student home.</a>";
+                echo "<p>You are not enrolled in any classes yet.<p><a href='estudianteInicio.php'>Please return to the student home.</a>";
             } else {
                 //displays all the potential courses to take
                 echo "Please select a class to see grades and progress.<br>";
-                echo "<form name='select' method='post' action='studentGrades.php'>";
+                echo "<form name='select' method='post' action='estudianteCalificaciones.php'>";
                 while ($currentCourse = mysqli_fetch_array($resource)) {
                     echo "<input type='radio' name='course[]' value='$currentCourse[courseID]' />
 			  $currentCourse[courseName] <br>";
@@ -59,8 +59,8 @@ function displayGrades()
     //heading display code
     if (mysqli_num_rows($resource)<1 && mysqli_num_rows($resource2)<1) { //assingments uploaded?
         echo "There are no assignments uploaded on this course yet.<br>";
-        echo "<a href='studentHome.php'>Click here to return to student home.</a><br>";
-        echo "<a href='studentGrades.php'>Click here to select another course.</a>";
+        echo "<a href='estudianteInicio.php'>Click here to return to student home.</a><br>";
+        echo "<a href='estudianteCalificaciones.php'>Click here to select another course.</a>";
         die();
     }
     echo "<h2>Grades</h2>
@@ -112,8 +112,8 @@ function displayGrades()
         echo "<th>-</th><th>-</th>";
     }
     echo "</tr></table><br>";
-    echo "<a href='studentGrades.php'>Click here to select another course.</a><br>";
-    echo "<a href='studentHome.php'>Click here to return to the student home.</a>";
+    echo "<a href='estudianteCalificaciones.php'>Click here to select another course.</a><br>";
+    echo "<a href='estudianteInicio.php'>Click here to return to the student home.</a>";
     mysqli_close($conn);
 }
 function showProgress()
@@ -153,5 +153,5 @@ function showProgress()
 <?php
     mysqli_close($conn);
 }
-include("include/footer.php");
+include("vista/include/piePagina.php");
 ?>

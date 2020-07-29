@@ -1,17 +1,17 @@
 <?php
-include("include/header.php");
-include("include/leftNav.php");
+include("vista/include/encabezado.php");
+include("vista/include/navegadorIzqui.php");
 ?>
 
 <div class="row">
 	<div class="column middle">
 		<?php
-        include("studentCheck.php");
+        include("modelo/revisaEstudiante.php");
 
         //if quiz is set, move forward
         $userID = $_SESSION["userID"];
         if (!isset($_GET["quiz"])) {
-            header("Location: studentCourses.php");
+            header("Location: estudianteCurso.php");
         } else {
             $quizFile = $_GET["quiz"];
         }
@@ -26,7 +26,7 @@ include("include/leftNav.php");
             if ($numRows > 0) {  //check if taken
                 echo"YOU HAVE ALREADY TAKEN THIS QUIZ!";
                 echo "<p>Redirecting you back to the courses page...</p>";
-                header("Refresh: 3; url=studentCourses.php");
+                header("Refresh: 3; url=estudianteCurso.php");
                 die();
                 mysqli_close($conn);
             }
@@ -37,10 +37,10 @@ include("include/leftNav.php");
             $qNum = 1;
 
             if (sizeof($quizLines) == 0) { 	//check if quiz exists
-                header("Location: studentCourses.php");
+                header("Location: estudianteCurso.php");
             }
 
-            echo "<form method='get' action='studentTakeQuiz.php'>";
+            echo "<form method='get' action='estudianteTomaCuest.php'>";
             echo "<input type='hidden' name='quiz' value='$quizFile'/>";
             //display quiz lines
             foreach ($quizLines as $line) {
@@ -122,11 +122,11 @@ include("include/leftNav.php");
             mysqli_query($conn, $sql) or die(mysqli_error($conn));
             mysqli_close($conn);
 
-            echo "<a href='studentCourses.php'>Click here to return to Courses page<a>";
+            echo "<a href='estudianteCurso.php'>Click here to return to Courses page<a>";
         }
 ?>
 	</div>
 </div>
 <?php
-include("include/footer.php");
+include("vista/include/piePagina.php");
 ?>

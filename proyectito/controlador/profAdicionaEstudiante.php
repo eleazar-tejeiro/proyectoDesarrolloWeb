@@ -1,13 +1,13 @@
 <?php
-include("include/header.php");
-include("include/leftNav.php");
+include("vista/include/encabezado.php");
+include("vista/include/navegadorIzqui.php");
 ?>
 
 <!--Either shows the registration form, or adds the user to the database -->
 <div class="row">
 	<div class="column middle">
 	<?php
-    include("tutorCheck.php");
+    include("modelo/revisaProfesor.php");
 
     if (!isset($_POST['courseID']) and !isset($_POST['studentID'])) {
         if (!isset($_POST['forename'])) {
@@ -29,7 +29,7 @@ include("include/leftNav.php");
 function showForm()
     {
         //shows the form to create a student
-        echo " <form name='register' method='post' action='tutorAddStud.php'>
+        echo " <form name='register' method='post' action='profAdicionaEstudiante.php'>
 		Forename		  <input type='text' name='forename'/> <br />
 		Surname  		  <input type='text' name='surname'/> <br />
 		Username 		  <input type='text' name='username'/> <br />
@@ -73,7 +73,7 @@ function showCourses($resource, $studentID)
 {
     //shows the list of courses, and tutor can enroll the student onto course using this form
     echo "Which of your courses do you want to enroll the student on?<br>";
-    echo "<form name='showCourses' method='post' action='tutorAddStud.php' >";
+    echo "<form name='showCourses' method='post' action='profAdicionaEstudiante.php' >";
     while ($currentLine = mysqli_fetch_array($resource)) {
         echo "<input type='checkbox' name='courseID[]' value='$currentLine[courseID]' />";
         echo $currentLine['courseName'] . '<br>';
@@ -113,5 +113,5 @@ function doSQL($sql)
     mysqli_close($conn);
 }
 
-include("include/footer.php");
+include("vista/include/piePagina.php");
 ?>

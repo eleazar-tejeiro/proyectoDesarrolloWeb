@@ -1,10 +1,10 @@
 <?php
-    include("include/header.php");
-    include("include/leftNav.php");
+    include("vista/include/encabezado.php");
+    include("vista/include/navegadorIzqui.php");
 ?>
 <div class="row">
 	<div class="column middle">
-	<?php include("adminCheck.php");
+	<?php include("modelo/revisaAdmin.php");
     if (!isset($_POST['table'])) {
         showForm();
     } else {
@@ -17,7 +17,7 @@
 function showForm()
     {
         //show the form to select which table to display
-        echo "<form name='displayTables' method='post' action='adminDisplayTables.php'>
+        echo "<form name='displayTables' method='post' action='adminMuestraTablas.php'>
 		<input type='radio' name='table' value='users'>Users<br>
 		<input type='radio' name='table' value='courses'>Course<br>
 		<input type='radio' name='table' value='resources'>Resources<br>
@@ -62,10 +62,10 @@ function displayTable()
         echo "</tr>";
     }
     echo "</table>";
-    echo "<br><a href='adminDisplayTables.php'>Click here to choose another table</a><br>
-			  <a href='adminHome.php'>Click here to return to the admin homepage</a>";
+    echo "<br><a href='adminMuestraTablas.php'>Click here to choose another table</a><br>
+			  <a href='adminInicio.php'>Click here to return to the admin homepage</a>";
 
     mysqli_close($conn);
 }
-include("include/footer.php");
+include("vista/include/piePagina.php");
 ?>

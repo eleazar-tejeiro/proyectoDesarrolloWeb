@@ -1,6 +1,6 @@
 <?php
-	include ("include/header.php");
-	include ("include/leftNav.php");
+	include ("vista/include/encabezado.php");
+	include ("vista/include/navegadorIzqui.php");
 ?>
 
 <div class="row">
@@ -13,5 +13,5 @@
 	</div>
 </div>
 <?php
-	include ("include/footer.php");
+	include ("vista/include/piePagina.php");
 ?>

@@ -1,12 +1,12 @@
 <?php
-include("include/header.php");
-include("include/leftNav.php");
+include("vista/include/encabezado.php");
+include("vista/include/navegadorIzqui.php");
 ?>
 
 <div class="row">
 	<div class="column middle">
 		<?php
-        include("studentCheck.php");
+        include("modelo/revisaEstudiante.php");
 
         $userID=$_SESSION['userID'];
         $conn = mysqli_connect("localhost", "root", "", "BDClaseVirtual");
@@ -53,7 +53,7 @@ include("include/leftNav.php");
                 $uploadDate = $row["uploadDate"];
 
                 echo "<td>$name</td>";
-                echo "<td><a href='studentTakeQuiz.php?quiz=$filename'>Take Quiz</a></td>";
+                echo "<td><a href='estudianteTomaCuest.php?quiz=$filename'>Take Quiz</a></td>";
                 echo "<td>$course</td><td>$uploadDate</td>";
                 echo "</tr>";
             }
@@ -65,5 +65,5 @@ include("include/leftNav.php");
 	</div>
 </div>
 <?php
-include("include/footer.php");
+include("vista/include/piePagina.php");
 ?>
