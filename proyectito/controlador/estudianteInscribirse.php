@@ -21,10 +21,10 @@ include("vista/include/navegadorIzqui.php");
 function showForm()
     {
         //selects courses where user has not enrolled and displays them
-        $userID = $_SESSION['userID'];
+        $usuarioID = $_SESSION['usuarioID'];
         $conn = mysqli_connect('localhost', 'root', '', 'BDClaseVirtual');
-        $sql = "SELECT courseID, courseName FROM course
-			WHERE courseID NOT IN (SELECT courseID FROM studentTaking WHERE userID=$userID)";
+        $sql = "SELECT cursoID, cursoNombre FROM course
+			WHERE cursoID NOT IN (SELECT cursoID FROM studentTaking WHERE usuarioID=$usuarioID)";
         $resource = mysqli_query($conn, $sql);
         if (mysqli_num_rows($resource)<1) {
             echo "There are no courses for you to enroll on";
@@ -32,8 +32,8 @@ function showForm()
             //displays all the potential courses to take
             echo "<form name='enroll' method='post' action='estudianteInscribirse.php'>";
             while ($currentCourse = mysqli_fetch_array($resource)) {
-                echo "<input type='checkbox' name='course[]' value='$currentCourse[courseID]' />
-			  $currentCourse[courseName] <br>";
+                echo "<input type='checkbox' name='course[]' value='$currentCourse[cursoID]' />
+			  $currentCourse[cursoNombre] <br>";
             }
             echo"<input type='submit' onclick='submit' />
 			</form>";
@@ -46,13 +46,13 @@ function addEnrollmentToDatabase()
 {
     //adds enrollment information
     $course = $_POST['course'];
-    $userID = $_SESSION['userID'];
+    $usuarioID = $_SESSION['usuarioID'];
     $today = date("Ymd");
 
     $conn = mysqli_connect('localhost', 'root', '', 'BDClaseVirtual');
     foreach ($course as $currentCourse) {
-        $sql = "INSERT INTO studentTaking (courseID, userID, dateRegistered, authorized)
-				VALUES ('$currentCourse', '$userID', '$today', 0)";
+        $sql = "INSERT INTO studentTaking (cursoID, usuarioID, dateRegistered, authorized)
+				VALUES ('$currentCourse', '$usuarioID', '$today', 0)";
         //check if added successfully
         if (mysqli_query($conn, $sql)) {
             echo "<p style='color:green'>Successfully Registered</p>";

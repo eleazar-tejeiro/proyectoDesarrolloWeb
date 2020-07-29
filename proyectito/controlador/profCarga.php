@@ -24,8 +24,8 @@ include("vista/include/navegadorIzqui.phpqui.php");
 function showForm()
 {
     $conn = mysqli_connect('localhost', 'root', '', 'BDClaseVirtual');
-    $userID = $_SESSION['userID'];
-    $sql = "SELECT courseID, courseName FROM course WHERE courseOwner=$userID";
+    $usuarioID = $_SESSION['usuarioID'];
+    $sql = "SELECT cursoID, cursoNombre FROM course WHERE cursoPropietario=$usuarioID";
     $resource = mysqli_query($conn, $sql);
 
     //displays all the potential courses
@@ -33,8 +33,8 @@ function showForm()
 		Resource Name: <input type='text' id='resourceName' name='resourceName'/><br>
 		Upload file: <input type='file' id='resourceFile' name='resourceFile'/><br><br> Choose Course For File:<br>";
     while ($currentCourse = mysqli_fetch_array($resource)) {
-        echo "<input type='checkbox' name='course[]' value='$currentCourse[courseID]' />
-		  $currentCourse[courseName] <br>";
+        echo "<input type='checkbox' name='course[]' value='$currentCourse[cursoID]' />
+		  $currentCourse[cursoNombre] <br>";
     }
     echo"<input type='submit' value='Upload Resource'/>
 		</form>";
@@ -48,16 +48,16 @@ function addResourceToDatabase()
     $tmp_name = $resourceFile["tmp_name"];
     $fileError = $resourceFile["error"];
     $resourceDisplayName = $_POST["resourceName"];
-    $uploadDate = date("Y-m-d H:i:s");
+    $fechaSubida = date("Y-m-d H:i:s");
     $course = $_POST["course"];
-    $loginUsername = $_SESSION["userID"];
+    $loginusuarioApodo = $_SESSION["usuarioID"];
 
     if ($fileError == 0) {
         if (move_uploaded_file($tmp_name, "resource_uploads/$resourceName")) {
             $conn = mysqli_connect('localhost', 'root', '', 'BDClaseVirtual');
             foreach ($course as $currentCourse) {
-                $sql = "INSERT INTO resources(name, fileName, owner, courseID, uploadDate)
-				VALUES('$resourceDisplayName', '$resourceName', '$loginUsername', $currentCourse, '$uploadDate')";
+                $sql = "INSERT INTO resources(name, fileName, owner, cursoID, fechaSubida)
+				VALUES('$resourceDisplayName', '$resourceName', '$loginusuarioApodo', $currentCourse, '$fechaSubida')";
 
                 //check if course created successfully
                 if (mysqli_query($conn, $sql)) {

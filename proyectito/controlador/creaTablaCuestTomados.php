@@ -10,11 +10,11 @@ include("vista/include/navegadorIzqui.php");
     $sql = "CREATE TABLE IF NOT EXISTS takenQuizzes (
 				name VARCHAR(40) NOT NULL,
 				filename VARCHAR(40) NOT NULL,
-				userID INT NOT NULL,
+				usuarioID INT NOT NULL,
 				score INT NOT NULL,
 				questions INT NOT NULL,
 				finalScore FLOAT(10) NOT NULL,
-				courseID VARCHAR(255) NOT NULL,
+				cursoID VARCHAR(255) NOT NULL,
 				takenDate DATE)";
 
     //check if table was created

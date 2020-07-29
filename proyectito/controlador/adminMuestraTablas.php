@@ -35,7 +35,7 @@ function displayTable()
     //based on selection, set the SQL and header to display
     if ($selection =='users') {
         $sql="SELECT * FROM users";
-        $header = "<tr><th>User ID</th><th>Forename</th><th>Surname</th><th>Username</th><th>Password</th><th>User Type</th><th>Active</th></tr>";
+        $header = "<tr><th>User ID</th><th>Forename</th><th>Surname</th><th>usuarioApodo</th><th>Password</th><th>User Type</th><th>Active</th></tr>";
     } elseif ($selection =='courses') {
         $sql="SELECT * FROM course";
         $header = "<tr><th>Course ID</th><th>Name</th><th>Owner ID</th></tr>";

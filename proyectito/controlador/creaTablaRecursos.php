@@ -11,9 +11,9 @@ include("vista/include/navegadorIzqui.php");
 				id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
 				name VARCHAR(255),
 				filename VARCHAR(255) NOT NULL,
-				courseID VARCHAR(255) NOT NULL,
+				cursoID VARCHAR(255) NOT NULL,
 				owner VARCHAR(10) NOT NULL,
-				uploadDate DATE NOT NULL)";
+				fechaSubida DATE NOT NULL)";
 
     //check if table was created
     if (mysqli_query($conn, $sql)) {

@@ -8,11 +8,11 @@ include("vista/include/navegadorIzqui.php");
 	<?php
     $conn = mysqli_connect("localhost", "root", "", "BDClaseVirtual");
     $sql = "CREATE TABLE IF NOT EXISTS course (
-			courseID 	 INT NOT NULL AUTO_INCREMENT,
-			courseName   VARCHAR(50) NOT NULL,
-			courseOwner  INT NOT NULL,
-			PRIMARY KEY (courseID),
-			FOREIGN KEY (courseOwner) REFERENCES users(userID)
+			cursoID 	 INT NOT NULL AUTO_INCREMENT,
+			cursoNombre   VARCHAR(50) NOT NULL,
+			cursoPropietario  INT NOT NULL,
+			PRIMARY KEY (cursoID),
+			FOREIGN KEY (cursoPropietario) REFERENCES users(usuarioID)
 			)";
 
     //check if table was created

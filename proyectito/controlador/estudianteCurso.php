@@ -8,11 +8,11 @@ include("vista/include/navegadorIzqui.php");
 		<?php
         include("modelo/revisaEstudiante.php");
 
-        $userID=$_SESSION['userID'];
+        $usuarioID=$_SESSION['usuarioID'];
         $conn = mysqli_connect("localhost", "root", "", "BDClaseVirtual");
         $sql = "SELECT * FROM resources r, course c
-				WHERE r.courseID=c.courseID AND filename NOT LIKE '%.txt'
-				AND c.courseID IN (SELECT courseID FROM studentTaking WHERE userID=$userID)";
+				WHERE r.cursoID=c.cursoID AND filename NOT LIKE '%.txt'
+				AND c.cursoID IN (SELECT cursoID FROM studentTaking WHERE usuarioID=$usuarioID)";
 
         $resource= mysqli_query($conn, $sql);
 
@@ -27,19 +27,19 @@ include("vista/include/navegadorIzqui.php");
                 $id = $row["id"];
                 $name = $row["name"];
                 $filename = $row["filename"];
-                $course = $row["courseName"];
-                $uploadDate = $row["uploadDate"];
+                $course = $row["cursoNombre"];
+                $fechaSubida = $row["fechaSubida"];
 
                 echo "<td>$name</td>";
                 echo "<td><a href='resource_uploads/$filename'>$filename</a></td>";
-                echo "<td>$course</td><td>$uploadDate</td>";
+                echo "<td>$course</td><td>$fechaSubida</td>";
                 echo "</tr>";
             }
             echo "</table><br>";
 
             $sql = "SELECT * FROM resources r, course c, users u
-					WHERE r.courseID=c.courseID AND r.owner=u.userID AND filename LIKE '%.txt'
-					AND r.courseID IN (SELECT courseID FROM studentTaking WHERE userID=$userID) ";
+					WHERE r.cursoID=c.cursoID AND r.owner=u.usuarioID AND filename LIKE '%.txt'
+					AND r.cursoID IN (SELECT cursoID FROM studentTaking WHERE usuarioID=$usuarioID) ";
             $resource = mysqli_query($conn, $sql);
             echo "<h2>Quizzes</h2>";
             echo "<table border='2'>";
@@ -49,12 +49,12 @@ include("vista/include/navegadorIzqui.php");
                 $id = $row["id"];
                 $name = $row["name"];
                 $filename = $row["filename"];
-                $course = $row["courseName"];
-                $uploadDate = $row["uploadDate"];
+                $course = $row["cursoNombre"];
+                $fechaSubida = $row["fechaSubida"];
 
                 echo "<td>$name</td>";
                 echo "<td><a href='estudianteTomaCuest.php?quiz=$filename'>Take Quiz</a></td>";
-                echo "<td>$course</td><td>$uploadDate</td>";
+                echo "<td>$course</td><td>$fechaSubida</td>";
                 echo "</tr>";
             }
             echo "</table><br>";

@@ -21,9 +21,9 @@ include("vista/include/navegadorIzqui.php");
 function showForm()
         {
             //select the course to see progress/grades
-            $userID = $_SESSION['userID'];
+            $usuarioID = $_SESSION['usuarioID'];
             $conn = mysqli_connect('localhost', 'root', '', 'BDClaseVirtual');
-            $sql = "SELECT c.courseID, c.courseName FROM course c, studentTaking s WHERE c.courseID=s.courseID AND userID='$userID' ";
+            $sql = "SELECT c.cursoID, c.cursoNombre FROM course c, studentTaking s WHERE c.cursoID=s.cursoID AND usuarioID='$usuarioID' ";
             $resource = mysqli_query($conn, $sql);
             //check to make sure they are enrolled in classes
             if (mysqli_num_rows($resource)<1) {
@@ -33,8 +33,8 @@ function showForm()
                 echo "Please select a class to see grades and progress.<br>";
                 echo "<form name='select' method='post' action='estudianteCalificaciones.php'>";
                 while ($currentCourse = mysqli_fetch_array($resource)) {
-                    echo "<input type='radio' name='course[]' value='$currentCourse[courseID]' />
-			  $currentCourse[courseName] <br>";
+                    echo "<input type='radio' name='course[]' value='$currentCourse[cursoID]' />
+			  $currentCourse[cursoNombre] <br>";
                 }
                 echo("<input type='submit' onclick='submit' />
 			</form>");
@@ -46,15 +46,15 @@ function displayGrades()
     //display grades to user based on course selection
     $course = $_POST['course'];
     foreach ($course as $currentCourse) {
-        $courseID=$currentCourse;
+        $cursoID=$currentCourse;
     }
 
     $conn = mysqli_connect("localhost", "root", "", "BDClaseVirtual");
-    $sql = "SELECT * FROM takenQuizzes t, course c WHERE c.courseID=t.courseID AND t.courseID='$courseID' ";
+    $sql = "SELECT * FROM takenQuizzes t, course c WHERE c.cursoID=t.cursoID AND t.cursoID='$cursoID' ";
     $resource = mysqli_query($conn, $sql);
     $sql2 = "SELECT * FROM resources r, course c
-			 WHERE r.courseID=c.courseID AND r.courseID='$courseID' AND r.filename LIKE '%.txt' AND r.name NOT IN
-			(SELECT name FROM takenQuizzes t WHERE t.courseID='$courseID')";
+			 WHERE r.cursoID=c.cursoID AND r.cursoID='$cursoID' AND r.filename LIKE '%.txt' AND r.name NOT IN
+			(SELECT name FROM takenQuizzes t WHERE t.cursoID='$cursoID')";
     $resource2 = mysqli_query($conn, $sql2);
     //heading display code
     if (mysqli_num_rows($resource)<1 && mysqli_num_rows($resource2)<1) { //assingments uploaded?
@@ -73,7 +73,7 @@ function displayGrades()
             $score = $row['score'];
             $questions = $row['questions'];
             $grade = $row['finalScore'];
-            $course = $row['courseName'];
+            $course = $row['cursoNombre'];
             $takenDate = $row['takenDate'];
 
             echo"<tr><td>$name</td>
@@ -88,7 +88,7 @@ function displayGrades()
     if (mysqli_num_rows($resource2)>0) { //check if there are any quizzes not completed
         while ($row = mysqli_fetch_array($resource2)) {
             $name = $row['name'];
-            $course = $row['courseName'];
+            $course = $row['cursoNombre'];
             echo"<tr><td>$name</td>
 				 <td>$course</td>
 				 <td style='text-align:center'>-</td>
@@ -98,7 +98,7 @@ function displayGrades()
         }
     }
     //display total grade in the class
-    $sql3 = "SELECT SUM(questions) AS questions, SUM(score) AS score FROM takenQuizzes WHERE courseID='$courseID' ";
+    $sql3 = "SELECT SUM(questions) AS questions, SUM(score) AS score FROM takenQuizzes WHERE cursoID='$cursoID' ";
     $resource3 = mysqli_query($conn, $sql3);
     if (mysqli_num_rows($resource3)>0) {
         echo "<tr><th>Total</th><td></td><td></td>";
@@ -120,14 +120,14 @@ function showProgress()
 {
     $course = $_POST['course'];
     foreach ($course as $currentCourse) {
-        $courseID=$currentCourse;
+        $cursoID=$currentCourse;
     }
     $conn = mysqli_connect("localhost", "root", "", "BDClaseVirtual");
-    $sql = "SELECT * FROM resources WHERE courseID='$courseID' AND filename LIKE '%.txt' ";
+    $sql = "SELECT * FROM resources WHERE cursoID='$cursoID' AND filename LIKE '%.txt' ";
     $resource = mysqli_query($conn, $sql);
     $total = mysqli_num_rows($resource);
 
-    $sql = "SELECT * FROM takenQuizzes WHERE courseID='$courseID' ";
+    $sql = "SELECT * FROM takenQuizzes WHERE cursoID='$cursoID' ";
     $resource = mysqli_query($conn, $sql);
     $current = mysqli_num_rows($resource);
     $percent = ($current/$total) *100;

@@ -3,20 +3,20 @@ if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
 //gets sql to check if user is active below
-$userID = $_SESSION['userID'];
+$usuarioID = $_SESSION['usuarioID'];
 $conn = mysqli_connect("localhost", "root", "", "BDClaseVirtual");
-$sql = "SELECT userActive FROM users WHERE userID='$userID' ";
+$sql = "SELECT usuarioActivo FROM users WHERE usuarioID='$usuarioID' ";
 $resource = mysqli_query($conn, $sql);
 while ($row = mysqli_fetch_array($resource)) {
-    $userActive = $row['userActive'];
+    $usuarioActivo = $row['usuarioActivo'];
 }
 
 //checks the credentials to make sure only Tutors/Administrators access their pages
-if (!isset($_SESSION['userType']) or $_SESSION['userType'] == "student") {
+if (!isset($_SESSION['usuarioTipo']) or $_SESSION['usuarioTipo'] == "student") {
     echo("<p style='color:red'>You are either not logged in or not authorized to view this page<br>
 			If this is a mistake, contact network administrator</p>");
     die();
-} elseif ($userActive == 0) {
+} elseif ($usuarioActivo == 0) {
     echo "<p style='color:red'> Access denied, confirmed as tutor but you have not been authorized by an administrator yet.</p>";
     die();
 } else {

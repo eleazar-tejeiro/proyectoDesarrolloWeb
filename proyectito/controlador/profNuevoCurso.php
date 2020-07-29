@@ -10,7 +10,7 @@ include("vista/include/navegadorIzqui.php");
 	<?php
     include("modelo/revisaProfesor.php");
 
-    if (isset($_POST['courseName'])) {
+    if (isset($_POST['cursoNombre'])) {
         addCourseToDatabase();
     } else {
         showForm();
@@ -24,7 +24,7 @@ function showForm()
     {
         //shows the form to create a new course
         echo "<form name='Add Course' method='post' action='profNuevoCurso.php'>
-		Course Name		  <input type='text' name='courseName'/> <br />
+		Course Name		  <input type='text' name='cursoNombre'/> <br />
 		<input type='submit' onclick='submit' />
 		</form>";
     }
@@ -32,12 +32,12 @@ function showForm()
 function addCourseToDatabase()
 {
     //adds the information entered by the user to the table
-    $courseName = $_POST['courseName'];
-    $courseOwner = $_SESSION['userID'];
+    $cursoNombre = $_POST['cursoNombre'];
+    $cursoPropietario = $_SESSION['usuarioID'];
 
     $conn = mysqli_connect('localhost', 'root', '', 'BDClaseVirtual');
-    $sql = "INSERT INTO course (courseName, courseOwner)
-			VALUES ('$courseName', '$courseOwner')";
+    $sql = "INSERT INTO course (cursoNombre, cursoPropietario)
+			VALUES ('$cursoNombre', '$cursoPropietario')";
 
     //check if course created successfully
     if (mysqli_query($conn, $sql)) {

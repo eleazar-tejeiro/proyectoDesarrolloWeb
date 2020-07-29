@@ -8,14 +8,14 @@ include("vista/include/navegadorIzqui.php");
 	<?php
     $conn = mysqli_connect("localhost", "root", "", "BDClaseVirtual");
     $sql = "CREATE TABLE IF NOT EXISTS users (
-			userID INT NOT NULL AUTO_INCREMENT,
-			userForename VARCHAR(30) NOT NULL,
-			userSurname  VARCHAR(30) NOT NULL,
-			username     VARCHAR(50) NOT NULL,
-			userPassword VARCHAR(50) NOT NULL,
-			userType 	 VARCHAR(13) NOT NULL,
-			userActive   BOOLEAN NOT NULL,
-			PRIMARY KEY (userID)
+			usuarioID INT NOT NULL AUTO_INCREMENT,
+			nombreUsuario VARCHAR(30) NOT NULL,
+			usuarioApellido  VARCHAR(30) NOT NULL,
+			usuarioApodo     VARCHAR(50) NOT NULL,
+			usuarioContra VARCHAR(50) NOT NULL,
+			usuarioTipo 	 VARCHAR(13) NOT NULL,
+			usuarioActivo   BOOLEAN NOT NULL,
+			PRIMARY KEY (usuarioID)
 			)";
 
     //check if table was created

@@ -10,7 +10,7 @@ include("vista/include/navegadorIzqui.php");
 		   for the list of students waiting to be authorized or add them yourself. <br></p>";
 
         if (!isset($_POST['studentID'])) {
-            if (!isset($_POST['courseID'])) {
+            if (!isset($_POST['cursoID'])) {
                 getCourses();
             } else {
                 getStudentTakingCourse();
@@ -27,8 +27,8 @@ include("vista/include/piePagina.php");
 function getCourses()
 {
     //gets the courses the tutors teach
-    $userID = $_SESSION['userID'];
-    $sql = "SELECT courseID, courseName FROM course WHERE courseOwner = $userID";
+    $usuarioID = $_SESSION['usuarioID'];
+    $sql = "SELECT cursoID, cursoNombre FROM course WHERE cursoPropietario = $usuarioID";
     if ($resource = doSQL($sql)) {
         showCourses($resource);
     }
@@ -37,8 +37,8 @@ function getCourses()
 function getStudentTakingCourse()
 {
     //grabs all the students waiting to be authorized
-    $courseID = $_POST['courseID'];
-    $sql = "SELECT userID FROM studentTaking WHERE courseID = $courseID AND authorized = 0";
+    $cursoID = $_POST['cursoID'];
+    $sql = "SELECT usuarioID FROM studentTaking WHERE cursoID = $cursoID AND authorized = 0";
     if ($resource = doSQL($sql)) {
         getStudentDetails($resource);
     }
@@ -47,9 +47,9 @@ function getStudentTakingCourse()
 function getStudentDetails($resource)
 {
     //gets the student's information
-    $sql = "SELECT userID, userForename, userSurname FROM users WHERE ";
+    $sql = "SELECT usuarioID, nombreUsuario, usuarioApellido FROM users WHERE ";
     while ($currentLine = mysqli_fetch_array($resource)) {
-        $sql .= "userID = '$currentLine[userID]' OR ";
+        $sql .= "usuarioID = '$currentLine[usuarioID]' OR ";
     }
     $sql = rtrim($sql, " OR ");
     if ($resource = doSQL($sql)) {
@@ -60,14 +60,14 @@ function getStudentDetails($resource)
 function showStudents($resource)
 {
     //shows a form of students to the tutor
-    $courseID = $_POST['courseID'];
+    $cursoID = $_POST['cursoID'];
     echo "<form name='showStudents' method='post' action='profAutorizaEstudiante.php'>";
-    echo "<input type='hidden' name='courseID' value='$courseID' /> ";
+    echo "<input type='hidden' name='cursoID' value='$cursoID' /> ";
     echo "<table border='2'>
 			<tr><th>Check</th><th>User ID</th><th>Name</th>";
     while ($currentLine = mysqli_fetch_array($resource)) {
-        echo "<tr><td><input type='checkbox' name='studentID[]' value='$currentLine[userID]' /></td>";
-        echo "<td>". $currentLine['userID'] . "</td><td>" . $currentLine['userForename'] ." " . $currentLine['userSurname'] . "</td></tr>";
+        echo "<tr><td><input type='checkbox' name='studentID[]' value='$currentLine[usuarioID]' /></td>";
+        echo "<td>". $currentLine['usuarioID'] . "</td><td>" . $currentLine['nombreUsuario'] ." " . $currentLine['usuarioApellido'] . "</td></tr>";
     }
     echo "</table>";
     echo "<br><input type='submit' value='Authorize' onclick='submit' /> </form>";
@@ -76,10 +76,10 @@ function showStudents($resource)
 function enrollStudent()
 {
     //authorizes student to take course
-    $courseID = $_POST['courseID'];
-    foreach ($_POST['studentID'] as $userID) {
+    $cursoID = $_POST['cursoID'];
+    foreach ($_POST['studentID'] as $usuarioID) {
         $sql = "UPDATE studentTaking SET authorized = 1
-				WHERE userID=$userID AND courseID = $courseID";
+				WHERE usuarioID=$usuarioID AND cursoID = $cursoID";
         doSQL($sql);
         echo "Successfully Enrolled Student<br>";
     }
@@ -101,9 +101,9 @@ function showCourses($resource)
 {
     //shows form of courses
     echo "<form name='showCourses' method='post' action='profAutorizaEstudiante.php'>
-		  <select name='courseID' required autofocus > ";
+		  <select name='cursoID' required autofocus > ";
     while ($currentLine = mysqli_fetch_array($resource)) {
-        echo "<option value='$currentLine[courseID]'>$currentLine[courseName]</option>";
+        echo "<option value='$currentLine[cursoID]'>$currentLine[cursoNombre]</option>";
     }
     echo "</select>
 		  <input type='submit' onclick='submit' />

@@ -17,7 +17,7 @@ if (session_status() === PHP_SESSION_NONE)
 
 function logInOut() {
 //function to show either 'log in' or 'Log out' on side bar
-	if (!isset($_SESSION['userType']))
+	if (!isset($_SESSION['usuarioTipo']))
 	{
 		echo "<li><a href='registrarse.php'>Register</a></li>";
 		echo "<li><a href='login.php'>Login</a></li>";
@@ -30,17 +30,17 @@ function logInOut() {
 
 function selectMenu(){
 //function to select what menu is displayed
-	if (isset($_SESSION['userType']))
+	if (isset($_SESSION['usuarioTipo']))
 	{
-		if($_SESSION['userType'] == "tutor")
+		if($_SESSION['usuarioTipo'] == "tutor")
 		{
 			tutorMenu();
 		}
-		else if ($_SESSION['userType'] == "student")
+		else if ($_SESSION['usuarioTipo'] == "student")
 		{
 			studentMenu();
 		}
-		else if ($_SESSION['userType'] == "administrator"){
+		else if ($_SESSION['usuarioTipo'] == "administrator"){
 			adminMenu();
 		}
 	}

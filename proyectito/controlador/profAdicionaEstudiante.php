@@ -9,7 +9,7 @@ include("vista/include/navegadorIzqui.php");
 	<?php
     include("modelo/revisaProfesor.php");
 
-    if (!isset($_POST['courseID']) and !isset($_POST['studentID'])) {
+    if (!isset($_POST['cursoID']) and !isset($_POST['studentID'])) {
         if (!isset($_POST['forename'])) {
             showForm();
         } else {
@@ -32,7 +32,7 @@ function showForm()
         echo " <form name='register' method='post' action='profAdicionaEstudiante.php'>
 		Forename		  <input type='text' name='forename'/> <br />
 		Surname  		  <input type='text' name='surname'/> <br />
-		Username 		  <input type='text' name='username'/> <br />
+		usuarioApodo 		  <input type='text' name='usuarioApodo'/> <br />
 		<input type='submit' onclick='submit' />
 		</form>";
     }
@@ -42,10 +42,10 @@ function addUserToDatabase()
     //adds the information entered by the user to the table
     $forename = $_POST['forename'];
     $surname = $_POST['surname'];
-    $username = $_POST['username'];
+    $usuarioApodo = $_POST['usuarioApodo'];
 
-    $sql = "INSERT INTO users (userForename, userSurname, username, userPassword, userType, userActive)
-			VALUES ('$forename', '$surname', '$username', '$username', 'student', 1)";
+    $sql = "INSERT INTO users (nombreUsuario, usuarioApellido, usuarioApodo, usuarioContra, usuarioTipo, usuarioActivo)
+			VALUES ('$forename', '$surname', '$usuarioApodo', '$usuarioApodo', 'student', 1)";
     doSQL($sql);
     $studentID = getStudentID();
 }
@@ -53,18 +53,18 @@ function addUserToDatabase()
 function getStudentID()
 {
     //retrieves studentId from database, returns for showCourses function
-    $username = $_POST['username'];
-    $sql = "SELECT userID FROM users WHERE username='$username' ";
+    $usuarioApodo = $_POST['usuarioApodo'];
+    $sql = "SELECT usuarioID FROM users WHERE usuarioApodo='$usuarioApodo' ";
     $record = mysqli_fetch_array(doSQL($sql));
-    $studentID = $record['userID'];
+    $studentID = $record['usuarioID'];
     return $studentID;
 }
 
 function getCourses()
 {
     //gets all courses that the current tutor teaches, returns them for showCourses function
-    $tutorID = $_SESSION['userID'];
-    $sql = "SELECT * FROM course WHERE courseOwner = $tutorID";
+    $tutorID = $_SESSION['usuarioID'];
+    $sql = "SELECT * FROM course WHERE cursoPropietario = $tutorID";
     $resource = doSQL($sql);
     return $resource;
 }
@@ -75,8 +75,8 @@ function showCourses($resource, $studentID)
     echo "Which of your courses do you want to enroll the student on?<br>";
     echo "<form name='showCourses' method='post' action='profAdicionaEstudiante.php' >";
     while ($currentLine = mysqli_fetch_array($resource)) {
-        echo "<input type='checkbox' name='courseID[]' value='$currentLine[courseID]' />";
-        echo $currentLine['courseName'] . '<br>';
+        echo "<input type='checkbox' name='cursoID[]' value='$currentLine[cursoID]' />";
+        echo $currentLine['cursoNombre'] . '<br>';
     }
     echo "<br> <input type='hidden' name='studentID' value='$studentID' />
 		   <input type='submit' onclick='submit' /> </form>";
@@ -85,12 +85,12 @@ function showCourses($resource, $studentID)
 function enrollStudent()
 {
     //writes the enrollment info into the database
-    $course = $_POST['courseID'];
+    $course = $_POST['cursoID'];
     $studentID = $_POST['studentID'];
     $today = date("Ymd");
 
     foreach ($course as $currentCourse) {
-        $sql = "INSERT INTO studentTaking (courseID, userID, dateRegistered, authorized)
+        $sql = "INSERT INTO studentTaking (cursoID, usuarioID, dateRegistered, authorized)
 				VALUES ('$currentCourse', '$studentID', '$today', 1)";
         doSQL($sql);
     }

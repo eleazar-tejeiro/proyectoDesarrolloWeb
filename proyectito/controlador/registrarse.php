@@ -26,7 +26,7 @@ function showForm()
     echo " <form name='register' method='post' action='registrarse.php'>
 		Forename		  <input type='text' name='forename'/> <br />
 		Surname  		  <input type='text' name='surname'/> <br />
-		Username 		  <input type='text' name='username'/> <br />
+		usuarioApodo 		  <input type='text' name='usuarioApodo'/> <br />
 		Password		  <input type='password' name='password'/> <br />
 		Confirm Password  <input type='password' name='cpassword'/> <br />
 		Tutor / Student   <select name='type' />
@@ -41,14 +41,14 @@ function addUserToDatabase()
     //adds the information entered by the user to the table
     $forename = $_POST['forename'];
     $surname = $_POST['surname'];
-    $username = $_POST['username'];
+    $usuarioApodo = $_POST['usuarioApodo'];
     $password = $_POST['password'];
     $cpassword = $_POST['cpassword'];
     $type = $_POST['type'];
 
-    //check if username exists
+    //check if usuarioApodo exists
     $conn = mysqli_connect('localhost', 'root', '', 'BDClaseVirtual');
-    $sql = "SELECT username FROM users WHERE username='$username' ";
+    $sql = "SELECT usuarioApodo FROM users WHERE usuarioApodo='$usuarioApodo' ";
     $resource= mysqli_query($conn, $sql);
 
     if ($password!=$cpassword) {
@@ -56,12 +56,12 @@ function addUserToDatabase()
         echo "<br>Refreshing in 3 seconds...";
         header("Refresh:3; url=registrarse.php");
     } elseif (mysqli_num_rows($resource)>0) {
-        echo "<br>Username already has been used, please select another.";
+        echo "<br>usuarioApodo already has been used, please select another.";
         echo "<br>Refreshing in 3 seconds...";
         header("Refresh:3; url=registrarse.php");
     } else {
-        $sql = "INSERT INTO users (userForename, userSurname, username, userPassword, userType, userActive)
-				VALUES ('$forename', '$surname', '$username', '$password', '$type', 0)";
+        $sql = "INSERT INTO users (nombreUsuario, usuarioApellido, usuarioApodo, usuarioContra, usuarioTipo, usuarioActivo)
+				VALUES ('$forename', '$surname', '$usuarioApodo', '$password', '$type', 0)";
 
         //check if registered successfully
         if (mysqli_query($conn, $sql)) {
@@ -80,7 +80,7 @@ function addAdminToDatabase()
 {
     //this is to hardcode administrators into the system; only change first 4 sql values to create a new admin, then call function line 16
     $conn = mysqli_connect('localhost', 'root', '', 'BDClaseVirtual');
-    $sql = "INSERT INTO users (userForename, userSurname, username, userPassword, userType, userActive)
+    $sql = "INSERT INTO users (nombreUsuario, usuarioApellido, usuarioApodo, usuarioContra, usuarioTipo, usuarioActivo)
 				VALUES ('Neil', 'Buckley', 'admin', 'password', 'administrator', 1)";
     if (mysqli_query($conn, $sql)) {
         echo("<p style='color:green'>Successfully Created Adminstrator</p>");

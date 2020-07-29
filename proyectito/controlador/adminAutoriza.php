@@ -6,7 +6,7 @@ include("vista/include/navegadorIzqui.php");
 	<div class="column middle">
 	<?php include("modelo/revisaAdmin.php");
 
-    if (!isset($_POST['userID'])) {
+    if (!isset($_POST['usuarioID'])) {
         showTable();
     } else {
         authorizeUser();
@@ -19,7 +19,7 @@ function showTable()
     {
         //get users waiting to be authorized from database
         $conn = mysqli_connect("localhost", "root", "", "BDClaseVirtual");
-        $sql = "SELECT * FROM users WHERE userType!='administrator' AND userActive='0' ";
+        $sql = "SELECT * FROM users WHERE usuarioTipo!='administrator' AND usuarioActivo='0' ";
         $resource = mysqli_query($conn, $sql);
         if (mysqli_num_rows($resource)<1) {  //if none, display this
             echo "There are no users waiting to be authorized";
@@ -27,14 +27,14 @@ function showTable()
             echo "<h2>Users Waiting To Be Authorized<br><table cellpadding='10px' border='2'>";
             echo "<tr><th>User ID</th><th>Forename</th><th>Surname</th><th>User Type</th><th>Authorize?</th></tr>";
             while ($row=mysqli_fetch_array($resource)) {
-                $userID = $row['userID'];
-                $userForename = $row['userForename'];
-                $userSurname = $row['userSurname'];
-                $userType = $row['userType'];
+                $usuarioID = $row['usuarioID'];
+                $nombreUsuario = $row['nombreUsuario'];
+                $usuarioApellido = $row['usuarioApellido'];
+                $usuarioTipo = $row['usuarioTipo'];
 
-                echo "<tr><td>$userID</td><td>$userForename</td><td>$userSurname</td><td>$userType</td>";
+                echo "<tr><td>$usuarioID</td><td>$nombreUsuario</td><td>$usuarioApellido</td><td>$usuarioTipo</td>";
                 echo "<td><form name='authorize' method='post' action='adminAutoriza.php'>";
-                echo "<input type='hidden' name='userID' value='$userID'/>";
+                echo "<input type='hidden' name='usuarioID' value='$usuarioID'/>";
                 echo "<input type='submit' value='AUTHORIZE'/>";
                 echo "</form></td></tr>";
             }
@@ -45,9 +45,9 @@ function showTable()
 function authorizeUser()
 {
     //authorize the user
-    $userID = $_POST['userID'];
+    $usuarioID = $_POST['usuarioID'];
     $conn = mysqli_connect("localhost", "root", "", "BDClaseVirtual");
-    $sql = "UPDATE users SET userActive = 1 WHERE userID=$userID";
+    $sql = "UPDATE users SET usuarioActivo = 1 WHERE usuarioID=$usuarioID";
     if ($resource = mysqli_query($conn, $sql)) {
         echo "<p style='color:green'>Successfully authorized user</p>";
         header("Refresh:2;url='adminAutoriza.php' ");
