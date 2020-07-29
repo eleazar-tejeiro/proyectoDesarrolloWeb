@@ -9,4 +9,6 @@ Proyecto Universidad
 
 - [ ] Adaptar la base de datos
 
+- [ - ] Implementar MVC
+
 Grupo: Mauricio, Alvaro, Anahi y Uriel

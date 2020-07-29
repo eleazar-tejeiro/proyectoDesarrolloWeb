@@ -1,10 +1,10 @@
 <?php
-include("include/header.php");
-include("include/leftNav.php");
+include("vista/include/header.php");
+include("vista/include/leftNav.php");
 ?>
 <div class="row">
 	<div class="column middle">
-	<?php include("adminCheck.php");
+	<?php include("modelo/adminCheck.php");
 
     if (!isset($_POST['userID'])) {
         showTable();
