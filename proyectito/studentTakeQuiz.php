@@ -18,7 +18,7 @@ include("include/leftNav.php");
 
         if (!isset($_GET["q1"])) {
             //if quiz is not completed, display it to user
-            $conn = mysqli_connect("localhost", "root", "", "classDatabase");
+            $conn = mysqli_connect("localhost", "root", "", "BDClaseVirtual");
             $sql = "SELECT * FROM takenQuizzes WHERE fileName='$quizFile' AND userID='$userID';";
             $resource = mysqli_query($conn, $sql);
             $numRows = mysqli_num_rows($resource);
@@ -108,7 +108,7 @@ include("include/leftNav.php");
             echo "<p style='font-size:20px; font-weight:bold'>You're final score is $score/$qNum : $finalScore% <br></p>";
 
             //get the courseID to insert into takenQuiz table
-            $conn = mysqli_connect("localhost", "root", "", "classDatabase");
+            $conn = mysqli_connect("localhost", "root", "", "BDClaseVirtual");
             $sql = "SELECT courseID, name FROM resources WHERE filename='$quiz' ";
             $resource = mysqli_query($conn, $sql);
             $row = mysqli_fetch_array($resource);

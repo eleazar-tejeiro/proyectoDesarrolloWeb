@@ -47,7 +47,7 @@ function addUserToDatabase()
     $type = $_POST['type'];
 
     //check if username exists
-    $conn = mysqli_connect('localhost', 'root', '', 'classDatabase');
+    $conn = mysqli_connect('localhost', 'root', '', 'BDClaseVirtual');
     $sql = "SELECT username FROM users WHERE username='$username' ";
     $resource= mysqli_query($conn, $sql);
 
@@ -79,7 +79,7 @@ function addUserToDatabase()
 function addAdminToDatabase()
 {
     //this is to hardcode administrators into the system; only change first 4 sql values to create a new admin, then call function line 16
-    $conn = mysqli_connect('localhost', 'root', '', 'classDatabase');
+    $conn = mysqli_connect('localhost', 'root', '', 'BDClaseVirtual');
     $sql = "INSERT INTO users (userForename, userSurname, username, userPassword, userType, userActive)
 				VALUES ('Neil', 'Buckley', 'admin', 'password', 'administrator', 1)";
     if (mysqli_query($conn, $sql)) {

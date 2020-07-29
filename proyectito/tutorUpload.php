@@ -23,7 +23,7 @@ include("include/leftNav.php");
 
 function showForm()
 {
-    $conn = mysqli_connect('localhost', 'root', '', 'classDatabase');
+    $conn = mysqli_connect('localhost', 'root', '', 'BDClaseVirtual');
     $userID = $_SESSION['userID'];
     $sql = "SELECT courseID, courseName FROM course WHERE courseOwner=$userID";
     $resource = mysqli_query($conn, $sql);
@@ -54,7 +54,7 @@ function addResourceToDatabase()
 
     if ($fileError == 0) {
         if (move_uploaded_file($tmp_name, "resource_uploads/$resourceName")) {
-            $conn = mysqli_connect('localhost', 'root', '', 'classDatabase');
+            $conn = mysqli_connect('localhost', 'root', '', 'BDClaseVirtual');
             foreach ($course as $currentCourse) {
                 $sql = "INSERT INTO resources(name, fileName, owner, courseID, uploadDate)
 				VALUES('$resourceDisplayName', '$resourceName', '$loginUsername', $currentCourse, '$uploadDate')";

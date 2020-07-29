@@ -9,7 +9,7 @@ include("include/leftNav.php");
         include("studentCheck.php");
 
         $userID=$_SESSION['userID'];
-        $conn = mysqli_connect("localhost", "root", "", "classDatabase");
+        $conn = mysqli_connect("localhost", "root", "", "BDClaseVirtual");
         $sql = "SELECT * FROM resources r, course c
 				WHERE r.courseID=c.courseID AND filename NOT LIKE '%.txt'
 				AND c.courseID IN (SELECT courseID FROM studentTaking WHERE userID=$userID)";

@@ -18,7 +18,7 @@ include("include/leftNav.php");
 function showTable()
     {
         //get users waiting to be authorized from database
-        $conn = mysqli_connect("localhost", "root", "", "classDatabase");
+        $conn = mysqli_connect("localhost", "root", "", "BDClaseVirtual");
         $sql = "SELECT * FROM users WHERE userType!='administrator' AND userActive='0' ";
         $resource = mysqli_query($conn, $sql);
         if (mysqli_num_rows($resource)<1) {  //if none, display this
@@ -46,7 +46,7 @@ function authorizeUser()
 {
     //authorize the user
     $userID = $_POST['userID'];
-    $conn = mysqli_connect("localhost", "root", "", "classDatabase");
+    $conn = mysqli_connect("localhost", "root", "", "BDClaseVirtual");
     $sql = "UPDATE users SET userActive = 1 WHERE userID=$userID";
     if ($resource = mysqli_query($conn, $sql)) {
         echo "<p style='color:green'>Successfully authorized user</p>";

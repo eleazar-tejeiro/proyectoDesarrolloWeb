@@ -7,7 +7,7 @@ include("include/leftNav.php");
 	<div class="column middle">
 	<?php
     $conn = mysqli_connect("localhost", "root", "");
-    $sql = "CREATE DATABASE IF NOT EXISTS classDatabase";
+    $sql = "CREATE DATABASE IF NOT EXISTS BDClaseVirtual";
 
     //check if database was created
     if (mysqli_query($conn, $sql)) {

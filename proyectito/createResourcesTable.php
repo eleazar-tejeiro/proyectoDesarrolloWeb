@@ -6,7 +6,7 @@ include("include/leftNav.php");
 <div class="row">
 	<div class="column middle">
 	<?php
-    $conn = mysqli_connect("localhost", "root", "", "classDatabase");
+    $conn = mysqli_connect("localhost", "root", "", "BDClaseVirtual");
     $sql = "CREATE TABLE IF NOT EXISTS resources (
 				id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
 				name VARCHAR(255),

@@ -5,7 +5,7 @@ if (session_status() === PHP_SESSION_NONE) {
 
 //gets sql for checking if user is active below
 $userID = $_SESSION['userID'];
-$conn = mysqli_connect("localhost", "root", "", "classDatabase");
+$conn = mysqli_connect("localhost", "root", "", "BDClaseVirtual");
 $sql = "SELECT userActive FROM users WHERE userID='$userID' ";
 $resource = mysqli_query($conn, $sql);
 while ($row = mysqli_fetch_array($resource)) {

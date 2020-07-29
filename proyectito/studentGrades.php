@@ -22,7 +22,7 @@ function showForm()
         {
             //select the course to see progress/grades
             $userID = $_SESSION['userID'];
-            $conn = mysqli_connect('localhost', 'root', '', 'classDatabase');
+            $conn = mysqli_connect('localhost', 'root', '', 'BDClaseVirtual');
             $sql = "SELECT c.courseID, c.courseName FROM course c, studentTaking s WHERE c.courseID=s.courseID AND userID='$userID' ";
             $resource = mysqli_query($conn, $sql);
             //check to make sure they are enrolled in classes
@@ -49,7 +49,7 @@ function displayGrades()
         $courseID=$currentCourse;
     }
 
-    $conn = mysqli_connect("localhost", "root", "", "classDatabase");
+    $conn = mysqli_connect("localhost", "root", "", "BDClaseVirtual");
     $sql = "SELECT * FROM takenQuizzes t, course c WHERE c.courseID=t.courseID AND t.courseID='$courseID' ";
     $resource = mysqli_query($conn, $sql);
     $sql2 = "SELECT * FROM resources r, course c
@@ -122,7 +122,7 @@ function showProgress()
     foreach ($course as $currentCourse) {
         $courseID=$currentCourse;
     }
-    $conn = mysqli_connect("localhost", "root", "", "classDatabase");
+    $conn = mysqli_connect("localhost", "root", "", "BDClaseVirtual");
     $sql = "SELECT * FROM resources WHERE courseID='$courseID' AND filename LIKE '%.txt' ";
     $resource = mysqli_query($conn, $sql);
     $total = mysqli_num_rows($resource);

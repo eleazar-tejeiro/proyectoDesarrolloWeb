@@ -9,7 +9,7 @@
 
     //gets grades of users in the courses of tutor
     $tutorID = $_SESSION['userID'];
-    $conn = mysqli_connect("localhost", "root", "", "classDatabase");
+    $conn = mysqli_connect("localhost", "root", "", "BDClaseVirtual");
     $sql = "SELECT u.userForename AS 'forename', u.userSurname AS 'surname', c.courseName AS 'course', SUM(t.score)/SUM(t.questions) AS 'finalScore'
 			FROM users u, takenQuizzes t, course c
 			WHERE u.userID=t.userID AND t.courseID=c.courseID AND c.courseOwner='$tutorID' ";

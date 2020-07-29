@@ -12,7 +12,7 @@
 <body>
 <div>
 	<div id="heading">
-		<img src="images/logo.jpg" alt="logo.jpg" align="left" style="width:80px;height:80px;">
+		<img src="images/logo.png" alt="logo.jpg" align="left" style="width:80px;height:80px;">
 		<h1>Hawkin's Classroom</h1>
 	</div>
 

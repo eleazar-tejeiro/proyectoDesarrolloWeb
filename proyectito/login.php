@@ -36,7 +36,7 @@ function doLogin()
     $username = $_POST['username'];
     $password = $_POST['password'];
 
-    $conn = mysqli_connect("localhost", "root", "", "classDatabase");
+    $conn = mysqli_connect("localhost", "root", "", "BDClaseVirtual");
     $sql = "SELECT userID, userType FROM users
 			WHERE username ='$username' AND userPassword ='$password' ";
     if ($resource = mysqli_query($conn, $sql)) {

@@ -30,7 +30,7 @@ function showForm()
 function displayTable()
 {
     $selection = $_POST['table'];
-    $conn = mysqli_connect("localhost", "root", "", "classDatabase");
+    $conn = mysqli_connect("localhost", "root", "", "BDClaseVirtual");
 
     //based on selection, set the SQL and header to display
     if ($selection =='users') {

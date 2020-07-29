@@ -98,7 +98,7 @@ function enrollStudent()
 
 function doSQL($sql)
 {
-    $conn = mysqli_connect('localhost', 'root', '', 'classDatabase');
+    $conn = mysqli_connect('localhost', 'root', '', 'BDClaseVirtual');
 
     //check if SQL was successful
     if ($resource = mysqli_query($conn, $sql)) {

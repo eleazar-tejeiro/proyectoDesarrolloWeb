@@ -35,7 +35,7 @@ function addCourseToDatabase()
     $courseName = $_POST['courseName'];
     $courseOwner = $_SESSION['userID'];
 
-    $conn = mysqli_connect('localhost', 'root', '', 'classDatabase');
+    $conn = mysqli_connect('localhost', 'root', '', 'BDClaseVirtual');
     $sql = "INSERT INTO course (courseName, courseOwner)
 			VALUES ('$courseName', '$courseOwner')";
 
