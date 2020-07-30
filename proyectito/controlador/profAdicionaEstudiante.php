@@ -90,7 +90,7 @@ function enrollStudent()
     $today = date("Ymd");
 
     foreach ($course as $currentCourse) {
-        $sql = "INSERT INTO studentTaking (cursoID, usuarioID, dateRegistered, authorized)
+        $sql = "INSERT INTO studentTaking (cursoID, usuarioID, fechaRegistrado, autorizado)
 				VALUES ('$currentCourse', '$studentID', '$today', 1)";
         doSQL($sql);
     }

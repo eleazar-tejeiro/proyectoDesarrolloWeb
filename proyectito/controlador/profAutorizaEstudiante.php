@@ -7,7 +7,7 @@ include("vista/include/navegadorIzqui.php");
 		<?php include("modelo/revisaProfesor.php");
         echo "<h2>Authorize Students</h2>
 		<p>This page allows you to authorize student(s) onto courses. See the table
-		   for the list of students waiting to be authorized or add them yourself. <br></p>";
+		   for the list of students waiting to be autorizado or add them yourself. <br></p>";
 
         if (!isset($_POST['studentID'])) {
             if (!isset($_POST['cursoID'])) {
@@ -36,9 +36,9 @@ function getCourses()
 
 function getStudentTakingCourse()
 {
-    //grabs all the students waiting to be authorized
+    //grabs all the students waiting to be autorizado
     $cursoID = $_POST['cursoID'];
-    $sql = "SELECT usuarioID FROM studentTaking WHERE cursoID = $cursoID AND authorized = 0";
+    $sql = "SELECT usuarioID FROM studentTaking WHERE cursoID = $cursoID AND autorizado = 0";
     if ($resource = doSQL($sql)) {
         getStudentDetails($resource);
     }
@@ -78,7 +78,7 @@ function enrollStudent()
     //authorizes student to take course
     $cursoID = $_POST['cursoID'];
     foreach ($_POST['studentID'] as $usuarioID) {
-        $sql = "UPDATE studentTaking SET authorized = 1
+        $sql = "UPDATE studentTaking SET autorizado = 1
 				WHERE usuarioID=$usuarioID AND cursoID = $cursoID";
         doSQL($sql);
         echo "Successfully Enrolled Student<br>";
@@ -91,7 +91,7 @@ function doSQL($sql)
     if ($resource = mysqli_query($conn, $sql)) {
         return $resource;
     } else {
-        echo("No Students waiting to be authorized");
+        echo("No Students waiting to be autorizado");
         return false;
     }
     mysqli_close($conn);

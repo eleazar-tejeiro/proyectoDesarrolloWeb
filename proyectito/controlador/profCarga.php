@@ -56,7 +56,7 @@ function addResourceToDatabase()
         if (move_uploaded_file($tmp_name, "resource_uploads/$resourceName")) {
             $conn = mysqli_connect('localhost', 'root', '', 'BDClaseVirtual');
             foreach ($course as $currentCourse) {
-                $sql = "INSERT INTO resources(name, fileName, owner, cursoID, fechaSubida)
+                $sql = "INSERT INTO resources(name, nombreArchivo, propietario, cursoID, fechaSubida)
 				VALUES('$resourceDisplayName', '$resourceName', '$loginusuarioApodo', $currentCourse, '$fechaSubida')";
 
                 //check if course created successfully

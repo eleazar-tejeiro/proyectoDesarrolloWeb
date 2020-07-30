@@ -22,7 +22,7 @@ if (!isset($_SESSION['usuarioTipo'])) {
 		  <p>If this is a mistake, contact a network administrator</p>";
     die();
 } elseif ($usuarioActivo==0) {
-    echo "<p style='color:red'>Access denied, you are confirmed as a student, but you have not been authorized by an administrator yet.</p>";
+    echo "<p style='color:red'>Access denied, you are confirmed as a student, but you have not been autorizado by an administrator yet.</p>";
     die();
 } else {
     echo("<p style='color:green'>Access granted, User Confirmed as Student</p>");

@@ -10,9 +10,9 @@ include("vista/include/navegadorIzqui.php");
     $sql = "CREATE TABLE IF NOT EXISTS resources (
 				id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
 				name VARCHAR(255),
-				filename VARCHAR(255) NOT NULL,
+				nombreArchivo VARCHAR(255) NOT NULL,
 				cursoID VARCHAR(255) NOT NULL,
-				owner VARCHAR(10) NOT NULL,
+				propietario VARCHAR(10) NOT NULL,
 				fechaSubida DATE NOT NULL)";
 
     //check if table was created

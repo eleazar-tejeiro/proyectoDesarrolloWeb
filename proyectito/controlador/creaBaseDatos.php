@@ -1,6 +1,6 @@
 <?php
-include("vista/include/encabezado.php");
-include("vista/include/navegadorIzqui.php");
+include("../vista/include/encabezado.php");
+include("../vista/include/navegadorIzqui.php");
 ?>
 <!--Create the Database for Tables to Be Stored -->
 <div class="row">
@@ -22,5 +22,5 @@ include("vista/include/navegadorIzqui.php");
 </div>
 
 <?php
-include("vista/include/piePagina.php");
+include("../vista/include/piePagina.php");
 ?>

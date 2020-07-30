@@ -15,6 +15,10 @@ const instancesSidenav = M.Sidenav.init(elemsSidenav, {
     edge: "left"
 });
 
+  const elems = document.querySelectorAll('select');
+  const instances = M.FormSelect.init(elems, options);
+});
+
 // Modal
 const elemsModal = document.querySelectorAll(".modal");
 const instancesModal = M.Modal.init(elemsModal);

@@ -10,8 +10,8 @@ include("vista/include/navegadorIzqui.php");
     $sql = "CREATE TABLE IF NOT EXISTS studentTaking (
 			cursoID 		INT NOT NULL,
 			usuarioID   		INT NOT NULL,
-			dateRegistered  DATE NOT NULL,
-			authorized 		BOOLEAN,
+			fechaRegistrado  DATE NOT NULL,
+			autorizado 		BOOLEAN,
 			FOREIGN KEY (cursoID) REFERENCES course(cursoID)
 			ON UPDATE CASCADE ON DELETE RESTRICT,
 			FOREIGN KEY (usuarioID) REFERENCES users(usuarioID)

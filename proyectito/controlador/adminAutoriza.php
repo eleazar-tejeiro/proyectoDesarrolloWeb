@@ -17,14 +17,14 @@ include("vista/include/navegadorIzqui.php");
 <?php
 function showTable()
     {
-        //get users waiting to be authorized from database
+        //get users waiting to be autorizado from database
         $conn = mysqli_connect("localhost", "root", "", "BDClaseVirtual");
         $sql = "SELECT * FROM users WHERE usuarioTipo!='administrator' AND usuarioActivo='0' ";
         $resource = mysqli_query($conn, $sql);
         if (mysqli_num_rows($resource)<1) {  //if none, display this
-            echo "There are no users waiting to be authorized";
+            echo "There are no users waiting to be autorizado";
         } else {
-            echo "<h2>Users Waiting To Be Authorized<br><table cellpadding='10px' border='2'>";
+            echo "<h2>Users Waiting To Be autorizado<br><table cellpadding='10px' border='2'>";
             echo "<tr><th>User ID</th><th>Forename</th><th>Surname</th><th>User Type</th><th>Authorize?</th></tr>";
             while ($row=mysqli_fetch_array($resource)) {
                 $usuarioID = $row['usuarioID'];
@@ -49,14 +49,14 @@ function authorizeUser()
     $conn = mysqli_connect("localhost", "root", "", "BDClaseVirtual");
     $sql = "UPDATE users SET usuarioActivo = 1 WHERE usuarioID=$usuarioID";
     if ($resource = mysqli_query($conn, $sql)) {
-        echo "<p style='color:green'>Successfully authorized user</p>";
+        echo "<p style='color:green'>Successfully autorizado user</p>";
         header("Refresh:2;url='adminAutoriza.php' ");
     } else {
-        echo "<p style='color:red'>Failed to authorized user. Contact Network Admin</p>";
+        echo "<p style='color:red'>Failed to autorizado user. Contact Network Admin</p>";
     }
     mysqli_close($conn);
 }
 ?>
 <?php
-include ("vista/include/piePagina.php");
+include("vista/include/piePagina.php");
 ?>

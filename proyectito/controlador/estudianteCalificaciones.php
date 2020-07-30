@@ -53,7 +53,7 @@ function displayGrades()
     $sql = "SELECT * FROM takenQuizzes t, course c WHERE c.cursoID=t.cursoID AND t.cursoID='$cursoID' ";
     $resource = mysqli_query($conn, $sql);
     $sql2 = "SELECT * FROM resources r, course c
-			 WHERE r.cursoID=c.cursoID AND r.cursoID='$cursoID' AND r.filename LIKE '%.txt' AND r.name NOT IN
+			 WHERE r.cursoID=c.cursoID AND r.cursoID='$cursoID' AND r.nombreArchivo LIKE '%.txt' AND r.name NOT IN
 			(SELECT name FROM takenQuizzes t WHERE t.cursoID='$cursoID')";
     $resource2 = mysqli_query($conn, $sql2);
     //heading display code
@@ -123,7 +123,7 @@ function showProgress()
         $cursoID=$currentCourse;
     }
     $conn = mysqli_connect("localhost", "root", "", "BDClaseVirtual");
-    $sql = "SELECT * FROM resources WHERE cursoID='$cursoID' AND filename LIKE '%.txt' ";
+    $sql = "SELECT * FROM resources WHERE cursoID='$cursoID' AND nombreArchivo LIKE '%.txt' ";
     $resource = mysqli_query($conn, $sql);
     $total = mysqli_num_rows($resource);
 

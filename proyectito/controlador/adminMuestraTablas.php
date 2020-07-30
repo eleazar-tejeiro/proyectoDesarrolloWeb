@@ -41,13 +41,13 @@ function displayTable()
         $header = "<tr><th>Course ID</th><th>Name</th><th>Owner ID</th></tr>";
     } elseif ($selection =='studentTaking') {
         $sql="SELECT * FROM studentTaking";
-        $header = "<tr><th>Course ID</th><th>User ID</th><th>Date Registered</th><th>Authorized</th></tr>";
+        $header = "<tr><th>Course ID</th><th>User ID</th><th>Date Registered</th><th>autorizado</th></tr>";
     } elseif ($selection =='takenQuizzes') {
         $sql="SELECT * FROM takenQuizzes";
-        $header = "<tr><th>Name</th><th>Filename</th><th>User ID</th><th>Score</th><th>Questions</th><th>Final Score</th><th>Course ID</th><th>Taken Date</th></tr>";
+        $header = "<tr><th>Name</th><th>nombreArchivo</th><th>User ID</th><th>Score</th><th>Questions</th><th>Final Score</th><th>Course ID</th><th>Taken Date</th></tr>";
     } else {
         $sql="SELECT * FROM resources";
-        $header = "<tr><th>ID</th><th>Name</th><th>Filename</th><th>Course ID</th><th>Owner ID</th><th>Upload Date</th></tr>";
+        $header = "<tr><th>ID</th><th>Name</th><th>nombreArchivo</th><th>Course ID</th><th>Owner ID</th><th>Upload Date</th></tr>";
     }
 
     $resource = mysqli_query($conn, $sql);

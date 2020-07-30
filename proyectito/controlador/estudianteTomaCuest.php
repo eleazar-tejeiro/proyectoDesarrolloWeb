@@ -19,7 +19,7 @@ include("vista/include/navegadorIzqui.php");
         if (!isset($_GET["q1"])) {
             //if quiz is not completed, display it to user
             $conn = mysqli_connect("localhost", "root", "", "BDClaseVirtual");
-            $sql = "SELECT * FROM takenQuizzes WHERE fileName='$quizFile' AND usuarioID='$usuarioID';";
+            $sql = "SELECT * FROM takenQuizzes WHERE nombreArchivo='$quizFile' AND usuarioID='$usuarioID';";
             $resource = mysqli_query($conn, $sql);
             $numRows = mysqli_num_rows($resource);
 
@@ -109,16 +109,16 @@ include("vista/include/navegadorIzqui.php");
 
             //get the cursoID to insert into takenQuiz table
             $conn = mysqli_connect("localhost", "root", "", "BDClaseVirtual");
-            $sql = "SELECT cursoID, name FROM resources WHERE filename='$quiz' ";
+            $sql = "SELECT cursoID, name FROM resources WHERE nombreArchivo='$quiz' ";
             $resource = mysqli_query($conn, $sql);
             $row = mysqli_fetch_array($resource);
             $cursoID = $row['cursoID'];
             $name = $row['name'];
-            $fileName = $_GET["quiz"];
+            $nombreArchivo = $_GET["quiz"];
 
             //insert quiz info into database
-            $sql = "INSERT INTO takenQuizzes (name, fileName, usuarioID, score, questions, finalScore, cursoID, takenDate)
-					VALUES('$name','$fileName','$usuarioID','$score','$qNum','$finalScore' ,'$cursoID','$today')";
+            $sql = "INSERT INTO takenQuizzes (name, nombreArchivo, usuarioID, score, questions, finalScore, cursoID, takenDate)
+					VALUES('$name','$nombreArchivo','$usuarioID','$score','$qNum','$finalScore' ,'$cursoID','$today')";
             mysqli_query($conn, $sql) or die(mysqli_error($conn));
             mysqli_close($conn);
 

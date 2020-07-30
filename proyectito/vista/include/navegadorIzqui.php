@@ -1,79 +1,77 @@
 <?php
-if (session_status() === PHP_SESSION_NONE)
-{
-	session_start();
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
 }
 ?>
-<!--Left Navigation Bar Information -->
+
+
+<!--Barra de navegacion izquierda-->
 <div class="row">
 	<div class="column side">
 		<ul class="menu">
 			<?php logInOut();
-			selectMenu();?>
+            selectMenu();?>
 		</ul>
 	</div>
 
 <?php
 
-function logInOut() {
-//function to show either 'log in' or 'Log out' on side bar
-	if (!isset($_SESSION['usuarioTipo']))
-	{
-		echo "<li><a href='registrarse.php'>Register</a></li>";
-		echo "<li><a href='login.php'>Login</a></li>";
-	}
-	else
-	{
-		echo "<li><a href='cerrarSesion.php'>cerrarSesion</a></li>";
-	}
+function logInOut()
+{
+    //Funcion para mostrar ya sea el 'inicio de sesion' o el 'cerrar sesion' en la barra de navegacion lateral
+    if (!isset($_SESSION['usuarioTipo'])) {
+        echo "<li><a href='/proyectoDesarrolloWeb/proyectito/controlador/registrarse.php'>Registrarse</a></li>";
+        echo "<li><a href='/proyectoDesarrolloWeb/proyectito/controlador/login.php'>Loguearse</a></li>";
+    } else {
+        echo "<li><a href='/proyectoDesarrolloWeb/proyectito/controlador/cerrarSesion.php'>Cerrar sesion activa</a></li>";
+    }
 }
 
-function selectMenu(){
-//function to select what menu is displayed
-	if (isset($_SESSION['usuarioTipo']))
-	{
-		if($_SESSION['usuarioTipo'] == "tutor")
-		{
-			tutorMenu();
-		}
-		else if ($_SESSION['usuarioTipo'] == "student")
-		{
-			studentMenu();
-		}
-		else if ($_SESSION['usuarioTipo'] == "administrator"){
-			adminMenu();
-		}
-	}
+function selectMenu()
+{
+    //Funcion para selecionar lo que el menu muestra
+    if (isset($_SESSION['usuarioTipo'])) {
+        if ($_SESSION['usuarioTipo'] == "tutor") {
+            tutorMenu();
+        } elseif ($_SESSION['usuarioTipo'] == "student") {
+            studentMenu();
+        } elseif ($_SESSION['usuarioTipo'] == "administrator") {
+            adminMenu();
+        }
+    }
 }
 
-function tutorMenu() {
-//function for the tutor options
-	echo "<li><a href='profInicio.php'>Home</a></li>
-		<li><a href='profUsuarioCalif.php'>Student's Grades</a></li>
-		<li><a href='profNuevoCurso.php'>Add New Course</a></li>
-		<li><a href='profCarga.php'>Upload a Resource</a></li>
-		<li><a href='profAutorizaEstudiante.php'>Authorize Student</a></li>
-		<li><a href='profAdicionaEstudiante.php'>Add Student</a></li>";
+function tutorMenu()
+{
+    //Funcion para las opciones de los profesores
+    echo "<li><a href='/proyectoDesarrolloWeb/proyectito/controlador/profInicio.php'>Pagina Principal</a></li>
+		<li><a href='/proyectoDesarrolloWeb/proyectito/controlador/profUsuarioCalif.php'>Notas del estudiante</a></li>
+		<li><a href='/proyectoDesarrolloWeb/proyectito/controlador/profNuevoCurso.php'>Añadir un nuevo curso</a></li>
+		<li><a href='/proyectoDesarrolloWeb/proyectito/controlador/profCarga.php'>Subir un recurso</a></li>
+		<li><a href='/proyectoDesarrolloWeb/proyectito/controlador/profAutorizaEstudiante.php'>Autorizar un estudiante</a></li>
+		<li><a href='/proyectoDesarrolloWeb/proyectito/controlador/profAdicionaEstudiante.php'>Añadir estudiante</a></li>";
 }
 
-function studentMenu() {
-//function for student options
-	echo "<li><a href='estudianteInicio.php'>Home</a></li>
-		<li><a href='estudianteInscribirse.php'>Enroll on Course</a></li>
-		<li><a href='estudianteCurso.php'>Courses</a></li>
-		<li><a href='estudianteCalificaciones.php'>Grades</a></li>";
+function studentMenu()
+{
+    //Funcion para las opciones del estudiante
+    echo "<li><a href='/proyectoDesarrolloWeb/proyectito/controlador/estudianteInicio.php'>Pagina Principal</a></li>
+		<li><a href='/proyectoDesarrolloWeb/proyectito/controlador/estudianteInscribirse.php'>Enlistarze en un curso</a></li>
+		<li><a href='/proyectoDesarrolloWeb/proyectito/controlador/estudianteCurso.php'>Cursos</a></li>
+		<li><a href='/proyectoDesarrolloWeb/proyectito/controlador/estudianteCalificaciones.php'>Notas</a></li>";
 }
 
-function adminMenu() {
-//function for the admin options
-	echo "<li style='color:black; font-size:24px; font-weight:bold'>Admin Links</li>
-		<li><a href='adminInicio.php'>Home</a></li>
-		<li><a href='adminAutoriza.php'>Authorize Users</a></li>
-		<li><a href='adminMuestraTablas.php'>Display Database Tables</a></li>
-		<li><a href='adminCreaTablas.php'>Create Database Tables</a></li>
-		<li style='color:black; font-size:24px; font-weight:bold'>Tutor Links</li>
-		<li><a href='tutorShowUsers.php'>Show Users</a></li>
-		<li><a href='profAutorizaEstudiante.php'>Authorize Student</a></li>
-		<li><a href='profAdicionaEstudiante.php'>Add Student</a></li>";
+function adminMenu()
+{
+    //Funcion para las opciones del administrador
+    echo "<li style='color:black; font-size:24px; font-weight:bold'>Enlaces de Administrador</li>
+		<li><a href='/proyectoDesarrolloWeb/proyectito/controlador/adminInicio.php'>Pagina Principal</a></li>
+		<li><a href='/proyectoDesarrolloWeb/proyectito/controlador/adminAutoriza.php'>Autorizar usuarios</a></li>
+		<li><a href='/proyectoDesarrolloWeb/proyectito/controlador/adminMuestraTablas.php'>Mostrar tablas de la base de datos</a></li>
+		<li><a href='/proyectoDesarrolloWeb/proyectito/controlador/adminCreaTablas.php'>Crea tablas de la base de datos</a></li>
+		<li style='color:black; font-size:24px; font-weight:bold'>Enlaces del Profesor</li>
+		<li><a href='/proyectoDesarrolloWeb/proyectito/controlador/tutorShowUsers.php'>Mostrar Usuarios</a></li>
+		<li><a href='/proyectoDesarrolloWeb/proyectito/controlador/profAutorizaEstudiante.php'>Autorizar estudiantes</a></li>
+		<li><a href='/proyectoDesarrolloWeb/proyectito/controlador/profAdicionaEstudiante.php'>Añadir estudiantes</a></li>";
 }
 ?>

@@ -51,7 +51,7 @@ function addEnrollmentToDatabase()
 
     $conn = mysqli_connect('localhost', 'root', '', 'BDClaseVirtual');
     foreach ($course as $currentCourse) {
-        $sql = "INSERT INTO studentTaking (cursoID, usuarioID, dateRegistered, authorized)
+        $sql = "INSERT INTO studentTaking (cursoID, usuarioID, fechaRegistrado, autorizado)
 				VALUES ('$currentCourse', '$usuarioID', '$today', 0)";
         //check if added successfully
         if (mysqli_query($conn, $sql)) {

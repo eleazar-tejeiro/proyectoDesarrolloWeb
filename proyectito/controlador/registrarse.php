@@ -1,6 +1,6 @@
 <?php
-include("vista/include/encabezado.php");
-include("vista/include/navegadorIzqui.php");
+include("../vista/include/encabezado.php");
+include("../vista/include/navegadorIzqui.php");
 ?>
 
 <!--Either shows the registration form, or adds the user to the database -->
@@ -24,14 +24,20 @@ include("vista/include/navegadorIzqui.php");
 function showForm()
 {
     echo " <form name='register' method='post' action='registrarse.php'>
-		Forename		  <input type='text' name='forename'/> <br />
-		Surname  		  <input type='text' name='surname'/> <br />
-		usuarioApodo 		  <input type='text' name='usuarioApodo'/> <br />
-		Password		  <input type='password' name='password'/> <br />
-		Confirm Password  <input type='password' name='cpassword'/> <br />
-		Tutor / Student   <select name='type' />
-							<option value='tutor'>Tutor</option>
-							<option value='student'>Student</option> </select>
+		Nombre		  <input type='text' name='forename'/> <br />
+		Apellido  		  <input type='text' name='surname'/> <br />
+		Usuario 		  <input type='text' name='usuarioApodo'/> <br />
+		Contraseña		  <input type='password' name='password'/> <br />
+		Confirmar contraseña  <input type='password' name='cpassword'/> <br />
+		   <div class='input-field col s12'>
+							<select name='type' />
+							<option value='' disabled selected>Elige un tipo</option>
+							<option value='tutor'>Profesor</option>
+							<option value='student'>Estudiante</option>
+							</select>
+							<label>Profesor / Estudiante</label>
+							</div>
+		<br>
 		<input type='submit' onclick='submit' />
 		</form>";
 }
@@ -81,7 +87,7 @@ function addAdminToDatabase()
     //this is to hardcode administrators into the system; only change first 4 sql values to create a new admin, then call function line 16
     $conn = mysqli_connect('localhost', 'root', '', 'BDClaseVirtual');
     $sql = "INSERT INTO users (nombreUsuario, usuarioApellido, usuarioApodo, usuarioContra, usuarioTipo, usuarioActivo)
-				VALUES ('Neil', 'Buckley', 'admin', 'password', 'administrator', 1)";
+				VALUES ('Admini', 'Admini', 'admin', 'password', 'administrator', 1)";
     if (mysqli_query($conn, $sql)) {
         echo("<p style='color:green'>Successfully Created Adminstrator</p>");
         echo("<a href='login.php'>Click here to log in now</a>");
@@ -93,5 +99,5 @@ function addAdminToDatabase()
     mysqli_close($conn);
 }
 
-include("vista/include/piePagina.php");
+include("../vista/include/piePagina.php");
 ?>

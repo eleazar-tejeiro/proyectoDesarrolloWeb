@@ -1,16 +1,15 @@
-<!-- The homepage of the website -->
 <?php
 include("vista/include/encabezado.php");
 include("vista/include/navegadorIzqui.php");
 ?>
 <div class="row">
 	<div class="column middle">
-		<h2>Welcome</h2>
-		<p>Welcome to this school's website. </p>
-		<h3>Our Mission</h3>
-		<p>The purpose of this website is to provide students and teachers with an online learning enviroment.
-		   There are many features developed here, but if you find any bugs or feel like something is missing
-	       please contact me. See my email in the footer. Enjoy!</p>
+		<h2>Bienvenido</h2>
+		<p>Bienvenido a Academy123</p>
+		<h3>Nuestra Mision</h3>
+		<p>El proposito de esta plataforma virtual es el de proveer, tanto a los estudiantes como a los docentes, de un entorno de aprendejizaje.
+		   Hemos desarrollado muchas funciones, pero si encuentras algun error o sientes que algo falta, por favor contactanos. Puedes encontrar
+		   nuestro e-mail en el footer de la pagina. ¡Esperemos que disfrutes esta plataforma virtual!</p>
 	</div>
 </div>
 <?php
