@@ -22,46 +22,11 @@ include("../vista/include/navegadorIzqui.php");
 function showLogin()
     {
         //shows form for logging in
-        echo("
-				<div class='valign-wrapper' style='width:100%;height:100%;position: absolute;'>
-				    <div class='valign' style='width:100%;'>
-				        <div class='container'>
-				           <div class='row'>
-				              <div class='col s12 m6 offset-m3'>
-				                 <div class='card'>
-				                    <div class='card-content'>
-				                       <span class='card-title black-text'>Sign In</span>
-				                       <form name='login' method='post' action='login.php'>
-				                          <div class='row'>
-				                             <div class='input-field col s12'>
-				                                <input placeholder='Usuario' id='usuarioApodo' type='text' class='validate' pattern='@[A-Za-z0-9]{5,50}' required=''>
-				                                <label for='usuarioApodo' class='active'>Usuario</label>
-				                             </div>
-				                          </div>
-				                          <div class='row'>
-				                             <div class='input-field col s12'>
-				                                <input placeholder='Contraseña' id='password' type='text' class='validate'>
-				                                <label for='password' class='active'>Contraseña</label>
-				                             </div>
-				                          </div>
-				                       </form>
-				                    </div>
-				                    <div class='card-action'>
-				                       <input type='submit' class='btn' onclick='submit'>
-				                    </div>
-				                 </div>
-				              </div>
-				           </div>
-				        </div>
-				    </div>
-				</div>
-
-
-					<form name='login' method='post' action='login.php' >
-					Usuario <input type='text' name='usuarioApodo' /> <br />
-					Contraseña <input type='password' name='password' /> <br />
-					<input type='submit' onclick='submit' />
-					</form>
+        echo("<form name='login' method='post' action='login.php' >
+            Usuario <input type='text' name='usuarioApodo' /> <br />
+            Contraseña <input type='password' name='password' /> <br />
+            <input type='submit' onclick='submit' />
+            </form>
 	");
     }
 

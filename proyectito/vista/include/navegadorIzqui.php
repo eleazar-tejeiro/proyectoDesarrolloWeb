@@ -8,11 +8,11 @@ if (session_status() === PHP_SESSION_NONE) {
 <!--Barra de navegacion izquierda-->
 <div class="row">
 	<div class="column side">
-		<ul class="menu">
+        <ul class="menu">
 			<?php logInOut();
-            selectMenu();?>
+			selectMenu();?>
 		</ul>
-	</div>
+    </div>
 
 <?php
 

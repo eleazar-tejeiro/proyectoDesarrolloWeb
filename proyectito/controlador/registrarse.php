@@ -29,15 +29,12 @@ function showForm()
 		Usuario 		  <input type='text' name='usuarioApodo'/> <br />
 		Contraseña		  <input type='password' name='password'/> <br />
 		Confirmar contraseña  <input type='password' name='cpassword'/> <br />
-		   <div class='input-field col s12'>
-							<select name='type' />
+           <label>Profesor / Estudiante</label>
+           <select name='type' />
 							<option value='' disabled selected>Elige un tipo</option>
 							<option value='tutor'>Profesor</option>
 							<option value='student'>Estudiante</option>
 							</select>
-							<label>Profesor / Estudiante</label>
-							</div>
-		<br>
 		<input type='submit' onclick='submit' />
 		</form>";
 }
