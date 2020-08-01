@@ -51,7 +51,7 @@ function addUserToDatabase()
 
     //check if usuarioApodo exists
     $conn = mysqli_connect('localhost', 'root', '', 'BDClaseVirtual');
-    $sql = "SELECT usuarioApodo FROM users WHERE usuarioApodo='$usuarioApodo' ";
+    $sql = "SELECT usuarioApodo FROM usuarios WHERE usuarioApodo='$usuarioApodo' ";
     $resource= mysqli_query($conn, $sql);
 
     if ($password!=$cpassword) {
@@ -63,7 +63,7 @@ function addUserToDatabase()
         echo "<br>Refreshing in 3 seconds...";
         header("Refresh:3; url=registrarse.php");
     } else {
-        $sql = "INSERT INTO users (nombreUsuario, usuarioApellido, usuarioApodo, usuarioContra, usuarioTipo, usuarioActivo)
+        $sql = "INSERT INTO usuarios (nombreUsuario, usuarioApellido, usuarioApodo, usuarioContra, usuarioTipo, usuarioActivo)
 				VALUES ('$nombre', '$apellido', '$usuarioApodo', '$password', '$tipo', 0)";
 
         //check if registered successfully
@@ -83,7 +83,7 @@ function addAdminToDatabase()
 {
     //this is to hardcode administrators into the system; only change first 4 sql values to create a new admin, then call function line 16
     $conn = mysqli_connect('localhost', 'root', '', 'BDClaseVirtual');
-    $sql = "INSERT INTO users (nombreUsuario, usuarioApellido, usuarioApodo, usuarioContra, usuarioTipo, usuarioActivo)
+    $sql = "INSERT INTO usuarios (nombreUsuario, usuarioApellido, usuarioApodo, usuarioContra, usuarioTipo, usuarioActivo)
 				VALUES ('Admini', 'Admini', 'admin', 'password', 'administrator', 1)";
     if (mysqli_query($conn, $sql)) {
         echo("<p style='color:green'>Successfully Created Adminstrator</p>");

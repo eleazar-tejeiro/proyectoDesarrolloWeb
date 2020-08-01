@@ -12,7 +12,7 @@ include("../vista/include/navegadorIzqui.php");
 			cursoNombre   VARCHAR(50) NOT NULL,
 			cursoPropietario  INT NOT NULL,
 			PRIMARY KEY (cursoID),
-			FOREIGN KEY (cursoPropietario) REFERENCES users(usuarioID)
+			FOREIGN KEY (cursoPropietario) REFERENCES usuarios(usuarioID)
 			)";
 
     //check if table was created

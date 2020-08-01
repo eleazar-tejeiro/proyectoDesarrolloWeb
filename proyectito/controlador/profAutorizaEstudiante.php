@@ -47,7 +47,7 @@ function getEstudianteTakingCurso()
 function getEstudianteDetails($resource)
 {
     //gets the estudiante's information
-    $sql = "SELECT usuarioID, nombreUsuario, usuarioApellido FROM users WHERE ";
+    $sql = "SELECT usuarioID, nombreUsuario, usuarioApellido FROM usuarios WHERE ";
     while ($currentLine = mysqli_fetch_array($resource)) {
         $sql .= "usuarioID = '$currentLine[usuarioID]' OR ";
     }

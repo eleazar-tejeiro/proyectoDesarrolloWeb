@@ -11,7 +11,7 @@ if (!isset($_SESSION['usuarioID']))
     //gets sql to check if user is active below
     $usuarioID = $_SESSION['usuarioID'];
     $conn = mysqli_connect("localhost", "root", "", "BDClaseVirtual");
-    $sql = "SELECT usuarioActivo FROM users WHERE usuarioID='$usuarioID' ";
+    $sql = "SELECT usuarioActivo FROM usuarios WHERE usuarioID='$usuarioID' ";
     $resource = mysqli_query($conn, $sql);
     while ($row = mysqli_fetch_array($resource)) {
         $usuarioActivo = $row['usuarioActivo'];

@@ -37,7 +37,7 @@ include("../vista/include/navegadorIzqui.php");
             }
             echo "</table><br>";
 
-            $sql = "SELECT * FROM resources r, curso c, users u
+            $sql = "SELECT * FROM resources r, curso c, usuarios u
 					WHERE r.cursoID=c.cursoID AND r.propietario=u.usuarioID AND nombreArchivo LIKE '%.txt'
 					AND r.cursoID IN (SELECT cursoID FROM estudianteTaking WHERE usuarioID=$usuarioID) ";
             $resource = mysqli_query($conn, $sql);

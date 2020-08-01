@@ -14,7 +14,7 @@ include("../vista/include/navegadorIzqui.php");
 			autorizado 		BOOLEAN,
 			FOREIGN KEY (cursoID) REFERENCES curso(cursoID)
 			ON UPDATE CASCADE ON DELETE RESTRICT,
-			FOREIGN KEY (usuarioID) REFERENCES users(usuarioID)
+			FOREIGN KEY (usuarioID) REFERENCES usuarios(usuarioID)
 			ON UPDATE CASCADE ON DELETE RESTRICT
 			)";
 

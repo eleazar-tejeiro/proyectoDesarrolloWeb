@@ -18,7 +18,7 @@ function showForm()
     {
         //show the form to select which table to display
         echo "<form name='displayTables' method='post' action='adminMuestraTablas.php'>
-		<input type='radio' name='table' value='users'>Users<br>
+		<input type='radio' name='table' value='usuarios'>Usuarios<br>
 		<input type='radio' name='table' value='cursos'>Curso<br>
 		<input type='radio' name='table' value='resources'>Resources<br>
 		<input type='radio' name='table' value='estudianteTaking'>Estudiante Taking<br>
@@ -33,8 +33,8 @@ function displayTable()
     $conn = mysqli_connect("localhost", "root", "", "BDClaseVirtual");
 
     //based on selection, set the SQL and header to display
-    if ($selection =='users') {
-        $sql="SELECT * FROM users";
+    if ($selection =='usuarios') {
+        $sql="SELECT * FROM usuarios";
         $header = "<tr><th>User ID</th><th>Nombre</th><th>Apellido</th><th>usuarioApodo</th><th>Password</th><th>User Type</th><th>Active</th></tr>";
     } elseif ($selection =='cursos') {
         $sql="SELECT * FROM curso";

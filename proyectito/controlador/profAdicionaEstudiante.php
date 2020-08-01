@@ -44,7 +44,7 @@ function addUserToDatabase()
     $apellido = $_POST['apellido'];
     $usuarioApodo = $_POST['usuarioApodo'];
 
-    $sql = "INSERT INTO users (nombreUsuario, usuarioApellido, usuarioApodo, usuarioContra, usuarioTipo, usuarioActivo)
+    $sql = "INSERT INTO usuarios (nombreUsuario, usuarioApellido, usuarioApodo, usuarioContra, usuarioTipo, usuarioActivo)
 			VALUES ('$nombre', '$apellido', '$usuarioApodo', '$usuarioApodo', 'estudiante', 1)";
     doSQL($sql);
     $estudianteID = getEstudianteID();
@@ -54,7 +54,7 @@ function getEstudianteID()
 {
     //retrieves estudianteId from database, returns for showCursos function
     $usuarioApodo = $_POST['usuarioApodo'];
-    $sql = "SELECT usuarioID FROM users WHERE usuarioApodo='$usuarioApodo' ";
+    $sql = "SELECT usuarioID FROM usuarios WHERE usuarioApodo='$usuarioApodo' ";
     $record = mysqli_fetch_array(doSQL($sql));
     $estudianteID = $record['usuarioID'];
     return $estudianteID;
