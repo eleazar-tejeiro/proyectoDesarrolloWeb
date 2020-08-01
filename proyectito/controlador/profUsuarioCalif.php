@@ -34,7 +34,7 @@
 //this next section displays estudiantes in class without grades
     //correlated subquery to select estudiantes not in grades table
     $sql2 = "SELECT u.nombreUsuario AS 'nombre', u.usuarioApellido AS 'apellido', c.cursoNombre AS 'curso'
-			 FROM usuarios u, estudianteTaking s, curso c
+			 FROM usuarios u, estudianteCurso s, curso c
 			 WHERE u.usuarioID=s.usuarioID AND s.cursoID=c.cursoID AND c.cursoPropietario='$profesorID'
 			 AND u.usuarioID NOT IN (SELECT u2.usuarioID FROM usuarios u2, takenQuizzes t2, curso c2
 		 			WHERE u2.usuarioID=t2.usuarioID AND t2.cursoID=c2.cursoID AND c2.cursoPropietario='$profesorID' AND c2.cursoID=c.cursoID)";

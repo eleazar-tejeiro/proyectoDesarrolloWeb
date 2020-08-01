@@ -23,7 +23,7 @@ function showForm()
             //select the curso to see progress/grades
             $usuarioID = $_SESSION['usuarioID'];
             $conn = mysqli_connect('localhost', 'root', '', 'BDClaseVirtual');
-            $sql = "SELECT c.cursoID, c.cursoNombre FROM curso c, estudianteTaking s WHERE c.cursoID=s.cursoID AND usuarioID='$usuarioID' ";
+            $sql = "SELECT c.cursoID, c.cursoNombre FROM curso c, estudianteCurso s WHERE c.cursoID=s.cursoID AND usuarioID='$usuarioID' ";
             $resource = mysqli_query($conn, $sql);
             //check to make sure they are enrolled in classes
             if (mysqli_num_rows($resource)<1) {
@@ -52,7 +52,7 @@ function displayGrades()
     $conn = mysqli_connect("localhost", "root", "", "BDClaseVirtual");
     $sql = "SELECT * FROM takenQuizzes t, curso c WHERE c.cursoID=t.cursoID AND t.cursoID='$cursoID' ";
     $resource = mysqli_query($conn, $sql);
-    $sql2 = "SELECT * FROM resources r, curso c
+    $sql2 = "SELECT * FROM recursos r, curso c
 			 WHERE r.cursoID=c.cursoID AND r.cursoID='$cursoID' AND r.nombreArchivo LIKE '%.txt' AND r.name NOT IN
 			(SELECT name FROM takenQuizzes t WHERE t.cursoID='$cursoID')";
     $resource2 = mysqli_query($conn, $sql2);
@@ -123,7 +123,7 @@ function showProgress()
         $cursoID=$currentCurso;
     }
     $conn = mysqli_connect("localhost", "root", "", "BDClaseVirtual");
-    $sql = "SELECT * FROM resources WHERE cursoID='$cursoID' AND nombreArchivo LIKE '%.txt' ";
+    $sql = "SELECT * FROM recursos WHERE cursoID='$cursoID' AND nombreArchivo LIKE '%.txt' ";
     $resource = mysqli_query($conn, $sql);
     $total = mysqli_num_rows($resource);
 

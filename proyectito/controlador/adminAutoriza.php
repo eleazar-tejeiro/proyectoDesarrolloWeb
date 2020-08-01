@@ -19,13 +19,13 @@ function showTable()
     {
         //get usuarios waiting to be autorizado from database
         $conn = mysqli_connect("localhost", "root", "", "BDClaseVirtual");
-        $sql = "SELECT * FROM usuarios WHERE usuarioTipo!='administrator' AND usuarioActivo='0' ";
+        $sql = "SELECT * FROM usuarios WHERE usuarioTipo!='administrador' AND usuarioActivo='0' ";
         $resource = mysqli_query($conn, $sql);
         if (mysqli_num_rows($resource)<1) {  //if none, display this
             echo "There are no usuarios waiting to be autorizado";
         } else {
             echo "<h2>Usuarios Waiting To Be autorizado<br><table cellpadding='10px' border='2'>";
-            echo "<tr><th>User ID</th><th>Nombre</th><th>Apellido</th><th>User Type</th><th>Authorize?</th></tr>";
+            echo "<tr><th>ID Usuario</th><th>Nombre</th><th>Apellido</th><th>Tipo de Usuario</th><th>Authorize?</th></tr>";
             while ($row=mysqli_fetch_array($resource)) {
                 $usuarioID = $row['usuarioID'];
                 $nombreUsuario = $row['nombreUsuario'];

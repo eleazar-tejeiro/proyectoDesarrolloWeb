@@ -9,9 +9,9 @@ if (!isset($_SESSION['usuarioID']))
     die();
 } else {
     //checks the credentials to make sure only admins access their pages
-    if (!isset($_SESSION['usuarioTipo']) or $_SESSION['usuarioTipo'] != "administrator") {
+    if (!isset($_SESSION['usuarioTipo']) or $_SESSION['usuarioTipo'] != "administrador") {
         echo("<p style='color:red'>You are either not logged in or not autorizado to view this page.<br>
-                If this is a mistake, contact network administrator</p>");
+                If this is a mistake, contact network administrador</p>");
                 include("../vista/include/piePagina.php");
         die();
     } else {

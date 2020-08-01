@@ -38,7 +38,7 @@ function getEstudianteTakingCurso()
 {
     //grabs all the estudiantes waiting to be autorizado
     $cursoID = $_POST['cursoID'];
-    $sql = "SELECT usuarioID FROM estudianteTaking WHERE cursoID = $cursoID AND autorizado = 0";
+    $sql = "SELECT usuarioID FROM estudianteCurso WHERE cursoID = $cursoID AND autorizado = 0";
     if ($resource = doSQL($sql)) {
         getEstudianteDetails($resource);
     }
@@ -64,7 +64,7 @@ function showEstudiantes($resource)
     echo "<form name='showEstudiantes' method='post' action='profAutorizaEstudiante.php'>";
     echo "<input type='hidden' name='cursoID' value='$cursoID' /> ";
     echo "<table border='2'>
-			<tr><th>Check</th><th>User ID</th><th>Name</th>";
+			<tr><th>Check</th><th>ID Usuario</th><th>Name</th>";
     while ($currentLine = mysqli_fetch_array($resource)) {
         echo "<tr><td><input type='checkbox' name='estudianteID[]' value='$currentLine[usuarioID]' /></td>";
         echo "<td>". $currentLine['usuarioID'] . "</td><td>" . $currentLine['nombreUsuario'] ." " . $currentLine['usuarioApellido'] . "</td></tr>";
@@ -78,7 +78,7 @@ function enrollEstudiante()
     //authorizes estudiante to take curso
     $cursoID = $_POST['cursoID'];
     foreach ($_POST['estudianteID'] as $usuarioID) {
-        $sql = "UPDATE estudianteTaking SET autorizado = 1
+        $sql = "UPDATE estudianteCurso SET autorizado = 1
 				WHERE usuarioID=$usuarioID AND cursoID = $cursoID";
         doSQL($sql);
         echo "Successfully Enrolled Estudiante<br>";

@@ -24,7 +24,7 @@ function showForm()
         $usuarioID = $_SESSION['usuarioID'];
         $conn = mysqli_connect('localhost', 'root', '', 'BDClaseVirtual');
         $sql = "SELECT cursoID, cursoNombre FROM curso
-			WHERE cursoID NOT IN (SELECT cursoID FROM estudianteTaking WHERE usuarioID=$usuarioID)";
+			WHERE cursoID NOT IN (SELECT cursoID FROM estudianteCurso WHERE usuarioID=$usuarioID)";
         $resource = mysqli_query($conn, $sql);
         if (mysqli_num_rows($resource)<1) {
             echo "There are no cursos for you to enroll on";
@@ -51,7 +51,7 @@ function addEnrollmentToDatabase()
 
     $conn = mysqli_connect('localhost', 'root', '', 'BDClaseVirtual');
     foreach ($curso as $currentCurso) {
-        $sql = "INSERT INTO estudianteTaking (cursoID, usuarioID, fechaRegistrado, autorizado)
+        $sql = "INSERT INTO estudianteCurso (cursoID, usuarioID, fechaRegistrado, autorizado)
 				VALUES ('$currentCurso', '$usuarioID', '$today', 0)";
         //check if added successfully
         if (mysqli_query($conn, $sql)) {

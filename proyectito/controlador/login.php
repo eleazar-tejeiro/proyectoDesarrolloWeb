@@ -69,8 +69,8 @@ function showLinkToUserPage()
         echo("<a href='profInicio.php'>Click here for the profesor home page</a>");
     } elseif ($_SESSION['usuarioTipo'] == "estudiante") {
         echo("<a href='estudianteInicio.php'>Click here for estudiante home page</a>");
-    } elseif ($_SESSION['usuarioTipo'] == "administrator") {
-        echo("<a href='adminInicio.php'>Click here for administrator home page</a>");
+    } elseif ($_SESSION['usuarioTipo'] == "administrador") {
+        echo("<a href='adminInicio.php'>Click here for administrador home page</a>");
     } else {
         echo("<a href='login.php'>Something went wrong... retry login or contact network admin</a>");
     }

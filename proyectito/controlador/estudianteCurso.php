@@ -10,9 +10,9 @@ include("../vista/include/navegadorIzqui.php");
 
         $usuarioID=$_SESSION['usuarioID'];
         $conn = mysqli_connect("localhost", "root", "", "BDClaseVirtual");
-        $sql = "SELECT * FROM resources r, curso c
+        $sql = "SELECT * FROM recursos r, curso c
 				WHERE r.cursoID=c.cursoID AND nombreArchivo NOT LIKE '%.txt'
-				AND c.cursoID IN (SELECT cursoID FROM estudianteTaking WHERE usuarioID=$usuarioID)";
+				AND c.cursoID IN (SELECT cursoID FROM estudianteCurso WHERE usuarioID=$usuarioID)";
 
         $resource= mysqli_query($conn, $sql);
 
@@ -20,7 +20,7 @@ include("../vista/include/navegadorIzqui.php");
             echo "You are either not enrolled on any cursos yet.
 				<br>If you have enrolled on a curso, please contact profesor/admin to authorize you on the curso.";
         } else {
-            echo "<h2>Uploaded Resources</h2>";
+            echo "<h2>Uploaded Recursos</h2>";
             echo "<table border='2'>";
             echo "<tr><th>Name</th><th>Download Link</th><th>Curso</th><th>Upload Date</th></tr>";
             while ($row = mysqli_fetch_array($resource)) {
@@ -31,15 +31,15 @@ include("../vista/include/navegadorIzqui.php");
                 $fechaSubida = $row["fechaSubida"];
 
                 echo "<td>$name</td>";
-                echo "<td><a href='resource_uploads/$nombreArchivo'>$nombreArchivo</a></td>";
+                echo "<td><a href='recursos/$nombreArchivo'>$nombreArchivo</a></td>";
                 echo "<td>$curso</td><td>$fechaSubida</td>";
                 echo "</tr>";
             }
             echo "</table><br>";
 
-            $sql = "SELECT * FROM resources r, curso c, usuarios u
+            $sql = "SELECT * FROM recursos r, curso c, usuarios u
 					WHERE r.cursoID=c.cursoID AND r.propietario=u.usuarioID AND nombreArchivo LIKE '%.txt'
-					AND r.cursoID IN (SELECT cursoID FROM estudianteTaking WHERE usuarioID=$usuarioID) ";
+					AND r.cursoID IN (SELECT cursoID FROM estudianteCurso WHERE usuarioID=$usuarioID) ";
             $resource = mysqli_query($conn, $sql);
             echo "<h2>Quizzes</h2>";
             echo "<table border='2'>";

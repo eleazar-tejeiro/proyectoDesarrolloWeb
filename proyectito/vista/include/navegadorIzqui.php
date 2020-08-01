@@ -33,7 +33,7 @@ function selectMenu()
             profesorMenu();
         } elseif ($_SESSION['usuarioTipo'] == "estudiante") {
             estudianteMenu();
-        } elseif ($_SESSION['usuarioTipo'] == "administrator") {
+        } elseif ($_SESSION['usuarioTipo'] == "administrador") {
             adminMenu();
         }
     }

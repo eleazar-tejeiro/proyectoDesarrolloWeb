@@ -84,7 +84,7 @@ function addAdminToDatabase()
     //this is to hardcode administrators into the system; only change first 4 sql values to create a new admin, then call function line 16
     $conn = mysqli_connect('localhost', 'root', '', 'BDClaseVirtual');
     $sql = "INSERT INTO usuarios (nombreUsuario, usuarioApellido, usuarioApodo, usuarioContra, usuarioTipo, usuarioActivo)
-				VALUES ('Admini', 'Admini', 'admin', 'password', 'administrator', 1)";
+				VALUES ('Admini', 'Admini', 'admin', 'password', 'administrador', 1)";
     if (mysqli_query($conn, $sql)) {
         echo("<p style='color:green'>Successfully Created Adminstrator</p>");
         echo("<a href='login.php'>Click here to log in now</a>");

@@ -32,7 +32,7 @@ include("../vista/include/navegadorIzqui.php");
             }
 
             $quiz = $_GET["quiz"];
-            $quizLines = file("resource_uploads/$quiz");
+            $quizLines = file("recursos/$quiz");
             $lineNum = 0;
             $qNum = 1;
 
@@ -64,7 +64,7 @@ include("../vista/include/navegadorIzqui.php");
         } else {
             //adds quiz information to table
             $quiz = $_GET["quiz"];
-            $quizLines = file("resource_uploads/$quiz");
+            $quizLines = file("recursos/$quiz");
             $lineNum = 0;
             $qNum = 0;
 
@@ -109,7 +109,7 @@ include("../vista/include/navegadorIzqui.php");
 
             //get the cursoID to insert into takenQuiz table
             $conn = mysqli_connect("localhost", "root", "", "BDClaseVirtual");
-            $sql = "SELECT cursoID, name FROM resources WHERE nombreArchivo='$quiz' ";
+            $sql = "SELECT cursoID, name FROM recursos WHERE nombreArchivo='$quiz' ";
             $resource = mysqli_query($conn, $sql);
             $row = mysqli_fetch_array($resource);
             $cursoID = $row['cursoID'];

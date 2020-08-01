@@ -20,8 +20,8 @@ function showForm()
         echo "<form name='displayTables' method='post' action='adminMuestraTablas.php'>
 		<input type='radio' name='table' value='usuarios'>Usuarios<br>
 		<input type='radio' name='table' value='cursos'>Curso<br>
-		<input type='radio' name='table' value='resources'>Resources<br>
-		<input type='radio' name='table' value='estudianteTaking'>Estudiante Taking<br>
+		<input type='radio' name='table' value='recursos'>Recursos<br>
+		<input type='radio' name='table' value='estudianteCurso'>Estudiante Taking<br>
 		<input type='radio' name='table' value='takenQuizzes'>Taken Quizzes<br>
 		<input type='submit'>
 		</form>";
@@ -35,18 +35,18 @@ function displayTable()
     //based on selection, set the SQL and header to display
     if ($selection =='usuarios') {
         $sql="SELECT * FROM usuarios";
-        $header = "<tr><th>User ID</th><th>Nombre</th><th>Apellido</th><th>usuarioApodo</th><th>Password</th><th>User Type</th><th>Active</th></tr>";
+        $header = "<tr><th>ID Usuario</th><th>Nombre</th><th>Apellido</th><th>Apodo</th><th>Contraseña</th><th>Tipo de Usuario</th><th>Estado</th></tr>";
     } elseif ($selection =='cursos') {
         $sql="SELECT * FROM curso";
         $header = "<tr><th>Curso ID</th><th>Name</th><th>Owner ID</th></tr>";
-    } elseif ($selection =='estudianteTaking') {
-        $sql="SELECT * FROM estudianteTaking";
-        $header = "<tr><th>Curso ID</th><th>User ID</th><th>Date Registered</th><th>autorizado</th></tr>";
+    } elseif ($selection =='estudianteCurso') {
+        $sql="SELECT * FROM estudianteCurso";
+        $header = "<tr><th>Curso ID</th><th>ID Usuario</th><th>Date Registered</th><th>autorizado</th></tr>";
     } elseif ($selection =='takenQuizzes') {
         $sql="SELECT * FROM takenQuizzes";
-        $header = "<tr><th>Name</th><th>nombreArchivo</th><th>User ID</th><th>Score</th><th>Questions</th><th>Final Score</th><th>Curso ID</th><th>Taken Date</th></tr>";
+        $header = "<tr><th>Name</th><th>nombreArchivo</th><th>ID Usuario</th><th>Score</th><th>Questions</th><th>Final Score</th><th>Curso ID</th><th>Taken Date</th></tr>";
     } else {
-        $sql="SELECT * FROM resources";
+        $sql="SELECT * FROM recursos";
         $header = "<tr><th>ID</th><th>Name</th><th>nombreArchivo</th><th>Curso ID</th><th>Owner ID</th><th>Upload Date</th></tr>";
     }
 

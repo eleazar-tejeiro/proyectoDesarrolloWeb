@@ -1,14 +1,14 @@
 <?php
 session_start();
-include("../vista/include/encabezado.php.php");
-include("../vista/include/navegadorIzqui.phpqui.php");
+include("../vista/include/encabezado.php");
+include("../vista/include/navegadorIzqui.php");
 ?>
 
 <!--Either shows the registration form, or adds the user to the database -->
 <div class="row">
 	<div class="column middle">
 	<?php
-    include("../modelo/revisaProfesor.php.php");
+    include("../modelo/revisaProfesor.php");
 
     if (isset($_FILES["resourceFile"])) {
         addResourceToDatabase();
@@ -53,10 +53,10 @@ function addResourceToDatabase()
     $loginusuarioApodo = $_SESSION["usuarioID"];
 
     if ($fileError == 0) {
-        if (move_uploaded_file($tmp_name, "resource_uploads/$resourceName")) {
+        if (move_uploaded_file($tmp_name, "recursos/$resourceName")) {
             $conn = mysqli_connect('localhost', 'root', '', 'BDClaseVirtual');
             foreach ($curso as $currentCurso) {
-                $sql = "INSERT INTO resources(name, nombreArchivo, propietario, cursoID, fechaSubida)
+                $sql = "INSERT INTO recursos(name, nombreArchivo, propietario, cursoID, fechaSubida)
 				VALUES('$resourceDisplayName', '$resourceName', '$loginusuarioApodo', $currentCurso, '$fechaSubida')";
 
                 //check if curso created successfully
@@ -79,5 +79,5 @@ function addResourceToDatabase()
     }
 }
 
-include("../vista/include/piePagina.phpphp");
+include("../vista/include/piePagina.php");
 ?>

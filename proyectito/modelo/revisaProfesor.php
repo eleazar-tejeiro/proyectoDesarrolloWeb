@@ -22,11 +22,11 @@ if (!isset($_SESSION['usuarioID']))
 //checks the credentials to make sure only Profesors/Administrators access their pages
 if (!isset($_SESSION['usuarioTipo']) or $_SESSION['usuarioTipo'] == "estudiante") {
     echo("<p style='color:red'>You are either not logged in or not autorizado to view this page<br>
-            If this is a mistake, contact network administrator</p>");
+            If this is a mistake, contact network administrador</p>");
             include("../vista/include/piePagina.php");
     die();
 } elseif ($usuarioActivo == 0) {
-    echo "<p style='color:red'> Access denied, confirmed as profesor but you have not been autorizado by an administrator yet.</p>";
+    echo "<p style='color:red'> Access denied, confirmed as profesor but you have not been autorizado by an administrador yet.</p>";
     die();
 } else {
     echo("<p style='color:green'>Access granted, User confirmed as profesor or admin</p>");

@@ -4,7 +4,7 @@ include("vista/include/navegadorIzqui.php");
 ?>
 <div class="row">
     <div class="column middle">
-        <h2>Bienvenido</h2>
+        <h3>Bienvenido</h3>
         <p>Bienvenido a Academy123</p>
         <h3>Nuestra Mision</h3>
         <p>El proposito de esta plataforma virtual es el de proveer, tanto a los estudiantes como a los docentes, de un

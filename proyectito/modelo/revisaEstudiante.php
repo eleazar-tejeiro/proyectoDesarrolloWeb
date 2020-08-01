@@ -28,10 +28,10 @@ if (!isset($_SESSION['usuarioTipo'])) {
     die();
 } elseif ($_SESSION['usuarioTipo'] != "estudiante") {
     echo "<p style='color:red'>Access denied, only estudiantes can view this page</p><br>
-		  <p>If this is a mistake, contact a network administrator</p>";
+		  <p>If this is a mistake, contact a network administrador</p>";
     die();
 } elseif ($usuarioActivo==0) {
-    echo "<p style='color:red'>Access denied, you are confirmed as a estudiante, but you have not been autorizado by an administrator yet.</p>";
+    echo "<p style='color:red'>Access denied, you are confirmed as a estudiante, but you have not been autorizado by an administrador yet.</p>";
     die();
 } else {
     echo("<p style='color:green'>Access granted, User Confirmed as Estudiante</p>");

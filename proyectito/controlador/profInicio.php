@@ -6,7 +6,7 @@
 	<div class="column middle">
 	<?php include("../modelo/revisaProfesor.php"); ?>
 	<p> This is the Profesor Home Page. See the sidebar for different actions available to a profesor.
-		Authorize estudiantes, create cursos, upload resources to those curso, check your estudiantes grades</p>
+		Authorize estudiantes, create cursos, upload recursos to those curso, check your estudiantes grades</p>
 	</div>
 </div>
 <?php

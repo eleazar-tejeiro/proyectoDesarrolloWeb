@@ -7,7 +7,7 @@ include("../vista/include/navegadorIzqui.php");
 	<div class="column middle">
 	<?php
     $conn = mysqli_connect("localhost", "root", "", "BDClaseVirtual");
-    $sql = "CREATE TABLE IF NOT EXISTS estudianteTaking (
+    $sql = "CREATE TABLE IF NOT EXISTS estudianteCurso (
 			cursoID 		INT NOT NULL,
 			usuarioID   		INT NOT NULL,
 			fechaRegistrado  DATE NOT NULL,

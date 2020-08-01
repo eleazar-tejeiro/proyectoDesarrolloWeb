@@ -7,7 +7,7 @@ include("../vista/include/navegadorIzqui.php");
 	<div class="column middle">
 	<?php
     $conn = mysqli_connect("localhost", "root", "", "BDClaseVirtual");
-    $sql = "CREATE TABLE IF NOT EXISTS resources (
+    $sql = "CREATE TABLE IF NOT EXISTS recursos (
 				id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
 				name VARCHAR(255),
 				nombreArchivo VARCHAR(255) NOT NULL,
