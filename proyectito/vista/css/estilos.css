@@ -4,8 +4,8 @@ body {
     color: #443F3F;
     font: 110% 'Economica', Tahoma, sans-serif;
     line-height: 1.3em;
-    overflow: hidden;
     margin: 0;
+    overflow: scroll;
 }
 
 a {
@@ -60,7 +60,6 @@ h3 {
 
 .column.side {
     width: 15%;
-    position: relative;
     z-index: 1;
     top: 20px;
     left: 10px;
@@ -114,6 +113,10 @@ ul.menu li a:hover {
     margin-left: -20px;
     margin-right: -20px;
     margin-bottom: -20px;
+    position: relative;
+    height: 200px;
+    margin-top: 20px;
+    clear: both;
 }
 
 #footer h3 {
