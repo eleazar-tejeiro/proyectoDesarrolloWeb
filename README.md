@@ -1,14 +1,14 @@
 # proyectoDesarrolloWeb
 Proyecto Universidad
 
-- [ ] Implementar Materialize
+- [X] Mejorar el CSS
 
-- [ ] Modificar el login y pagina principal
+- [X] Modificar el login y pagina principal
 
 - [ ] Adaptar el código
 
 - [ ] Adaptar la base de datos
 
-- [ ] Implementar MVC
+- [X] Implementar MVC
 
 Grupo: Mauricio, Alvaro, Anahi y Uriel
