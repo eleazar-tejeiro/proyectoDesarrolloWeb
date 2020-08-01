@@ -1,6 +1,6 @@
 <?php
-include("vista/include/encabezado.php");
-include("vista/include/navegadorIzqui.php");
+include("../vista/include/encabezado.php");
+include("../vista/include/navegadorIzqui.php");
 ?>
 
 <div class="row">
@@ -19,9 +19,9 @@ include("vista/include/navegadorIzqui.php");
 
     //check if table was created
     if (mysqli_query($conn, $sql)) {
-        echo("<p style='color:green'>SUCCESS</p>");
+        echo("<p style='color:green'>CORRECTO</p>");
     } else {
-        echo("<p style='color:red'>FAIL: <br/>");
+        echo("<p style='color:red'>ERROR: <br/>");
         echo(mysqli_error($conn) . "</p>");
     }
     mysqli_close($conn);
@@ -29,5 +29,5 @@ include("vista/include/navegadorIzqui.php");
 	</div>
 </div>
 <?php
-include("vista/include/piePagina.php");
+include("../vista/include/piePagina.php");
 ?>

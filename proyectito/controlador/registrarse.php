@@ -7,12 +7,12 @@ include("../vista/include/navegadorIzqui.php");
 <div class="row">
 	<div class="column middle">
 	<?php
-    if (isset($_POST['forename'])) {
+    if (isset($_POST['nombre'])) {
         addUserToDatabase();
     } else {
         /* if adding an admin, comment out the showForm() function and remove '//' from addAdminToDatabase()
         To see admin credentials being added, go to function below. Change the 'Values' in SQL statement for a new admin*/
-        //addAdminToDatabase();
+        // addAdminToDatabase();
         showForm();
     }
     ?>
@@ -24,16 +24,16 @@ include("../vista/include/navegadorIzqui.php");
 function showForm()
 {
     echo " <form name='register' method='post' action='registrarse.php'>
-		Nombre		  <input type='text' name='forename'/> <br />
-		Apellido  		  <input type='text' name='surname'/> <br />
+		Nombre		  <input type='text' name='nombre'/> <br />
+		Apellido  		  <input type='text' name='apellido'/> <br />
 		Usuario 		  <input type='text' name='usuarioApodo'/> <br />
 		Contraseña		  <input type='password' name='password'/> <br />
 		Confirmar contraseña  <input type='password' name='cpassword'/> <br />
            <label>Profesor / Estudiante</label>
-           <select name='type' />
+           <select name='tipo' />
 							<option value='' disabled selected>Elige un tipo</option>
-							<option value='tutor'>Profesor</option>
-							<option value='student'>Estudiante</option>
+							<option value='profesor'>Profesor</option>
+							<option value='estudiante'>Estudiante</option>
 							</select>
 		<input type='submit' onclick='submit' />
 		</form>";
@@ -42,12 +42,12 @@ function showForm()
 function addUserToDatabase()
 {
     //adds the information entered by the user to the table
-    $forename = $_POST['forename'];
-    $surname = $_POST['surname'];
+    $nombre = $_POST['nombre'];
+    $apellido = $_POST['apellido'];
     $usuarioApodo = $_POST['usuarioApodo'];
     $password = $_POST['password'];
     $cpassword = $_POST['cpassword'];
-    $type = $_POST['type'];
+    $tipo = $_POST['tipo'];
 
     //check if usuarioApodo exists
     $conn = mysqli_connect('localhost', 'root', '', 'BDClaseVirtual');
@@ -64,7 +64,7 @@ function addUserToDatabase()
         header("Refresh:3; url=registrarse.php");
     } else {
         $sql = "INSERT INTO users (nombreUsuario, usuarioApellido, usuarioApodo, usuarioContra, usuarioTipo, usuarioActivo)
-				VALUES ('$forename', '$surname', '$usuarioApodo', '$password', '$type', 0)";
+				VALUES ('$nombre', '$apellido', '$usuarioApodo', '$password', '$tipo', 0)";
 
         //check if registered successfully
         if (mysqli_query($conn, $sql)) {

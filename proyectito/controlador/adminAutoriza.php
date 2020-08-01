@@ -1,10 +1,10 @@
 <?php
-include("vista/include/encabezado.php");
-include("vista/include/navegadorIzqui.php");
+include("../vista/include/encabezado.php");
+include("../vista/include/navegadorIzqui.php");
 ?>
 <div class="row">
 	<div class="column middle">
-	<?php include("modelo/revisaAdmin.php");
+	<?php include("../modelo/revisaAdmin.php");
 
     if (!isset($_POST['usuarioID'])) {
         showTable();
@@ -25,7 +25,7 @@ function showTable()
             echo "There are no users waiting to be autorizado";
         } else {
             echo "<h2>Users Waiting To Be autorizado<br><table cellpadding='10px' border='2'>";
-            echo "<tr><th>User ID</th><th>Forename</th><th>Surname</th><th>User Type</th><th>Authorize?</th></tr>";
+            echo "<tr><th>User ID</th><th>Nombre</th><th>Apellido</th><th>User Type</th><th>Authorize?</th></tr>";
             while ($row=mysqli_fetch_array($resource)) {
                 $usuarioID = $row['usuarioID'];
                 $nombreUsuario = $row['nombreUsuario'];
@@ -58,5 +58,5 @@ function authorizeUser()
 }
 ?>
 <?php
-include("vista/include/piePagina.php");
+include("../vista/include/piePagina.php");
 ?>

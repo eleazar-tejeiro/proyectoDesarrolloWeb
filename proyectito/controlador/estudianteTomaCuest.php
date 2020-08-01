@@ -1,12 +1,12 @@
 <?php
-include("vista/include/encabezado.php");
-include("vista/include/navegadorIzqui.php");
+include("../vista/include/encabezado.php");
+include("../vista/include/navegadorIzqui.php");
 ?>
 
 <div class="row">
 	<div class="column middle">
 		<?php
-        include("modelo/revisaEstudiante.php");
+        include("../modelo/revisaEstudiante.php");
 
         //if quiz is set, move forward
         $usuarioID = $_SESSION["usuarioID"];
@@ -25,7 +25,7 @@ include("vista/include/navegadorIzqui.php");
 
             if ($numRows > 0) {  //check if taken
                 echo"YOU HAVE ALREADY TAKEN THIS QUIZ!";
-                echo "<p>Redirecting you back to the courses page...</p>";
+                echo "<p>Redirecting you back to the cursos page...</p>";
                 header("Refresh: 3; url=estudianteCurso.php");
                 die();
                 mysqli_close($conn);
@@ -122,11 +122,11 @@ include("vista/include/navegadorIzqui.php");
             mysqli_query($conn, $sql) or die(mysqli_error($conn));
             mysqli_close($conn);
 
-            echo "<a href='estudianteCurso.php'>Click here to return to Courses page<a>";
+            echo "<a href='estudianteCurso.php'>Click here to return to Cursos page<a>";
         }
 ?>
 	</div>
 </div>
 <?php
-include("vista/include/piePagina.php");
+include("../vista/include/piePagina.php");
 ?>

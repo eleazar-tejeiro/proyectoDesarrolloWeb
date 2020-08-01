@@ -1,14 +1,14 @@
 <?php
 session_start();
-include("vista/include/encabezado.php.php");
-include("vista/include/navegadorIzqui.phpqui.php");
+include("../vista/include/encabezado.php.php");
+include("../vista/include/navegadorIzqui.phpqui.php");
 ?>
 
 <!--Either shows the registration form, or adds the user to the database -->
 <div class="row">
 	<div class="column middle">
 	<?php
-    include("modelo/revisaProfesor.php.php");
+    include("../modelo/revisaProfesor.php.php");
 
     if (isset($_FILES["resourceFile"])) {
         addResourceToDatabase();
@@ -25,16 +25,16 @@ function showForm()
 {
     $conn = mysqli_connect('localhost', 'root', '', 'BDClaseVirtual');
     $usuarioID = $_SESSION['usuarioID'];
-    $sql = "SELECT cursoID, cursoNombre FROM course WHERE cursoPropietario=$usuarioID";
+    $sql = "SELECT cursoID, cursoNombre FROM curso WHERE cursoPropietario=$usuarioID";
     $resource = mysqli_query($conn, $sql);
 
-    //displays all the potential courses
+    //displays all the potential cursos
     echo " <form method='post' action='profCarga.php' enctype='multipart/form-data'>
 		Resource Name: <input type='text' id='resourceName' name='resourceName'/><br>
-		Upload file: <input type='file' id='resourceFile' name='resourceFile'/><br><br> Choose Course For File:<br>";
-    while ($currentCourse = mysqli_fetch_array($resource)) {
-        echo "<input type='checkbox' name='course[]' value='$currentCourse[cursoID]' />
-		  $currentCourse[cursoNombre] <br>";
+		Upload file: <input type='file' id='resourceFile' name='resourceFile'/><br><br> Choose Curso For File:<br>";
+    while ($currentCurso = mysqli_fetch_array($resource)) {
+        echo "<input type='checkbox' name='curso[]' value='$currentCurso[cursoID]' />
+		  $currentCurso[cursoNombre] <br>";
     }
     echo"<input type='submit' value='Upload Resource'/>
 		</form>";
@@ -49,20 +49,20 @@ function addResourceToDatabase()
     $fileError = $resourceFile["error"];
     $resourceDisplayName = $_POST["resourceName"];
     $fechaSubida = date("Y-m-d H:i:s");
-    $course = $_POST["course"];
+    $curso = $_POST["curso"];
     $loginusuarioApodo = $_SESSION["usuarioID"];
 
     if ($fileError == 0) {
         if (move_uploaded_file($tmp_name, "resource_uploads/$resourceName")) {
             $conn = mysqli_connect('localhost', 'root', '', 'BDClaseVirtual');
-            foreach ($course as $currentCourse) {
+            foreach ($curso as $currentCurso) {
                 $sql = "INSERT INTO resources(name, nombreArchivo, propietario, cursoID, fechaSubida)
-				VALUES('$resourceDisplayName', '$resourceName', '$loginusuarioApodo', $currentCourse, '$fechaSubida')";
+				VALUES('$resourceDisplayName', '$resourceName', '$loginusuarioApodo', $currentCurso, '$fechaSubida')";
 
-                //check if course created successfully
+                //check if curso created successfully
                 if (mysqli_query($conn, $sql)) {
                     echo "<p style='color:green'>Successfully Uploaded Resource</p>";
-                    echo "<a href='profInicio.php'>Click here to return to Tutor Home</a>";
+                    echo "<a href='profInicio.php'>Click here to return to Profesor Home</a>";
                     echo "<br><br><a href='profCarga.php'>Click here to upload another resource</a>";
                 } else {
                     echo"<p style='color:red'>Failed to Upload Resource: <br/> ";
@@ -79,5 +79,5 @@ function addResourceToDatabase()
     }
 }
 
-include("vista/include/piePagina.phpphp");
+include("../vista/include/piePagina.phpphp");
 ?>

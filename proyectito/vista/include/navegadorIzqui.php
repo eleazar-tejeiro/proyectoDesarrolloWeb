@@ -29,17 +29,17 @@ function selectMenu()
 {
     //Funcion para selecionar lo que el menu muestra
     if (isset($_SESSION['usuarioTipo'])) {
-        if ($_SESSION['usuarioTipo'] == "tutor") {
-            tutorMenu();
-        } elseif ($_SESSION['usuarioTipo'] == "student") {
-            studentMenu();
+        if ($_SESSION['usuarioTipo'] == "profesor") {
+            profesorMenu();
+        } elseif ($_SESSION['usuarioTipo'] == "estudiante") {
+            estudianteMenu();
         } elseif ($_SESSION['usuarioTipo'] == "administrator") {
             adminMenu();
         }
     }
 }
 
-function tutorMenu()
+function profesorMenu()
 {
     //Funcion para las opciones de los profesores
     echo "<a href='/proyectoDesarrolloWeb/proyectito/controlador/profInicio.php'>Pagina Principal</a>
@@ -50,7 +50,7 @@ function tutorMenu()
 		<a href='/proyectoDesarrolloWeb/proyectito/controlador/profAdicionaEstudiante.php'>Añadir estudiante</a>";
 }
 
-function studentMenu()
+function estudianteMenu()
 {
     //Funcion para las opciones del estudiante
     echo "<a href='/proyectoDesarrolloWeb/proyectito/controlador/estudianteInicio.php'>Pagina Principal</a>
@@ -68,7 +68,7 @@ function adminMenu()
 		<a href='/proyectoDesarrolloWeb/proyectito/controlador/adminMuestraTablas.php'>Mostrar tablas de la base de datos</a>
 		<a href='/proyectoDesarrolloWeb/proyectito/controlador/adminCreaTablas.php'>Crea tablas de la base de datos</a>
 		
-		<a href='/proyectoDesarrolloWeb/proyectito/controlador/tutorShowUsers.php'>Mostrar Usuarios</a>
+		<a href='/proyectoDesarrolloWeb/proyectito/controlador/profesorShowUsers.php'>Mostrar Usuarios</a>
 		<a href='/proyectoDesarrolloWeb/proyectito/controlador/profAutorizaEstudiante.php'>Autorizar estudiantes</a>
 		<a href='/proyectoDesarrolloWeb/proyectito/controlador/profAdicionaEstudiante.php'>Añadir estudiantes</a>";
 }
