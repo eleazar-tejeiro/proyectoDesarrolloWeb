@@ -1,4 +1,4 @@
-# proyectoDesarrolloWeb
+# PROYECTO MATERIA DESARROLLO DE APLICACIONES WEB - SITIO WEB EDUCATIVO EN HTML, CSS, PHP Y MYSQL
 Proyecto Universidad
 
 - [X] Mejorar el CSS
