@@ -11,8 +11,8 @@ include("../vista/include/navegadorIzqui.php");
         $usuarioID=$_SESSION['usuarioID'];
         $conn = mysqli_connect("localhost", "root", "", "BDClaseVirtual");
         $sql = "SELECT * FROM recursos r, curso c
-				WHERE r.cursoID=c.cursoID AND nombreArchivo NOT LIKE '%.%'
-				AND c.cursoID IN (SELECT cursoID FROM estudianteCurso WHERE usuarioID=$usuarioID)";
+				WHERE r.cursoID = c.cursoID
+				AND c.cursoID IN (SELECT cursoID FROM estudianteCurso WHERE usuarioID=$usuarioID and autorizado=1)";
 
         $resource= mysqli_query($conn, $sql);
 
