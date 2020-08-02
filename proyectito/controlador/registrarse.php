@@ -22,20 +22,28 @@ include("../vista/include/navegadorIzqui.php");
 // muestra el formulario para registrarse al usuario
 function showForm()
 {
-    echo " <form name='register' method='post' action='registrarse.php'>
-		Nombre		  <input type='text' name='nombre'/> <br />
-		Apellido  		  <input type='text' name='apellido'/> <br />
-		Usuario 		  <input type='text' name='usuarioApodo'/> <br />
-		Contraseña		  <input type='password' name='password'/> <br />
-		Confirmar contraseña  <input type='password' name='cpassword'/> <br />
-           <label>Profesor / Estudiante</label>
-           <select name='tipo' />
-							<option value='' disabled selected>Elige un tipo</option>
-							<option value='profesor'>Profesor</option>
-							<option value='estudiante'>Estudiante</option>
-							</select>
-		<input type='submit' onclick='submit' />
-		</form>";
+    echo ("<div class='bold-line'></div>
+            <div class='container'>
+              <div class='window'>
+                <div class='overlay'></div>
+                <div class='content'>
+                  <form name='register' method='post' action='registrarse.php' class='input-fields'>
+                    <input type='text' name='nombre' placeholder='Nombre' class='input-line full-width'></input>
+                    <input type='text' name='apellido' placeholder='Apellido' class='input-line full-width'></input>
+                    <input type='text' name='usuarioApodo' placeholder='Usuario' class='input-line full-width'></input>
+                    <input type='password' name='password' placeholder='Contraseña' class='input-line full-width'></input>
+                    <input type='password' name='cpassword' placeholder='Confirmar contraseña' class='input-line full-width'></input>
+                    <label class='input-label'>Profesor / Estudiante</label>
+                    <select name='tipo' class='input-line full-width' />
+                                <option value='' disabled selected>Tipo de usuario</option>
+                                <option value='profesor'>Profesor</option>
+                                <option value='estudiante'>Estudiante</option>
+                    </select>
+                    <div><input type='submit' onclick='submit' class='ghost-round full-width'/></div>
+                  </form>      
+                </div>
+              </div>
+            </div>");
 }
 
 function addUserToDatabase()

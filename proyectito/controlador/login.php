@@ -19,12 +19,21 @@ include("../vista/include/navegadorIzqui.php");
 <?php
 function showLogin()
     {
+        
         //muestra el formulario para iniciar sesión
-        echo("<form name='login' method='post' action='login.php' >
-            Usuario <input type='text' name='usuarioApodo' /> <br />
-            Contraseña <input type='password' name='password' /> <br />
-            <input type='submit' onclick='submit' />
-            </form>
+        echo("<div class='bold-line'></div>
+        <div class='container'>
+          <div class='window' style='height: 360px'>
+            <div class='overlay' style='height: 360px'></div>
+            <div class='content'>
+              <form name='login' method='post' action='login.php' class='input-fields'>
+                <input type='text' name='usuarioApodo' placeholder='Usuario' class='input-line full-width'></input>
+                <input type='password' name='password' placeholder='Contraseña' class='input-line full-width'></input>
+                <div><input type='submit' onclick='submit' class='ghost-round full-width'/></div>
+              </form>      
+            </div>
+          </div>
+        </div>
 	");
     }
 
