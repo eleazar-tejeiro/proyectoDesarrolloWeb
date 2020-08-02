@@ -16,7 +16,7 @@ include("../vista/include/navegadorIzqui.php");
 
         $resource= mysqli_query($conn, $sql);
 
-        if (mysqli_num_rows($resource)<1) {  // verifica si el estudiante está inscrito
+        if (mysqli_num_rows($resource)<1) {  // verifica si el profesor ha subido algun recurso
             echo "No has subido ningún recurso a tus cursos impartidos.";
         } else {
             echo "<h2>Recursos subidos a tus cursos</h2>";
@@ -35,11 +35,6 @@ include("../vista/include/navegadorIzqui.php");
                 echo "</tr>";
             }
             echo "</table><br>";
-
-            // $sql = "SELECT * FROM recursos r, curso c, usuarios u
-			// 		WHERE r.cursoID=c.cursoID AND r.propietario=u.usuarioID AND nombreArchivo LIKE '%.txt'
-			// 		AND r.cursoID IN (SELECT cursoID FROM estudianteCurso WHERE usuarioID=$usuarioID) ";
-            // $resource = mysqli_query($conn, $sql);
         }
 
         mysqli_close($conn);
