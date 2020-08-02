@@ -21,8 +21,7 @@ function showForm()
 		<input type='radio' name='table' value='usuarios'>Usuarios<br>
 		<input type='radio' name='table' value='cursos'>Curso<br>
 		<input type='radio' name='table' value='recursos'>Recursos<br>
-		<input type='radio' name='table' value='estudianteCurso'>Estudiante Taking<br>
-		<input type='radio' name='table' value='takenQuizzes'>Cuestionarios tomados<br>
+		<input type='radio' name='table' value='estudianteCurso'>Estudiante<br>
 		<input type='submit'>
 		</form>";
     }
@@ -42,9 +41,6 @@ function displayTable()
     } elseif ($selection =='estudianteCurso') {
         $sql="SELECT * FROM estudianteCurso";
         $header = "<tr><th>Curso ID</th><th>ID Usuario</th><th>Fecha de registro</th><th>autorizado</th></tr>";
-    } elseif ($selection =='takenQuizzes') {
-        $sql="SELECT * FROM takenQuizzes";
-        $header = "<tr><th>Nombre</th><th>nombreArchivo</th><th>ID Usuario</th><th>Nota</th><th>Cuestionarios</th><th>Nota Final</th><th>Curso ID</th><th>Fecha tomada</th></tr>";
     } else {
         $sql="SELECT * FROM recursos";
         $header = "<tr><th>ID</th><th>Nombre</th><th>nombreArchivo</th><th>Curso ID</th><th>Propietario ID</th><th>Fecha de carga</th></tr>";

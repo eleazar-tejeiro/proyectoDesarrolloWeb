@@ -10,7 +10,6 @@
 		<li><a href='../controlador/creaTablaUsuarios.php'>Crear tabla de usuarios</a></li>
 		<li><a href='../controlador/creaTablaRecursos.php'>Crear tabla de recursos</a></li>
 		<li><a href='../controlador/creaMateriaEstudianteTabla.php'>Crear tabla de materias activas por alumnos</a></li>
-		<li><a href='../controlador/creaTablaCuestTomados.php'>Crear tabla de los quizzes tomados</a></li>
 	</div>
 </div>
 <?php

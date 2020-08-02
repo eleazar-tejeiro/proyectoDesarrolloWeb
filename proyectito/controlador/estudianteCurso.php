@@ -37,27 +37,27 @@ include("../vista/include/navegadorIzqui.php");
             }
             echo "</table><br>";
 
-            $sql = "SELECT * FROM recursos r, curso c, usuarios u
-					WHERE r.cursoID=c.cursoID AND r.propietario=u.usuarioID AND nombreArchivo LIKE '%.txt'
-					AND r.cursoID IN (SELECT cursoID FROM estudianteCurso WHERE usuarioID=$usuarioID) ";
-            $resource = mysqli_query($conn, $sql);
-            echo "<h2>Cuestionarios</h2>";
-            echo "<table border='2'>";
-            echo "<tr><th>Nombre</th><th>Enlace al cuestionario</th><th>Curso</th><th>Fecha de carga</th></tr>";
+            // $sql = "SELECT * FROM recursos r, curso c, usuarios u
+			// 		WHERE r.cursoID=c.cursoID AND r.propietario=u.usuarioID AND nombreArchivo LIKE '%.txt'
+			// 		AND r.cursoID IN (SELECT cursoID FROM estudianteCurso WHERE usuarioID=$usuarioID) ";
+            // $resource = mysqli_query($conn, $sql);
+            // echo "<h2>Cuestionarios</h2>";
+            // echo "<table border='2'>";
+            // echo "<tr><th>Nombre</th><th>Enlace al cuestionario</th><th>Curso</th><th>Fecha de carga</th></tr>";
 
-            while ($row = mysqli_fetch_array($resource)) {
-                $id = $row["id"];
-                $name = $row["name"];
-                $nombreArchivo = $row["nombreArchivo"];
-                $curso = $row["cursoNombre"];
-                $fechaSubida = $row["fechaSubida"];
+            // while ($row = mysqli_fetch_array($resource)) {
+            //     $id = $row["id"];
+            //     $name = $row["name"];
+            //     $nombreArchivo = $row["nombreArchivo"];
+            //     $curso = $row["cursoNombre"];
+            //     $fechaSubida = $row["fechaSubida"];
 
-                echo "<td>$name</td>";
-                echo "<td><a href='estudianteTomaCuest.php?quiz=$nombreArchivo'>Tomar cuestionario</a></td>";
-                echo "<td>$curso</td><td>$fechaSubida</td>";
-                echo "</tr>";
-            }
-            echo "</table><br>";
+            //     echo "<td>$name</td>";
+            //     echo "<td><a href='estudianteTomaCuest.php?quiz=$nombreArchivo'>Tomar cuestionario</a></td>";
+            //     echo "<td>$curso</td><td>$fechaSubida</td>";
+            //     echo "</tr>";
+            // }
+            // echo "</table><br>";
         }
 
         mysqli_close($conn);

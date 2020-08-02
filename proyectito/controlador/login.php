@@ -3,8 +3,6 @@ session_start();
 include("../vista/include/encabezado.php");
 include("../vista/include/navegadorIzqui.php");
 ?>
-
-
 <!--Si usuarioApodo está configurado, inicie sesión como usuario, si no muestra login-->
 <div class="row">
 	<div class="column middle">
