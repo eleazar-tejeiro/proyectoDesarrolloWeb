@@ -8,7 +8,7 @@ include("../vista/include/navegadorIzqui.php");
 		<?php
         include("../modelo/revisaEstudiante.php");
 
-        //if quiz is set, move forward
+        // si el cuestionario está configurado, avance
         $usuarioID = $_SESSION["usuarioID"];
         if (!isset($_GET["quiz"])) {
             header("Location: estudianteCurso.php");
@@ -17,15 +17,15 @@ include("../vista/include/navegadorIzqui.php");
         }
 
         if (!isset($_GET["q1"])) {
-            //if quiz is not completed, display it to user
+            // si el cuestionario no se completa, se lo muestra al usuario
             $conn = mysqli_connect("localhost", "root", "", "BDClaseVirtual");
             $sql = "SELECT * FROM takenQuizzes WHERE nombreArchivo='$quizFile' AND usuarioID='$usuarioID';";
             $resource = mysqli_query($conn, $sql);
             $numRows = mysqli_num_rows($resource);
 
-            if ($numRows > 0) {  //check if taken
-                echo"YOU HAVE ALREADY TAKEN THIS QUIZ!";
-                echo "<p>Redirecting you back to the cursos page...</p>";
+            if ($numRows > 0) {  // comprobar si se toma
+                echo"¡YA TOMASTE ESTE EXAMEN!";
+                echo "<p>Redirigiéndote a la página de cursos ...</p>";
                 header("Refresh: 3; url=estudianteCurso.php");
                 die();
                 mysqli_close($conn);
@@ -36,22 +36,22 @@ include("../vista/include/navegadorIzqui.php");
             $lineNum = 0;
             $qNum = 1;
 
-            if (sizeof($quizLines) == 0) { 	//check if quiz exists
+            if (sizeof($quizLines) == 0) { 	// comprueba si existe un cuestionario
                 header("Location: estudianteCurso.php");
             }
 
             echo "<form method='get' action='estudianteTomaCuest.php'>";
             echo "<input type='hidden' name='quiz' value='$quizFile'/>";
-            //display quiz lines
+            // muestra líneas de prueba
             foreach ($quizLines as $line) {
-                if ($lineNum % 6 == 0) {   //display questions
+                if ($lineNum % 6 == 0) {   // muestra preguntas
                     echo "<br><p>$line</p>";
-                } elseif ($lineNum % 6 >=1 && $lineNum % 6 <=4) {  //display answers
+                } elseif ($lineNum % 6 >=1 && $lineNum % 6 <=4) {  // muestra respuestas
                     $letter = ($lineNum % 6) + 96;
                     $letter = chr($letter);
                     echo "<input type='radio' name='q$qNum' value='$letter'/>";
                     echo "$line<br/>";
-                } elseif ($lineNum % 6 == 5) {  //get correct answer from text file
+                } elseif ($lineNum % 6 == 5) {  // obtener la respuesta correcta del archivo de texto
                     $correctAnswer = trim($line);
                     echo "<input type='hidden' name='a$qNum' value='$correctAnswer'/>";
                     $qNum ++;

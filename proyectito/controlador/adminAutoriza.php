@@ -17,15 +17,15 @@ include("../vista/include/navegadorIzqui.php");
 <?php
 function showTable()
     {
-        //get usuarios waiting to be autorizado from database
+        // obtener usuarios esperando ser autorizados de la base de datos
         $conn = mysqli_connect("localhost", "root", "", "BDClaseVirtual");
         $sql = "SELECT * FROM usuarios WHERE usuarioTipo!='administrador' AND usuarioActivo='0' ";
         $resource = mysqli_query($conn, $sql);
-        if (mysqli_num_rows($resource)<1) {  //if none, display this
-            echo "There are no usuarios waiting to be autorizado";
+        if (mysqli_num_rows($resource)<1) {  // si no hay ninguno, muestra esto
+            echo "No hay usuarios esperando ser autorizados";
         } else {
-            echo "<h2>Usuarios Waiting To Be autorizado<br><table cellpadding='10px' border='2'>";
-            echo "<tr><th>ID Usuario</th><th>Nombre</th><th>Apellido</th><th>Tipo de Usuario</th><th>Authorize?</th></tr>";
+            echo "<h2>Usuarios esperando ser autorizados<br><table cellpadding='10px' border='2'>";
+            echo "<tr><th>ID Usuario</th><th>Nombre</th><th>Apellido</th><th>Tipo de Usuario</th><th>¿Autoriza?</th></tr>";
             while ($row=mysqli_fetch_array($resource)) {
                 $usuarioID = $row['usuarioID'];
                 $nombreUsuario = $row['nombreUsuario'];
@@ -44,15 +44,15 @@ function showTable()
     }
 function authorizeUser()
 {
-    //authorize the user
+    // autorizar al usuario
     $usuarioID = $_POST['usuarioID'];
     $conn = mysqli_connect("localhost", "root", "", "BDClaseVirtual");
     $sql = "UPDATE usuarios SET usuarioActivo = 1 WHERE usuarioID=$usuarioID";
     if ($resource = mysqli_query($conn, $sql)) {
-        echo "<p style='color:green'>Successfully autorizado user</p>";
+        echo "<p style='color:green'>Usuario autorizado con éxito</p>";
         header("Refresh:2;url='adminAutoriza.php' ");
     } else {
-        echo "<p style='color:red'>Failed to autorizado user. Contact Network Admin</p>";
+        echo "<p style='color:red'>Error al usuario autorizado. Póngase en contacto con el administrador de red</p>";
     }
     mysqli_close($conn);
 }

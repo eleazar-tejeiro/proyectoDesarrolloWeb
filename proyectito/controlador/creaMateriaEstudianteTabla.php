@@ -2,6 +2,7 @@
 include("../vista/include/encabezado.php");
 include("../vista/include/navegadorIzqui.php");
 ?>
+<!-- Crear la base de datos para las tablas que se almacenarán -->
 
 <div class="row">
 	<div class="column middle">
@@ -18,7 +19,7 @@ include("../vista/include/navegadorIzqui.php");
 			ON UPDATE CASCADE ON DELETE RESTRICT
 			)";
 
-    //check if table was created
+    // verifica si se creó la tabla
     if (mysqli_query($conn, $sql)) {
         echo("<p style='color:green'>CORRECTO</p>");
     } else {

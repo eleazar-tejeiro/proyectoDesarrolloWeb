@@ -2,14 +2,14 @@
 include("../vista/include/encabezado.php");
 include("../vista/include/navegadorIzqui.php");
 ?>
-<!--Create the Database for Tables to Be Stored -->
+<!-- Crear la base de datos para las tablas que se almacenarán -->
 <div class="row">
 	<div class="column middle">
 	<?php
     $conn = mysqli_connect("localhost", "root", "");
     $sql = "CREATE DATABASE IF NOT EXISTS BDClaseVirtual";
 
-    //check if database was created
+    // verifica si se creó la tabla
     if (mysqli_query($conn, $sql)) {
         echo("<p style='color:green'>CORRECTO</p>");
     } else {

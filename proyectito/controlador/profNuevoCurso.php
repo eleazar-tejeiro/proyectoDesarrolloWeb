@@ -4,7 +4,7 @@ include("../vista/include/encabezado.php");
 include("../vista/include/navegadorIzqui.php");
 ?>
 
-<!--Either shows the registration form, or adds the user to the database -->
+<!--Muestra el formulario de registro o agrega al usuario a la base de datos-->
 <div class="row">
 	<div class="column middle">
 	<?php
@@ -22,16 +22,16 @@ include("../vista/include/navegadorIzqui.php");
 <?php
 function showForm()
     {
-        //shows the form to create a new curso
+        // muestra el formulario para crear un nuevo curso
         echo "<form name='Add Curso' method='post' action='profNuevoCurso.php'>
-		Curso Name		  <input type='text' name='cursoNombre'/> <br />
+		Nombre del curso		  <input type='text' name='cursoNombre'/> <br />
 		<input type='submit' onclick='submit' />
 		</form>";
     }
 
 function addCursoToDatabase()
 {
-    //adds the information entered by the user to the table
+    // agrega la información ingresada por el usuario a la tabla
     $cursoNombre = $_POST['cursoNombre'];
     $cursoPropietario = $_SESSION['usuarioID'];
 
@@ -39,15 +39,15 @@ function addCursoToDatabase()
     $sql = "INSERT INTO curso (cursoNombre, cursoPropietario)
 			VALUES ('$cursoNombre', '$cursoPropietario')";
 
-    //check if curso created successfully
+    // comprobar si el curso se creó con éxito
     if (mysqli_query($conn, $sql)) {
-        echo "<p style='color:green'>Successfully Created Curso</p>";
-        echo "<a href='profInicio.php'>Click here to return to Profesor Home</a>";
-        echo "<br><br><a href='profNuevoCurso.php'>Click here to create another curso</a>";
+        echo "<p style='color:green'>Curso creado con éxito</p>";
+        echo "<a href='profInicio.php'>Haga clic aquí para regresar a Profesor a inicio</a>";
+        echo "<br><br><a href='profNuevoCurso.php'>Haga clic aquí para crear otro curso.</a>";
     } else {
-        echo"<p style='color:red'>Failed to Create Curso: <br/> ";
+        echo"<p style='color:red'>Error al crear el curso: <br/> ";
         echo(mysqli_error($conn));
-        echo "<br/>Contact Network Admin</p>";
+        echo "<br/>Póngase en contacto con el administrador de redp>";
     }
     mysqli_close($conn);
 }

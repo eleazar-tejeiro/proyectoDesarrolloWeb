@@ -16,13 +16,13 @@
 <?php
 function showForm()
     {
-        //show the form to select which table to display
+        // muestra el formulario para seleccionar qué tabla mostrar
         echo "<form name='displayTables' method='post' action='adminMuestraTablas.php'>
 		<input type='radio' name='table' value='usuarios'>Usuarios<br>
 		<input type='radio' name='table' value='cursos'>Curso<br>
 		<input type='radio' name='table' value='recursos'>Recursos<br>
 		<input type='radio' name='table' value='estudianteCurso'>Estudiante Taking<br>
-		<input type='radio' name='table' value='takenQuizzes'>Taken Quizzes<br>
+		<input type='radio' name='table' value='takenQuizzes'>Cuestionarios tomados<br>
 		<input type='submit'>
 		</form>";
     }
@@ -32,22 +32,22 @@ function displayTable()
     $selection = $_POST['table'];
     $conn = mysqli_connect("localhost", "root", "", "BDClaseVirtual");
 
-    //based on selection, set the SQL and header to display
+    // según la selección, configure el SQL y el encabezado para mostrar
     if ($selection =='usuarios') {
         $sql="SELECT * FROM usuarios";
         $header = "<tr><th>ID Usuario</th><th>Nombre</th><th>Apellido</th><th>Apodo</th><th>Contraseña</th><th>Tipo de Usuario</th><th>Estado</th></tr>";
     } elseif ($selection =='cursos') {
         $sql="SELECT * FROM curso";
-        $header = "<tr><th>Curso ID</th><th>Name</th><th>Owner ID</th></tr>";
+        $header = "<tr><th>Curso ID</th><th>Nombre</th><th>Propietario ID</th></tr>";
     } elseif ($selection =='estudianteCurso') {
         $sql="SELECT * FROM estudianteCurso";
-        $header = "<tr><th>Curso ID</th><th>ID Usuario</th><th>Date Registered</th><th>autorizado</th></tr>";
+        $header = "<tr><th>Curso ID</th><th>ID Usuario</th><th>Fecha de registro</th><th>autorizado</th></tr>";
     } elseif ($selection =='takenQuizzes') {
         $sql="SELECT * FROM takenQuizzes";
-        $header = "<tr><th>Name</th><th>nombreArchivo</th><th>ID Usuario</th><th>Score</th><th>Questions</th><th>Final Score</th><th>Curso ID</th><th>Taken Date</th></tr>";
+        $header = "<tr><th>Nombre</th><th>nombreArchivo</th><th>ID Usuario</th><th>Nota</th><th>Cuestionarios</th><th>Nota Final</th><th>Curso ID</th><th>Fecha tomada</th></tr>";
     } else {
         $sql="SELECT * FROM recursos";
-        $header = "<tr><th>ID</th><th>Name</th><th>nombreArchivo</th><th>Curso ID</th><th>Owner ID</th><th>Upload Date</th></tr>";
+        $header = "<tr><th>ID</th><th>Nombre</th><th>nombreArchivo</th><th>Curso ID</th><th>Propietario ID</th><th>Fecha de carga</th></tr>";
     }
 
     $resource = mysqli_query($conn, $sql);
@@ -62,8 +62,8 @@ function displayTable()
         echo "</tr>";
     }
     echo "</table>";
-    echo "<br><a href='adminMuestraTablas.php'>Click here to choose another table</a><br>
-			  <a href='adminInicio.php'>Click here to return to the admin homepage</a>";
+    echo "<br><a href='adminMuestraTablas.php'>Haga clic aquí para elegir otra tabla</a><br>
+			  <a href='adminInicio.php'>Haga clic aquí para volver a la página de inicio de administración</a>";
 
     mysqli_close($conn);
 }

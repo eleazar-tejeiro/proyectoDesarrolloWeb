@@ -5,8 +5,8 @@ include("../vista/include/navegadorIzqui.php");
 <div class="row">
 	<div class="column middle">
 	<?php include("../modelo/revisaEstudiante.php"); ?>
-	<p> This is the Estudiante Home Page. See the sidebar for different actions available to you as a Estudiante<br>
-		Please enroll on cursos, complete uploaded quizzes, and check your grades regularly.</p>
+	<p> Esta es la página de inicio de Estudiante. Consulte la barra lateral para ver las diferentes acciones disponibles para usted como Estudiante <br>
+		Inscríbase en cursos, complete cuestionarios cargados y verifique sus calificaciones regularmente</p>
 	</div>
 </div>
 <?php

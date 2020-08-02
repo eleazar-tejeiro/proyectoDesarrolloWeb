@@ -4,7 +4,6 @@ if (session_status() === PHP_SESSION_NONE) {
 }
 ?>
 
-
 <!--Barra de navegacion izquierda-->
 <div class="row">
 	<div class="column side">

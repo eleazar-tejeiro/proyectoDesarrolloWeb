@@ -5,9 +5,9 @@ include("../vista/include/navegadorIzqui.php");
 <div class="row">
 	<div class="column middle">
 		<?php include("../modelo/revisaProfesor.php");
-        echo "<h2>Authorize Estudiantes</h2>
-		<p>This page allows you to authorize estudiante(s) onto cursos. See the table
-		   for the list of estudiantes waiting to be autorizado or add them yourself. <br></p>";
+        echo "<h2>Autoriza Estudiantes</h2>
+		<p>Esta página le permite autorizar estudiantes en los cursos. Ver la tabla
+        para la lista de estudiantes que esperan ser autorizados o agréguelos usted mismo<br></p>";
 
         if (!isset($_POST['estudianteID'])) {
             if (!isset($_POST['cursoID'])) {
@@ -26,7 +26,7 @@ include("../vista/include/piePagina.php");
 
 function getCursos()
 {
-    //gets the cursos the profesors teach
+    // obtiene los cursos que imparten los profesores
     $usuarioID = $_SESSION['usuarioID'];
     $sql = "SELECT cursoID, cursoNombre FROM curso WHERE cursoPropietario = $usuarioID";
     if ($resource = doSQL($sql)) {
@@ -36,7 +36,7 @@ function getCursos()
 
 function getEstudianteTakingCurso()
 {
-    //grabs all the estudiantes waiting to be autorizado
+    // agarra a todos los estudiantes que esperan ser autorizados
     $cursoID = $_POST['cursoID'];
     $sql = "SELECT usuarioID FROM estudianteCurso WHERE cursoID = $cursoID AND autorizado = 0";
     if ($resource = doSQL($sql)) {
@@ -46,7 +46,7 @@ function getEstudianteTakingCurso()
 
 function getEstudianteDetails($resource)
 {
-    //gets the estudiante's information
+    // obtiene la información del estudiante
     $sql = "SELECT usuarioID, nombreUsuario, usuarioApellido FROM usuarios WHERE ";
     while ($currentLine = mysqli_fetch_array($resource)) {
         $sql .= "usuarioID = '$currentLine[usuarioID]' OR ";
@@ -59,7 +59,7 @@ function getEstudianteDetails($resource)
 
 function showEstudiantes($resource)
 {
-    //shows a form of estudiantes to the profesor
+    // muestra una forma de estudiantes al profesor
     $cursoID = $_POST['cursoID'];
     echo "<form name='showEstudiantes' method='post' action='profAutorizaEstudiante.php'>";
     echo "<input type='hidden' name='cursoID' value='$cursoID' /> ";
@@ -75,13 +75,13 @@ function showEstudiantes($resource)
 
 function enrollEstudiante()
 {
-    //authorizes estudiante to take curso
+    // autoriza al estudiante a tomar curso
     $cursoID = $_POST['cursoID'];
     foreach ($_POST['estudianteID'] as $usuarioID) {
         $sql = "UPDATE estudianteCurso SET autorizado = 1
 				WHERE usuarioID=$usuarioID AND cursoID = $cursoID";
         doSQL($sql);
-        echo "Successfully Enrolled Estudiante<br>";
+        echo "Estudiante inscrito exitosamente<br>";
     }
 }
 
@@ -91,7 +91,7 @@ function doSQL($sql)
     if ($resource = mysqli_query($conn, $sql)) {
         return $resource;
     } else {
-        echo("No Estudiantes waiting to be autorizado");
+        echo("No hay estudiantes esperando ser autorizados");
         return false;
     }
     mysqli_close($conn);
@@ -99,7 +99,7 @@ function doSQL($sql)
 
 function showCursos($resource)
 {
-    //shows form of cursos
+    // muestra forma de cursos
     echo "<form name='showCursos' method='post' action='profAutorizaEstudiante.php'>
 		  <select name='cursoID' required autofocus > ";
     while ($currentLine = mysqli_fetch_array($resource)) {

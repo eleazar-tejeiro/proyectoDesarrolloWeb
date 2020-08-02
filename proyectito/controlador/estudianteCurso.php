@@ -16,13 +16,13 @@ include("../vista/include/navegadorIzqui.php");
 
         $resource= mysqli_query($conn, $sql);
 
-        if (mysqli_num_rows($resource)<1) { //check if estudiante is enrolled
-            echo "You are either not enrolled on any cursos yet.
-				<br>If you have enrolled on a curso, please contact profesor/admin to authorize you on the curso.";
+        if (mysqli_num_rows($resource)<1) {  // verifica si el estudiante está inscrito
+            echo "Tampoco estás inscrito en ningún curso.
+				<br>Si se ha inscrito en un curso, comuníquese con el profesor / administrador para autorizarlo en el curso";
         } else {
-            echo "<h2>Uploaded Recursos</h2>";
+            echo "<h2>Recursos subidos</h2>";
             echo "<table border='2'>";
-            echo "<tr><th>Name</th><th>Download Link</th><th>Curso</th><th>Upload Date</th></tr>";
+            echo "<tr><th>Nombre</th><th>Enlace de descarga</th><th>Curso</th><th>Fecha de carga</th></tr>";
             while ($row = mysqli_fetch_array($resource)) {
                 $id = $row["id"];
                 $name = $row["name"];
@@ -41,9 +41,9 @@ include("../vista/include/navegadorIzqui.php");
 					WHERE r.cursoID=c.cursoID AND r.propietario=u.usuarioID AND nombreArchivo LIKE '%.txt'
 					AND r.cursoID IN (SELECT cursoID FROM estudianteCurso WHERE usuarioID=$usuarioID) ";
             $resource = mysqli_query($conn, $sql);
-            echo "<h2>Quizzes</h2>";
+            echo "<h2>Cuestionarios</h2>";
             echo "<table border='2'>";
-            echo "<tr><th>Name</th><th>Link to Quiz</th><th>Curso</th><th>Upload Date</th></tr>";
+            echo "<tr><th>Nombre</th><th>Enlace al cuestionario</th><th>Curso</th><th>Fecha de carga</th></tr>";
 
             while ($row = mysqli_fetch_array($resource)) {
                 $id = $row["id"];
@@ -53,7 +53,7 @@ include("../vista/include/navegadorIzqui.php");
                 $fechaSubida = $row["fechaSubida"];
 
                 echo "<td>$name</td>";
-                echo "<td><a href='estudianteTomaCuest.php?quiz=$nombreArchivo'>Take Quiz</a></td>";
+                echo "<td><a href='estudianteTomaCuest.php?quiz=$nombreArchivo'>Tomar cuestionario</a></td>";
                 echo "<td>$curso</td><td>$fechaSubida</td>";
                 echo "</tr>";
             }

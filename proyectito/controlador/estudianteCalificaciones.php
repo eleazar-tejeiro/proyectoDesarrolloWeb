@@ -20,17 +20,17 @@ include("../vista/include/navegadorIzqui.php");
 <?php
 function showForm()
         {
-            //select the curso to see progress/grades
+            // seleccione el curso para ver el progreso / calificaciones
             $usuarioID = $_SESSION['usuarioID'];
             $conn = mysqli_connect('localhost', 'root', '', 'BDClaseVirtual');
             $sql = "SELECT c.cursoID, c.cursoNombre FROM curso c, estudianteCurso s WHERE c.cursoID=s.cursoID AND usuarioID='$usuarioID' ";
             $resource = mysqli_query($conn, $sql);
-            //check to make sure they are enrolled in classes
+            // revisa para asegurarte de que estén inscritos en clases
             if (mysqli_num_rows($resource)<1) {
-                echo "<p>You are not enrolled in any classes yet.<p><a href='estudianteInicio.php'>Please return to the estudiante home.</a>";
+                echo "<p>Aún no estás inscrito en ninguna clase<p><a href='estudianteInicio.php'>Por favor regrese al inicio del estudiante</a>";
             } else {
-                //displays all the potential cursos to take
-                echo "Please select a class to see grades and progress.<br>";
+                // muestra todos los cursos potenciales para tomar
+                echo "Seleccione una clase para ver las calificaciones y el progreso<br>";
                 echo "<form name='select' method='post' action='estudianteCalificaciones.php'>";
                 while ($currentCurso = mysqli_fetch_array($resource)) {
                     echo "<input type='radio' name='curso[]' value='$currentCurso[cursoID]' />
@@ -43,7 +43,7 @@ function showForm()
         }
 function displayGrades()
 {
-    //display grades to user based on curso selection
+    // muestra calificaciones al usuario en función de la selección del curso
     $curso = $_POST['curso'];
     foreach ($curso as $currentCurso) {
         $cursoID=$currentCurso;
@@ -56,18 +56,19 @@ function displayGrades()
 			 WHERE r.cursoID=c.cursoID AND r.cursoID='$cursoID' AND r.nombreArchivo LIKE '%.txt' AND r.name NOT IN
 			(SELECT name FROM takenQuizzes t WHERE t.cursoID='$cursoID')";
     $resource2 = mysqli_query($conn, $sql2);
-    //heading display code
-    if (mysqli_num_rows($resource)<1 && mysqli_num_rows($resource2)<1) { //assingments uploaded?
-        echo "There are no assignments uploaded on this curso yet.<br>";
-        echo "<a href='estudianteInicio.php'>Click here to return to estudiante home.</a><br>";
-        echo "<a href='estudianteCalificaciones.php'>Click here to select another curso.</a>";
+    // código de visualización del encabezado
+    if (mysqli_num_rows($resource)<1 && mysqli_num_rows($resource2)<1) {  // evaluaciones cargadas?
+        echo "
+        Aún no hay tareas subidas en este curso<br>";
+        echo "<a href='estudianteInicio.php'>Haga clic aquí para regresar al inicio del estudiante</a><br>";
+        echo "<a href='estudianteCalificaciones.php'>Haga clic aquí para seleccionar otro curso</a>";
         die();
     }
-    echo "<h2>Grades</h2>
+    echo "<h2>Curso</h2>
 		  <table border='2'>
-		  <tr><th>Name</th><th>Curso</th><th>Taken Date</th><th>Score</th><th>Grade</th></tr>";
-    if (mysqli_num_rows($resource)>0) { //check if there are any taken quizzes
-        //display grades for each assignment completed
+		  <tr><th>Nombre</th><th>Curso</th><th>Fecha creada</th><th>Puntuacion</th><th>Curso</th></tr>";
+    if (mysqli_num_rows($resource)>0) { // verifica si hay algún cuestionario tomado
+        // muestra las calificaciones de cada tarea completada
         while ($row = mysqli_fetch_array($resource)) {
             $name = $row['name'];
             $score = $row['score'];
@@ -84,8 +85,8 @@ function displayGrades()
 				 </tr>";
         }
     }
-    //display quizzes not completed
-    if (mysqli_num_rows($resource2)>0) { //check if there are any quizzes not completed
+    // muestra cuestionarios no completados
+    if (mysqli_num_rows($resource2)>0) { // verifica si hay algún cuestionario no completado
         while ($row = mysqli_fetch_array($resource2)) {
             $name = $row['name'];
             $curso = $row['cursoNombre'];
@@ -97,7 +98,7 @@ function displayGrades()
 				 </tr>";
         }
     }
-    //display total grade in the class
+    // muestra la calificación total en la clase
     $sql3 = "SELECT SUM(questions) AS questions, SUM(score) AS score FROM takenQuizzes WHERE cursoID='$cursoID' ";
     $resource3 = mysqli_query($conn, $sql3);
     if (mysqli_num_rows($resource3)>0) {
@@ -108,12 +109,12 @@ function displayGrades()
         $totalGrade = ($totalScore/$totalQuestions)*100;
         $totalGrade = round($totalGrade, 2);
         echo"<th>$totalScore / $totalQuestions</th><th>$totalGrade%</th>";
-    } else {  //if no taken quizzes display below
+    } else {  // si no hay pruebas tomadas se muestran a continuación
         echo "<th>-</th><th>-</th>";
     }
     echo "</tr></table><br>";
-    echo "<a href='estudianteCalificaciones.php'>Click here to select another curso.</a><br>";
-    echo "<a href='estudianteInicio.php'>Click here to return to the estudiante home.</a>";
+    echo "<a href='estudianteCalificaciones.php'>Haga clic aquí para seleccionar otro curso.</a><br>";
+    echo "<a href='estudianteInicio.php'>Haga clic aquí para regresar a la casa del estudiante.</a>";
     mysqli_close($conn);
 }
 function showProgress()
@@ -133,10 +134,10 @@ function showProgress()
     $percent = ($current/$total) *100;
     $percent = round($percent, 2);
 
-    echo "<br><br><h2>Progress</h2><p>You are done with $percent% of the class<p>";
+    echo "<br><br><h2>Progress</h2><p>Has terminado con $percent% de la clase<p>";
     echo "<div class='outter'>
 		  <div class='inner'></div></div>"; ?>
-	<!--Styling for Progress Bar (Couldn't figure out how to get this in external file) -->
+	<!--Barra de estilo para el progreso (No se pudo encontrar la forma de obtener esto en un archivo externo) -->
 	<style type="text/CSS">
 	.outter{
 		height:25px;

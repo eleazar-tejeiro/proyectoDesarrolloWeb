@@ -8,7 +8,7 @@ if (!isset($_SESSION['usuarioID']))
 		header('Location: login.php');
     die();
 } else {
-    //gets sql for checking if user is active below
+    // obtiene sql para verificar si el usuario está activo a continuación
     $usuarioID = $_SESSION['usuarioID'];
     $conn = mysqli_connect("localhost", "root", "", "BDClaseVirtual");
     $sql = "SELECT usuarioActivo FROM usuarios WHERE usuarioID='$usuarioID' ";
@@ -20,20 +20,20 @@ if (!isset($_SESSION['usuarioID']))
 
 
 
-//checks the credentials to make sure only estudiantes access the page
+// comprueba las credenciales para asegurarse de que solo los estudiantes accedan a la página
 if (!isset($_SESSION['usuarioTipo'])) {
-    echo("<p style='color:red'>You are either not logged in</p>
-           <a href='login.php'>Please login here</a>");
+    echo("<p style='color:red'>No estás conectado</p>
+           <a href='login.php'>Por favor inicie sesión aquí</a>");
            include("../vista/include/piePagina.php");
     die();
 } elseif ($_SESSION['usuarioTipo'] != "estudiante") {
-    echo "<p style='color:red'>Access denied, only estudiantes can view this page</p><br>
-		  <p>If this is a mistake, contact a network administrador</p>";
+    echo "<p style='color:red'>Acceso denegado, solo los estudiantes pueden ver esta página</p><br>
+		  <p>Si esto es un error, contacte a un administrador de red</p>";
     die();
 } elseif ($usuarioActivo==0) {
-    echo "<p style='color:red'>Access denied, you are confirmed as a estudiante, but you have not been autorizado by an administrador yet.</p>";
+    echo "<p style='color:red'>Acceso denegado, está confirmado como estudiante, pero aún no ha sido autorizado por un administrador</p>";
     die();
 } else {
-    echo("<p style='color:green'>Access granted, User Confirmed as Estudiante</p>");
+    echo("<p style='color:green'>Acceso otorgado, Usuario confirmado como Estudiante</p>");
 }
 mysqli_close($conn);

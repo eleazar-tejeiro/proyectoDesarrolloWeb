@@ -3,7 +3,7 @@ include("../vista/include/encabezado.php");
 include("../vista/include/navegadorIzqui.php");
 ?>
 
-<!--Either shows the registration form, or adds the user to the database -->
+<!--Muestra el formulario de registro o agrega al usuario a la base de datos-->
 <div class="row">
 	<div class="column middle">
 	<?php
@@ -20,7 +20,7 @@ include("../vista/include/navegadorIzqui.php");
 </div>
 
 <?php
-//shows the form to register to the user
+// muestra el formulario para registrarse al usuario
 function showForm()
 {
     echo " <form name='register' method='post' action='registrarse.php'>
@@ -41,7 +41,7 @@ function showForm()
 
 function addUserToDatabase()
 {
-    //adds the information entered by the user to the table
+    // agrega la información ingresada por el usuario a la tabla
     $nombre = $_POST['nombre'];
     $apellido = $_POST['apellido'];
     $usuarioApodo = $_POST['usuarioApodo'];
@@ -49,31 +49,31 @@ function addUserToDatabase()
     $cpassword = $_POST['cpassword'];
     $tipo = $_POST['tipo'];
 
-    //check if usuarioApodo exists
+    // verifica si usuarioApodo existe
     $conn = mysqli_connect('localhost', 'root', '', 'BDClaseVirtual');
     $sql = "SELECT usuarioApodo FROM usuarios WHERE usuarioApodo='$usuarioApodo' ";
     $resource= mysqli_query($conn, $sql);
 
     if ($password!=$cpassword) {
-        echo "<br>Passwords do not match, please enter info again";
-        echo "<br>Refreshing in 3 seconds...";
+        echo "<br>Las contraseñas no coinciden, ingrese la información nuevamente";
+        echo "<br>Refrescante en 3 segundos ...";
         header("Refresh:3; url=registrarse.php");
     } elseif (mysqli_num_rows($resource)>0) {
-        echo "<br>usuarioApodo already has been used, please select another.";
-        echo "<br>Refreshing in 3 seconds...";
+        echo "<br>usuarioApodo ya se ha utilizado, seleccione otro";
+        echo "<br>Refrescante en 3 segundos ...";
         header("Refresh:3; url=registrarse.php");
     } else {
         $sql = "INSERT INTO usuarios (nombreUsuario, usuarioApellido, usuarioApodo, usuarioContra, usuarioTipo, usuarioActivo)
 				VALUES ('$nombre', '$apellido', '$usuarioApodo', '$password', '$tipo', 0)";
 
-        //check if registered successfully
+        // verifica si se ha registrado correctamente
         if (mysqli_query($conn, $sql)) {
-            echo("<p style='color:green'>Successfully Registered</p>");
-            echo("<a href='login.php'>Click here to log in now</a>");
+            echo("<p style='color:green'>Registrado exitosamente</p>");
+            echo("<a href='login.php'>Haga clic aquí para iniciar sesión ahora</a>");
         } else {
-            echo("<p style='color:red'>Failed to Register: <br/> ");
+            echo("<p style='color:red'>Fallo el registro: <br/> ");
             echo(mysqli_error($conn));
-            echo("<br/>Contact Network Admin</p>");
+            echo("<br/> Póngase en contacto con el administrador de red </p>");
         }
     }
     mysqli_close($conn);
@@ -81,17 +81,16 @@ function addUserToDatabase()
 
 function addAdminToDatabase()
 {
-    //this is to hardcode administrators into the system; only change first 4 sql values to create a new admin, then call function line 16
-    $conn = mysqli_connect('localhost', 'root', '', 'BDClaseVirtual');
+// esto es para codificar a los administradores en el sistema; solo cambie los primeros valores de 4 sql para crear un nuevo administrador, luego llame a la línea de función 16    $conn = mysqli_connect('localhost', 'root', '', 'BDClaseVirtual');
     $sql = "INSERT INTO usuarios (nombreUsuario, usuarioApellido, usuarioApodo, usuarioContra, usuarioTipo, usuarioActivo)
 				VALUES ('Admini', 'Admini', 'admin', 'password', 'administrador', 1)";
     if (mysqli_query($conn, $sql)) {
-        echo("<p style='color:green'>Successfully Created Adminstrator</p>");
-        echo("<a href='login.php'>Click here to log in now</a>");
+        echo("<p style='color:green'>Adminstrator creado con éxito</p>");
+        echo("<a href='login.php'>Haga clic aquí para iniciar sesión ahora</a>");
     } else {
-        echo("<p style='color:red'>Failed to Create Admin: <br/> ");
+        echo("<p style='color:red'>Error al crear administrador: <br/> ");
         echo(mysqli_error($conn));
-        echo("<br/>Contact Network Admin for assistance</p>");
+        echo("<br/>Póngase en contacto con el administrador de red para obtener ayuda</p>");
     }
     mysqli_close($conn);
 }

@@ -5,8 +5,8 @@
 <div class="row">
 	<div class="column middle">
 	<?php include("../modelo/revisaProfesor.php"); ?>
-	<p> This is the Profesor Home Page. See the sidebar for different actions available to a profesor.
-		Authorize estudiantes, create cursos, upload recursos to those curso, check your estudiantes grades</p>
+	<p> Esta es la página de inicio de Profesor. Consulte la barra lateral para conocer las diferentes acciones disponibles para un profesor.
+		Autoriza a los estudiantes, crea cursos, sube recursos a esos cursos, revisa las calificaciones de tus estudiantes </p>
 	</div>
 </div>
 <?php

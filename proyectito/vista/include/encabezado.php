@@ -4,7 +4,7 @@
 	<meta charset="utf-8" />
 	<meta name="description" content="Academy123" />
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
-	<!--Import Google Icon Font-->
+	<!--Importar fuente de icono de Google-->
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <link href='http://fonts.googleapis.com/css?family=Dosis' rel='stylesheet' type='text/css' />

@@ -7,7 +7,7 @@
 	<div class="column middle">
 	<?php
     session_destroy();
-    echo("You have successfully logged out. Redirecting you back to the home page...");
+    echo("Has terminado tu sesion satisfactoriamente. Redirigiéndote a la página de inicio ...");
     header("Refresh: 3; url=../index.php");
      ?>
 	</div>

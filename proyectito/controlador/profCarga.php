@@ -4,7 +4,7 @@ include("../vista/include/encabezado.php");
 include("../vista/include/navegadorIzqui.php");
 ?>
 
-<!--Either shows the registration form, or adds the user to the database -->
+<!--Muestra el formulario de registro o agrega al usuario a la base de datos-->
 <div class="row">
 	<div class="column middle">
 	<?php
@@ -28,10 +28,10 @@ function showForm()
     $sql = "SELECT cursoID, cursoNombre FROM curso WHERE cursoPropietario=$usuarioID";
     $resource = mysqli_query($conn, $sql);
 
-    //displays all the potential cursos
+    // muestra todos los cursos potenciales
     echo " <form method='post' action='profCarga.php' enctype='multipart/form-data'>
-		Resource Name: <input type='text' id='resourceName' name='resourceName'/><br>
-		Upload file: <input type='file' id='resourceFile' name='resourceFile'/><br><br> Choose Curso For File:<br>";
+		Nombre del recurso: <input type='text' id='resourceName' name='resourceName'/><br>
+		Subir archivo: <input type='file' id='resourceFile' name='resourceFile'/><br><br>Elija Curso para archivo:<br>";
     while ($currentCurso = mysqli_fetch_array($resource)) {
         echo "<input type='checkbox' name='curso[]' value='$currentCurso[cursoID]' />
 		  $currentCurso[cursoNombre] <br>";
@@ -42,7 +42,7 @@ function showForm()
 
 function addResourceToDatabase()
 {
-    //adds the uploaded resource to the database
+    // agrega el recurso cargado a la base de datos
     $resourceFile = $_FILES["resourceFile"];
     $resourceName = $resourceFile["name"];
     $tmp_name = $resourceFile["tmp_name"];
@@ -59,23 +59,23 @@ function addResourceToDatabase()
                 $sql = "INSERT INTO recursos(name, nombreArchivo, propietario, cursoID, fechaSubida)
 				VALUES('$resourceDisplayName', '$resourceName', '$loginusuarioApodo', $currentCurso, '$fechaSubida')";
 
-                //check if curso created successfully
+                // comprobar si el curso se creó con éxito
                 if (mysqli_query($conn, $sql)) {
-                    echo "<p style='color:green'>Successfully Uploaded Resource</p>";
-                    echo "<a href='profInicio.php'>Click here to return to Profesor Home</a>";
-                    echo "<br><br><a href='profCarga.php'>Click here to upload another resource</a>";
+                    echo "<p style='color:green'>Recurso cargado correctamente</p>";
+                    echo "<a href='profInicio.php'>Haga clic aquí para regresar a Profesor Home</a>";
+                    echo "<br><br><a href='profCarga.php'>Haga clic aquí para cargar otro recurso.</a>";
                 } else {
-                    echo"<p style='color:red'>Failed to Upload Resource: <br/> ";
+                    echo"<p style='color:red'>Error al cargar el recurso: <br/> ";
                     echo(mysqli_error($conn));
-                    echo "<br/>Contact Network Admin</p>";
+                    echo "<br/>Póngase en contacto con el administrador de red</p>";
                 }
             }
             mysqli_close($conn);
         } else {
-            echo"There was an error writing the file to the database";
+            echo"Se produjo un error al escribir el archivo en la base de datos.";
         }
     } else {
-        echo"There was an error wirting the file to the database. Contact network admin.";
+        echo"Se produjo un error al conectar el archivo a la base de datos. Póngase en contacto con el administrador de la red";
     }
 }
 

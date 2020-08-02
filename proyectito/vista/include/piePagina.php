@@ -1,4 +1,4 @@
-<!-- Footer for the Website -->
+<!-- Pie de página para el sitio web -->
 <div id="footer">
 	<div>
 		<h3>&copy; 2020 Copyright Desarrollo de Aplicaciones Web.</h3>
