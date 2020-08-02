@@ -70,7 +70,7 @@ function showEstudiantes($resource)
         echo "<td>". $currentLine['usuarioID'] . "</td><td>" . $currentLine['nombreUsuario'] ." " . $currentLine['usuarioApellido'] . "</td></tr>";
     }
     echo "</table>";
-    echo "<br><input type='submit' value='Authorize' onclick='submit' /> </form>";
+    echo "<br><input type='submit' value='AUTORIZAR' onclick='submit' /> </form>";
 }
 
 function enrollEstudiante()
