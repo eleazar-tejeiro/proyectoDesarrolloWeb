@@ -10,7 +10,7 @@ include("../vista/include/navegadorIzqui.php");
     if (isset($_POST['nombre'])) {
         addUserToDatabase();
     } else {
-        /* descomentar para la primera ejecució y crear así el usuario de administrador*/
+        /* descomentar para la primera ejecución y crear así el usuario de administrador*/
         // addAdminToDatabase();
         showForm();
     }
