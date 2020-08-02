@@ -6,7 +6,7 @@ include("../vista/include/navegadorIzqui.php");
 	<div class="column middle">
 	<h3>Pagina Principal</h3>
 	<p> Esta es la página de inicio de Estudiante. Consulte la barra lateral para ver las diferentes acciones disponibles para usted como Estudiante</p>
-    <p>Es esta pagina usted como estudiante podra realizar distintas funciones, como ser:</p>
+    <p>En esta pagina usted como estudiante podra realizar distintas funciones, como ser:</p>
 	<li>Enlistarse en un curso</li>
 	<li>Visualizar los recursos subidos por curso</li>
 	</br>
