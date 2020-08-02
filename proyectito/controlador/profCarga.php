@@ -62,7 +62,7 @@ function addResourceToDatabase()
                 // comprobar si el curso se creó con éxito
                 if (mysqli_query($conn, $sql)) {
                     echo "<p style='color:green'>Recurso cargado correctamente</p>";
-                    echo "<a href='profInicio.php'>Haga clic aquí para regresar a Profesor Home</a>";
+                    echo "<a href='profInicio.php'>Haga clic aquí para regresar a Profesor Inicio</a>";
                     echo "<br><br><a href='profCarga.php'>Haga clic aquí para cargar otro recurso.</a>";
                 } else {
                     echo"<p style='color:red'>Error al cargar el recurso: <br/> ";

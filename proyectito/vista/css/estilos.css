@@ -1,6 +1,11 @@
 /*General Styles*/
 body {
-    background-color: #ddd;
+    /* background-color: #ddd; */
+    /* background-image: url(proyectoDesarrolloWeb/proyectito/vista/images/fondo.jpg); */
+    /* background-image: url("/proyectoDesarrolloWeb/proyectito/vista/images/fondo.jpg"); */
+    background-image: url(https://i2.wp.com/pilotzinoticias.com/wp-content/uploads/2019/04/Vida-y-Estilo-14.jpg?fit=2121%2C1414&ssl=1) ;
+    /* background-size: cover; */
+    background-repeat: no-repeat;
     color: #443F3F;
     font: 110% 'Economica', Tahoma, sans-serif;
     line-height: 1.3em;
@@ -69,7 +74,10 @@ h3 {
 }
 
 .column.middle {
-    width: 70%;
+    width: 50%;
+    background: #eee;
+    padding: 10px 20px;
+    left: 20px;
 }
 
 /* Clear floats after the columns */
@@ -109,24 +117,7 @@ ul.menu li a:hover {
 
 /* Footer */
 #footer {
-    background-color: #333;
-    /* margin-left: -20px;
-    margin-right: -20px;
-    margin-bottom: -20px;
-    position: relative;
-    height: 200px;
-    margin-top: 20px;
-    clear: both; 
-
-
-    -----
-text-align: center;
-        font-family: sans-serif;
-        color: whitesmoke;
-        width: 100%;
-        bottom: 0;
-        position:fixed;*/
-    
+    background-color: #333;  
     position:fixed;
     left:0px;
     bottom:0px;

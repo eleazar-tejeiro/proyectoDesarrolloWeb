@@ -35,7 +35,7 @@ function showTable()
                 echo "<tr><td>$usuarioID</td><td>$nombreUsuario</td><td>$usuarioApellido</td><td>$usuarioTipo</td>";
                 echo "<td><form name='authorize' method='post' action='adminAutoriza.php'>";
                 echo "<input type='hidden' name='usuarioID' value='$usuarioID'/>";
-                echo "<input type='submit' value='AUTHORIZE'/>";
+                echo "<input type='submit' value='AUTORIZAR'/>";
                 echo "</form></td></tr>";
             }
             echo "</table>";

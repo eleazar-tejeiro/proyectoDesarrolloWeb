@@ -4,9 +4,15 @@
 ?>
 <div class="row">
 	<div class="column middle">
-	<?php include("../modelo/revisaProfesor.php"); ?>
-	<p> Esta es la página de inicio de Profesor. Consulte la barra lateral para conocer las diferentes acciones disponibles para un profesor.
-		Autoriza a los estudiantes, crea cursos, sube recursos a esos cursos, revisa las calificaciones de tus estudiantes </p>
+	<h3>Pagina Principal</h3>
+	<p> Esta es la página de inicio de Profesor. Consulte la barra lateral para ver las diferentes acciones disponibles para usted como Profesor</p>
+    <p>Es esta pagina usted como estudiante podra realizar distintas funciones, como ser:</p>
+	<li>Añadir un nuevo curso</li>
+	<li>Subir un recurso</li>
+	<li>Autorizar un estudiante en el curso</li>
+	<li>Añadir un estudiante</li>
+	<li>Visualizar los recursos subidos</li>
+	</br>
 	</div>
 </div>
 <?php

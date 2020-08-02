@@ -17,6 +17,7 @@ include("../vista/include/navegadorIzqui.php");
             $estudianteID = getEstudianteID();
             $resource = getCursos();
             showCursos($resource, $estudianteID);
+            
         }
     } else {
         enrollEstudiante();
@@ -30,25 +31,55 @@ function showForm()
     {
         // muestra el formulario para crear un estudiante
         echo " <form name='register' method='post' action='profAdicionaEstudiante.php'>
-		Nombre		  <input type='text' name='nombre'/> <br />
-		Apellido  		  <input type='text' name='apellido'/> <br />
-		usuarioApodo 		  <input type='text' name='usuarioApodo'/> <br />
+		Nombre		          <input type='text' name='nombre'/> <br />
+		Apellido  		      <input type='text' name='apellido'/> <br />
+		Usuario 	          <input type='text' name='usuarioApodo'/> <br />
+		Contraseña		      <input type='password' name='password'/> <br />
+		Confirmar contraseña  <input type='password' name='cpassword'/> <br /><br />
 		<input type='submit' onclick='submit' />
 		</form>";
     }
 
-function addUserToDatabase()
-{
-    // agrega la información ingresada por el usuario a la tabla
-    $nombre = $_POST['nombre'];
-    $apellido = $_POST['apellido'];
-    $usuarioApodo = $_POST['usuarioApodo'];
-
-    $sql = "INSERT INTO usuarios (nombreUsuario, usuarioApellido, usuarioApodo, usuarioContra, usuarioTipo, usuarioActivo)
-			VALUES ('$nombre', '$apellido', '$usuarioApodo', '$usuarioApodo', 'estudiante', 1)";
-    doSQL($sql);
-    $estudianteID = getEstudianteID();
-}
+    function addUserToDatabase()
+    {
+        // agrega la información ingresada por el usuario a la tabla
+        $nombre = $_POST['nombre'];
+        $apellido = $_POST['apellido'];
+        $usuarioApodo = $_POST['usuarioApodo'];
+        $password = $_POST['password'];
+        $cpassword = $_POST['cpassword'];
+    
+        // verifica si usuarioApodo existe
+        $conn = mysqli_connect('localhost', 'root', '', 'BDClaseVirtual');
+        $sql = "SELECT usuarioApodo FROM usuarios WHERE usuarioApodo='$usuarioApodo' ";
+        $resource= mysqli_query($conn, $sql);
+    
+        if ($password!=$cpassword) {
+            echo "<br>Las contraseñas no coinciden, ingrese la información nuevamente";
+            echo "<br>Refrescante en 3 segundos ...";
+            header("Refresh:3; url=profAdicionaEstudiante.php");
+            die();
+        } elseif (mysqli_num_rows($resource)>0) {
+            echo "<br>usuarioApodo ya se ha utilizado, seleccione otro";
+            echo "<br>Refrescante en 3 segundos ...";
+            header("Refresh:3; url=profAdicionaEstudiante.php");
+            die();
+        } else {
+            $sql = "INSERT INTO usuarios (nombreUsuario, usuarioApellido, usuarioApodo, usuarioContra, usuarioTipo, usuarioActivo)
+                    VALUES ('$nombre', '$apellido', '$usuarioApodo', '$password', 'estudiante', 0)";
+    
+            // verifica si se ha registrado correctamente
+            if (mysqli_query($conn, $sql)) {
+                echo("<p style='color:green'>Registrado exitosamente</p>");
+                echo("<a href='login.php'>Haga clic aquí para iniciar sesión ahora</a>");
+            } else {
+                echo("<p style='color:red'>Fallo el registro: <br/> ");
+                echo(mysqli_error($conn));
+                echo("<br/> Póngase en contacto con el administrador de red </p>");
+            }
+        }
+        mysqli_close($conn);
+    }
 
 function getEstudianteID()
 {

@@ -10,8 +10,7 @@ include("../vista/include/navegadorIzqui.php");
     if (isset($_POST['nombre'])) {
         addUserToDatabase();
     } else {
-        /* if adding an admin, comment out the showForm() function and remove '//' from addAdminToDatabase()
-        To see admin credentials being added, go to function below. Change the 'Values' in SQL statement for a new admin*/
+        /* descomentar para la primera ejecució y crear así el usuario de administrador*/
         // addAdminToDatabase();
         showForm();
     }

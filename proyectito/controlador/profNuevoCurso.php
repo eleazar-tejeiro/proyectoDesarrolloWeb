@@ -37,7 +37,7 @@ function addCursoToDatabase()
 
     $conn = mysqli_connect('localhost', 'root', '', 'BDClaseVirtual');
     $sql = "INSERT INTO curso (cursoNombre, cursoPropietario)
-			VALUES ('$cursoNombre', '$cursoPropietario')";
+            VALUES ('$cursoNombre', '$cursoPropietario')";
 
     // comprobar si el curso se creó con éxito
     if (mysqli_query($conn, $sql)) {
@@ -51,6 +51,7 @@ function addCursoToDatabase()
     }
     mysqli_close($conn);
 }
+
 
 include("../vista/include/piePagina.php");
 ?>
