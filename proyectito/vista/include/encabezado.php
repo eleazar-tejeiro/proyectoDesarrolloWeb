@@ -26,7 +26,9 @@
       if(session_status() != PHP_SESSION_ACTIVE)
       session_start();
       if(isset($_SESSION['usuarioID']))
-        echo "<li><a href='' class='active'>".$_SESSION['usuarioApodo']."</a></li>";
+        echo "<div class='laid'>
+              <li><a href='' class='otros'>".$_SESSION['usuarioApodo']."</a></li>
+              </div>";
     ?>
     <div class="dropdown">
     <button class="dropbtn">Tipo usuario
