@@ -22,6 +22,12 @@
 	<div class="nav_menu" id="myTopnav">
 		<ul>
     <li><a href="/proyectoDesarrolloWeb/proyectito/index.php" class="active">Inicio</a></li>
+    <?php
+      if(session_status() != PHP_SESSION_ACTIVE)
+      session_start();
+      if(isset($_SESSION['usuarioID']))
+        echo "<li><a href='' class='active'>".$_SESSION['usuarioApodo']."</a></li>";
+    ?>
     <div class="dropdown">
     <button class="dropbtn">Tipo usuario
       <i class="fa fa-caret-down"></i>

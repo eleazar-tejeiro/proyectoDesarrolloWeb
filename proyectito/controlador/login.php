@@ -37,7 +37,7 @@ function doLogin()
     $password = $_POST['password'];
 
     $conn = mysqli_connect("localhost", "root", "", "BDClaseVirtual");
-    $sql = "SELECT usuarioID, usuarioTipo FROM usuarios
+    $sql = "SELECT usuarioID, usuarioTipo, usuarioApodo FROM usuarios
 			WHERE usuarioApodo ='$usuarioApodo' AND usuarioContra ='$password' ";
     if ($resource = mysqli_query($conn, $sql)) {
         checkLogin($resource);
@@ -55,10 +55,11 @@ function checkLogin($resource)
         $row = mysqli_fetch_array($resource);
         $_SESSION['usuarioTipo'] = $row['usuarioTipo'];
         $_SESSION['usuarioID'] = $row['usuarioID'];
+        $_SESSION['usuarioApodo'] = $row['usuarioApodo'];
         echo("<p style='color:green'>LOGIN CORRECTO</p>");
         showLinkToUserPage();
     } else {
-        echo("<p style='color:red'> ERROR DE INICIAR SESIÓN: UsuarioApodo o Contraseña incorrectos ... intente nuevamente />");
+        echo("<p style='color:red'> ERROR DE INICIAR SESIÓN: Usuario o Contraseña incorrectos ... intente nuevamente />");
     }
 }
 
