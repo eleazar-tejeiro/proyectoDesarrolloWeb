@@ -5,9 +5,9 @@ Proyecto Universidad
 
 - [X] Modificar el login y pagina principal
 
-- [ ] Adaptar el código
+- [X] Adaptar el código
 
-- [ ] Adaptar la base de datos
+- [X] Adaptar la base de datos
 
 - [X] Implementar MVC
 
