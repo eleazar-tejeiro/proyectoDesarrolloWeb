@@ -36,7 +36,7 @@ function showForm()
         echo "<input type='checkbox' name='curso[]' value='$currentCurso[cursoID]' />
 		  $currentCurso[cursoNombre] <br>";
     }
-    echo"<input type='submit' value='Upload Resource'/>
+    echo"<input type='submit' value='Subir Recurso'/>
 		</form>";
 }
 

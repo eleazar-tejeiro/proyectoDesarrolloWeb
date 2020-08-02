@@ -42,7 +42,6 @@ function profesorMenu()
 {
     //Funcion para las opciones de los profesores
     echo "<a href='/proyectoDesarrolloWeb/proyectito/controlador/profInicio.php'>Pagina Principal</a>
-		<a href='/proyectoDesarrolloWeb/proyectito/controlador/profUsuarioCalif.php'>Notas del estudiante</a>
 		<a href='/proyectoDesarrolloWeb/proyectito/controlador/profNuevoCurso.php'>Añadir un nuevo curso</a>
 		<a href='/proyectoDesarrolloWeb/proyectito/controlador/profCarga.php'>Subir un recurso</a>
 		<a href='/proyectoDesarrolloWeb/proyectito/controlador/profAutorizaEstudiante.php'>Autorizar un estudiante</a>
@@ -54,8 +53,7 @@ function estudianteMenu()
     //Funcion para las opciones del estudiante
     echo "<a href='/proyectoDesarrolloWeb/proyectito/controlador/estudianteInicio.php'>Pagina Principal</a>
 		<a href='/proyectoDesarrolloWeb/proyectito/controlador/estudianteInscribirse.php'>Enlistarze en un curso</a>
-		<a href='/proyectoDesarrolloWeb/proyectito/controlador/estudianteCurso.php'>Cursos</a>
-		<a href='/proyectoDesarrolloWeb/proyectito/controlador/estudianteCalificaciones.php'>Notas</a>";
+		<a href='/proyectoDesarrolloWeb/proyectito/controlador/estudianteCurso.php'>Cursos</a>";
 }
 
 function adminMenu()
@@ -67,7 +65,6 @@ function adminMenu()
 		<a href='/proyectoDesarrolloWeb/proyectito/controlador/adminMuestraTablas.php'>Mostrar tablas de la base de datos</a>
 		<a href='/proyectoDesarrolloWeb/proyectito/controlador/adminCreaTablas.php'>Crea tablas de la base de datos</a>
 		
-		<a href='/proyectoDesarrolloWeb/proyectito/controlador/profesorShowUsers.php'>Mostrar Usuarios</a>
 		<a href='/proyectoDesarrolloWeb/proyectito/controlador/profAutorizaEstudiante.php'>Autorizar estudiantes</a>
 		<a href='/proyectoDesarrolloWeb/proyectito/controlador/profAdicionaEstudiante.php'>Añadir estudiantes</a>";
 }
