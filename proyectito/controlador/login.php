@@ -49,7 +49,7 @@ function doLogin()
     if ($resource = mysqli_query($conn, $sql)) {
         checkLogin($resource);
     } else {
-        echo("<p style='color:red'>ERROR: UsuarioApodo o Contraseña incorrectos ... intente nuevamente />");
+        echo("<p style='color:red'>ERROR: Usuario o Contraseña incorrectos ... intente nuevamente />");
         header("Location: login.php");
     }
     mysqli_close($conn);
@@ -66,7 +66,7 @@ function checkLogin($resource)
         echo("<p style='color:green'>LOGIN CORRECTO</p>");
         showLinkToUserPage();
     } else {
-        echo("<p style='color:red'> ERROR DE INICIAR SESIÓN: Usuario o Contraseña incorrectos ... intente nuevamente />");
+        echo("<p style='color:red'> ERROR DE INICIAR SESIÓN: Usuario o Contraseña incorrectos ... intente nuevamente </p>");
     }
 }
 
