@@ -31,10 +31,10 @@ function displayTable()
 
     // según la selección, configure el SQL y el encabezado para mostrar
     if ($selection =='estudiantes') {
-        $sql="SELECT usuarioID as ID, nombreUsuario as Nombre, usuarioApellido as Apellido, usuarioApodo as Usuario, usuarioContra as Contraseña FROM usuarios WHERE usuarioTipo = 'estudiante'";
+        $sql="SELECT usuarioID as ID, nombreUsuario as Nombre, usuarioApellido as Apellido, usuarioApodo as Usuario, usuarioContra as Clave FROM usuarios WHERE usuarioTipo = 'estudiante'";
         $header = "<tr><th>ID</th><th>Nombre</th><th>Apellido</th><th>Usuario</th><th>Contraseña</th></tr>";
     } else {
-        $sql="SELECT nombreUsuario as Nombre, usuarioApellido as Apellido, c.cursoNombre as Curso, COUNT(e.cursoID) as Cuenta FROM usuarios u, curso c, estudianteCurso e WHERE u.usuarioID=c.cursoPropietario and c.cursoID = e.cursoID AND u.usuarioTipo='profesor' GROUP BY e.cursoID";
+        $sql="SELECT nombreUsuario as Nombre, usuarioApellido as Apellido, c.cursoNombre as Curso, COUNT(e.cursoID) as Cuenta FROM usuarios u, curso c, estudianteCurso e WHERE u.usuarioID=c.cursoPropietario and c.cursoID = e.cursoID AND u.usuarioTipo='profesor' AND e.autorizado=1 GROUP BY e.cursoID";
         $header = "<tr><th>Nombre</th><th>Apellido</th><th>Curso</th><th>Cantidad Inscritos</th></tr>";
     }
 

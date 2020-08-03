@@ -66,7 +66,6 @@ function adminMenu()
 		<a href='/proyectoDesarrolloWeb/proyectito/controlador/adminMuestraTablas.php'>Mostrar tablas de la base de datos</a>
 		<a href='/proyectoDesarrolloWeb/proyectito/controlador/adminCreaTablas.php'>Crea tablas de la base de datos</a>
 		<a href='/proyectoDesarrolloWeb/proyectito/controlador/muestraEstuProfe.php'>Reporte de estudiantes y profesores</a>
-		<a href='/proyectoDesarrolloWeb/proyectito/controlador/profAutorizaEstudiante.php'>Autorizar estudiantes</a>
 		<a href='/proyectoDesarrolloWeb/proyectito/controlador/profAdicionaEstudiante.php'>Añadir estudiantes</a>";
 }
 ?>

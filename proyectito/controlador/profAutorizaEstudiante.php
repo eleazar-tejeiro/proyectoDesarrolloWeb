@@ -64,7 +64,7 @@ function showEstudiantes($resource)
     echo "<form name='showEstudiantes' method='post' action='profAutorizaEstudiante.php'>";
     echo "<input type='hidden' name='cursoID' value='$cursoID' /> ";
     echo "<table border='2'>
-			<tr><th>Check</th><th>ID Usuario</th><th>Name</th>";
+			<tr><th>Seleccionar</th><th>ID Usuario</th><th>Nombre</th>";
     while ($currentLine = mysqli_fetch_array($resource)) {
         echo "<tr><td><input type='checkbox' name='estudianteID[]' value='$currentLine[usuarioID]' /></td>";
         echo "<td>". $currentLine['usuarioID'] . "</td><td>" . $currentLine['nombreUsuario'] ." " . $currentLine['usuarioApellido'] . "</td></tr>";
